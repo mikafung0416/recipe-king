@@ -1,0 +1,94 @@
+body {
+    margin: 0 0;
+}
+h1 {
+    font-size: 5rem;
+}
+/* navbar */
+nav {
+    background-color: #fff;
+}
+
+/* web banner with hero image */
+.hero-container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+#hero-img { 
+    /* photo width: 1425px for reference only */
+    width: 100%;
+}
+#hero-words, .hover-div {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#hero-words {
+    z-index: 1;
+}
+#hover-div {
+    background-color: #fff;
+    opacity: 50%;
+    width: 100%;
+    height: 100%;
+    display: none !important;
+}
+.hero-para {
+    width: 70%;
+}
+.hero-para>h3 {
+    line-height: 3rem;
+}
+
+/* two columns of recipes and restaurants */
+.col-container, .row {
+    width: 100%;
+}
+.col-container .row {
+    margin: 0 0 0;
+}
+.col-img {
+    padding: 0 0 0;
+    position: relative;
+    text-align: center;
+}
+.centre-words-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.img-option {
+    width: 100%;
+}
+
+/* user feedback */
+.card-container {
+    width: 100%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+/* footer */
+.footer-container {
+    width: 100%;
+    background-color: #008080;
+}
+.col-right {
+    height: 100%;
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.footer-container .row {
+    margin: 0 0 1rem 0;
+    padding-top: 1rem;
+}
+#bottom-row {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+}

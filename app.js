@@ -26,7 +26,7 @@ app.get("/diet", (req, res) => {
 //when user select cuisine, it will direct to listing all recipe pages
 app.post("/cuisine", async (req, res) => {
   const country = req.body.cuisineName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&cuisine=${country}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${country}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -45,12 +45,12 @@ app.post("/cuisine", async (req, res) => {
 app.post("/diet", async (req, res) => {
   const diet = req.body.dietName;
   console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${diet}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${diet}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
-  console.log(result);
   const recipes = result.results;
   const numOfRecipes = result.number;
+  console.log(recipes);
 
   //It should be render all information in grid
   res.render("display", {
@@ -64,7 +64,7 @@ app.post("/diet", async (req, res) => {
 
 app.post("/diet/:dietName", async (req, res) => {
   const dietName = req.params.dietName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${dietName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${dietName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log(result);
@@ -78,6 +78,25 @@ app.post("/diet/:dietName", async (req, res) => {
     specificType: dietName,
     numberOfRecipes: numOfRecipes,
     queryList: dietList,
+  });
+});
+
+app.post("/cuisine/:cuisineName", async (req, res) => {
+  const cuisineName = req.params.cuisineName;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${cuisineName}&number=50`;
+  const response = await fetch(url);
+  const result = await response.json();
+  console.log(result);
+  const recipes = result.results;
+  const numOfRecipes = result.number;
+
+  //It should be render all information in grid
+  res.render("display", {
+    recipes: recipes,
+    broadType: "Cuisine",
+    specificType: cuisineName,
+    numberOfRecipes: numOfRecipes,
+    queryList: cuisineList,
   });
 });
 

@@ -1,0 +1,45 @@
+<%- include('partials/header') -%>
+
+<div id="content">
+    <div id="leftBar">
+        <div id="leftTop">
+            <h1>Cuisine</h1>
+            <div id="leftTop_child">
+                <div class="leftTop_child_head"><a href="">Cusine</a></div>
+                <div class="leftTop_child_child">
+                    <li><a href="">Japanese</a></li>
+                    <li><a href="">Chinese</a></li>
+                    <li><a href="">Thai</a></li>
+                    <li><a href="">French</a></li>
+                    <li><a href="">American</a></li>
+                </div>
+            </div>
+        </div>
+        <div id="leftBottom">
+            <h1>Filter</h1>
+        </div>
+    </div>
+    <div id="rightBar">
+        <div id="rightContent">
+            <div id="rightContentHead">
+                <h1>Cuisine - <%= cuisine%> (<%= numberOfRecipes%>)</h1>
+            </div>
+            <div id="rightContentContent">
+                <% recipes.forEach(recipe => { %>
+                <div class="rightContentEach">
+                    <img src="<%= recipe.image %>" alt="">
+                    <div class="rightContentEachTitle">
+                        <a href=""><%= recipe.title %></a>
+                    </div>
+                </div>
+                <%}) %>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+<%- include('partials/footer') -%>

@@ -5,6 +5,9 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const fetch = require("node-fetch");
 
+const cuisineList = require("./queryList/cuisineList");
+const dietList = require("./queryList/dietList");
+
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
@@ -23,7 +26,6 @@ app.get("/diet", (req, res) => {
 //when user select cuisine, it will direct to listing all recipe pages
 app.post("/cuisine", async (req, res) => {
   const country = req.body.cuisineName;
-  console.log(country);
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&cuisine=${country}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
@@ -36,6 +38,7 @@ app.post("/cuisine", async (req, res) => {
     broadType: "Cuisine",
     specificType: country,
     numberOfRecipes: numOfRecipes,
+    queryList: cuisineList,
   });
 });
 
@@ -55,6 +58,7 @@ app.post("/diet", async (req, res) => {
     broadType: "Diet",
     specificType: diet,
     numberOfRecipes: numOfRecipes,
+    queryList: dietList,
   });
 });
 

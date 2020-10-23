@@ -3,15 +3,13 @@
 <div id="content">
     <div id="leftBar">
         <div id="leftTop">
-            <h1>Cuisine</h1>
+            <h1><%= broadType %></h1>
             <div id="leftTop_child">
-                <div class="leftTop_child_head"><a href="">Cusine</a></div>
+                <div class="leftTop_child_head"><a href=""><%= broadType %></a></div>
                 <div class="leftTop_child_child">
-                    <li><a href="">Japanese</a></li>
-                    <li><a href="">Chinese</a></li>
-                    <li><a href="">Thai</a></li>
-                    <li><a href="">French</a></li>
-                    <li><a href="">American</a></li>
+                    <% queryList.forEach(query => { %>
+                    <li><a href=""><%= query %></a></li>
+                    <% }) %>
                 </div>
             </div>
         </div>

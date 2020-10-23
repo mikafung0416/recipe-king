@@ -62,6 +62,25 @@ app.post("/diet", async (req, res) => {
   });
 });
 
+app.post("/diet/:dietName", async (req, res) => {
+  const dietName = req.params.dietName;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${dietName}&number=50`;
+  const response = await fetch(url);
+  const result = await response.json();
+  console.log(result);
+  const recipes = result.results;
+  const numOfRecipes = result.number;
+
+  //It should be render all information in grid
+  res.render("display", {
+    recipes: recipes,
+    broadType: "Diet",
+    specificType: dietName,
+    numberOfRecipes: numOfRecipes,
+    queryList: dietList,
+  });
+});
+
 app.listen(4000, () => {
   console.log("listening to 4000");
 });

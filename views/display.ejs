@@ -8,7 +8,13 @@
                 <div class="leftTop_child_head"><a href=""><%= broadType %></a></div>
                 <div class="leftTop_child_child">
                     <% queryList.forEach(query => { %>
-                    <li><a href=""><%= query %></a></li>
+                    <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
+                        <li>
+                            <a class="queryTag" href="#"
+                                onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
+                            <input type="hidden" name="<%=query%>Name" value="<%=query%>">
+                        </li>
+                    </form>
                     <% }) %>
                 </div>
             </div>

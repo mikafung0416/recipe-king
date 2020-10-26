@@ -1,12 +1,13 @@
 <%- include('partials/header') -%>
 
+<div>
+    <form action="/cuisine" method="post">
+        <label for="cuisineName">Choose your cuisine</label>
+        <input type="text" name="cuisineName" id="cuisineName">
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
-
-<form action="/cuisine" method="post">
-    <label for="cuisineName">Choose your cuisine</label>
-    <input type="text" name="cuisineName" id="cuisineName">
-    <input type="submit" value="Submit">
-</form>
 
 
 

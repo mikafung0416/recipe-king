@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/broadsearch", (req, res) => {
+  res.render("broadSearch");
+});
+
 app.get("/cuisine", (req, res) => {
   res.render("selectCuisine");
 });

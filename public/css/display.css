@@ -12,25 +12,25 @@ a:hover{
 
 #content {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   margin: 0 auto;
 }
 
 #leftBar {
-  width: 200px;
+  /* width: 200px; */
   /* height: 1000px; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #rightBar {
   width: 85%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #leftTop {
   /* height: 50%; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* margin: 20px; */
   padding: 20px;
 }
@@ -43,11 +43,10 @@ a:hover{
   position: relative;
 }
 
-.hide{
+.hide-arrow{
   position: absolute;
   right: 0;
 }
-
 
 .leftTop_child_child li {
   margin: 10px 0;
@@ -56,7 +55,7 @@ a:hover{
 
 #leftBottom {
   /* height: 50%; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* margin: 20px; */
   padding: 20px;
 }
@@ -65,19 +64,19 @@ a:hover{
   width: 1000px;
   height: 1000px;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 20px;
 }
 
 #rightContentContent {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: grid;
   grid-template-columns: auto auto auto;
 }
 
 .rightContentEach {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 260px;
   height: 300px;
 }
@@ -92,3 +91,16 @@ a:hover{
   padding-left: 20px;
 }
 
+#tip{
+  background-color: #E7EAEA;
+  padding: 20px;
+}
+
+#tip p{
+  text-align: center;
+  margin: 0;
+}
+
+.filterDivHead{
+  position: relative;
+}

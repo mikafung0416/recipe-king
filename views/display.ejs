@@ -1,12 +1,16 @@
 <%- include('partials/header') -%>
 
+<div id="tip">
+    <p>Register can enjoy saving unlimited recipes and have advance search for different nutritional information!</p>
+</div>
+
 <div id="content">
     <div id="leftBar">
         <div id="leftTop">
             <h1><%= broadType %></h1>
             <div id="leftTop_child">
-                <div class="leftTop_child_head"><a href=""><%= broadType %></a><span class="hide"><i
-                            class="fas fa-angle-down"></i></span></div>
+                <div class="leftTop_child_head"><a href=""><%= broadType %></a><span id="<%=broadType%>-id" onclick="toggleBroadQuery(this)" class="hide-arrow"><i
+                            class="fas fa-angle-up"></i></span></div>
                 <div class="leftTop_child_child">
                     <% queryList.forEach(query => { %>
                     <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
@@ -21,7 +25,50 @@
             </div>
         </div>
         <div id="leftBottom">
-            <h1>Filter</h1>
+            <h1>FILTER</h1>
+            <hr>
+            <div class="filterDiv">
+                <div class="filterDivHead">
+                    <h3>Diet<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                </div>
+                <div class="filterDivContent">
+                    <form action="" method="post">
+                        <input type="checkbox" name="vegan" id="">
+                        <label for="vegan">
+                            Vegan
+                        </label><br>
+                        <input type="checkbox" name="vegetarian" id="">
+                        <label for="vegetarian">
+                            vegetarian
+                        </label><br>
+                        <input type="checkbox" name="Paleo" id="">
+                        <label for="Paleo">
+                            Paleo
+                        </label><br>
+                        <hr>
+                    </form>
+                </div>
+                <div class="filterDivHead">
+                    <h3>Cuisine<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                </div>
+                <div class="filterDivContent">
+                    <form action="" method="post">
+                        <input type="checkbox" name="japanese" id="">
+                        <label for="japanese">
+                            Japanese
+                        </label><br>
+                        <input type="checkbox" name="thai" id="">
+                        <label for="thai">
+                            Thai
+                        </label><br>
+                        <input type="checkbox" name="chinese" id="">
+                        <label for="chinese">
+                            Chinese
+                        </label><br>
+                        <hr>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <div id="rightBar">

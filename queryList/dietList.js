@@ -1,7 +1,7 @@
 const dietList = [
   "Gluten Free",
   "Ketogenic",
-  "Vegetarian",
+  " ",
   "Lacto-Vegetarian",
   "Ovo-Vegetarian",
   "Vegan",

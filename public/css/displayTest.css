@@ -6,7 +6,7 @@ a {
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
 
@@ -18,13 +18,14 @@ a:hover{
 }
 
 #leftBar {
-  width: 200px;
+  /* width: 200px; */
   /* height: 1000px; */
   border: 1px solid black;
+  position: absolute;
 }
 
 #rightBar {
-  width: 85%;
+  width: 100%;
   border: 1px solid black;
 }
 
@@ -39,15 +40,14 @@ a:hover{
   border-bottom: 1px solid rgb(231, 230, 230);
 }
 
-.leftTop_child_head{
+.leftTop_child_head {
   position: relative;
 }
 
-.hide{
+.hide {
   position: absolute;
   right: 0;
 }
-
 
 .leftTop_child_child li {
   margin: 10px 0;
@@ -62,17 +62,17 @@ a:hover{
 }
 
 #rightContent {
-  width: 1000px;
-  height: 1000px;
+
   margin: 0 auto;
   border: 1px solid black;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 #rightContentContent {
-  width: 100%;
+  width: 80%;
   border: 1px solid black;
   display: grid;
+  margin: 0 20%;
   grid-template-columns: auto auto auto;
 }
 
@@ -91,4 +91,3 @@ a:hover{
 .rightContentEachTitle {
   padding-left: 20px;
 }
-

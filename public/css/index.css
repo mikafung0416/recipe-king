@@ -76,8 +76,10 @@ nav {
 .footer-container {
     width: 100%;
     background-color: #008080;
-    /* position: fixed;
-    bottom: 0; */
+    /* position: absolute;
+    top: 0px; */
+    /* position: fixed; */
+    /* bottom: 0; */
 }
 .col-right {
     height: 100%;

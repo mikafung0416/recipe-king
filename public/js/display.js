@@ -2,10 +2,19 @@ const recipesDOM = document.getElementById("rightContentContent"); //get the rec
 const footerDOM = document.querySelector(".footer-container"); //get the footer DOM
 
 const getRecipesHeight = () => {
-  const addedHeight = recipesDOM.offsetHeight + 500;
-  console.log(recipesDOM.offsetHeight);
+  let addedHeight = recipesDOM.offsetHeight + 200;
+  if (addedHeight < 1500) {
+    addedHeight = 1500; //should be minimum height for footer to stay at bottom
+  } else {
+    addedHeight = recipesDOM.offsetHeight + 200;
+  }
+  alert(recipesDOM.offsetHeight);
   footerDOM.style.position = "absolute";
   footerDOM.style.top = addedHeight + "px";
 };
+
+
+//For zooming to 25%, the footer should be at least top = 3500px;
+
 
 getRecipesHeight();

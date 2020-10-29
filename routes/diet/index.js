@@ -48,4 +48,25 @@ router.post("/:dietName", async (req, res) => {
   });
 });
 
+//Range bar for numbre of recipes of diet
+router.post("/:dietName/number", async (req, res) => {
+  const dietName = req.params.dietName;
+  const numOfRecipes = req.body.numberOfRecipes;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${dietName}&number=${numOfRecipes}`;
+  const response = await fetch(url);
+  const result = await response.json();
+  console.log("It is in diet/:dietName/number route");
+  console.log(result);
+  const recipes = result.results;
+
+  //It should be render all information in grid
+  res.render("display", {
+    recipes: recipes,
+    broadType: "Diet",
+    specificType: dietName,
+    numberOfRecipes: numOfRecipes,
+    queryList: dietList,
+  });
+});
+
 module.exports = router;

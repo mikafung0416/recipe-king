@@ -49,7 +49,7 @@ router.post("/:cuisineName", async (req, res) => {
   });
 });
 
-//Change the number of recipes basing on current cuisine/diet/type to call api
+//Range bar for numbre of recipes of cuisine
 router.post("/:cuisineName/number", async (req, res) => {
   const cuisineName = req.params.cuisineName;
   const numOfRecipes = req.body.numberOfRecipes;

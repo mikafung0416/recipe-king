@@ -76,9 +76,11 @@
             <div id="rightContentHead">
                 <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
                 <div class="slideContainer">
-                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number" method="post">
+                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number"
+                        method="post">
                         <p>Number of Recipes</p>
-                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()" type="range" name="numberOfRecipes" id="" min="1" max="100" value="50">
+                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()"
+                            type="range" name="numberOfRecipes" id="" min="1" max="100" value="<%=numberOfRecipes%>">
                     </form>
                 </div>
             </div>

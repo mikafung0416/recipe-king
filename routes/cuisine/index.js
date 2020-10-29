@@ -1,6 +1,8 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const cuisineList = require("../../queryList/cuisineList");
+const dietList = require("../../queryList/dietList");
+const typeList = require("../../queryList/typeList");
 
 const router = express.Router();
 
@@ -26,6 +28,10 @@ router.post("/", async (req, res) => {
     specificType: country,
     numberOfRecipes: numOfRecipes,
     queryList: cuisineList,
+    otherBroadType1: "Diet",
+    otherBroadType1List: dietList,
+    otherBroadType2: "Type",
+    otherBroadType2List: typeList,
   });
 });
 
@@ -46,6 +52,10 @@ router.post("/:cuisineName", async (req, res) => {
     specificType: cuisineName,
     numberOfRecipes: numOfRecipes,
     queryList: cuisineList,
+    otherBroadType1: "Diet",
+    otherBroadType1List: dietList,
+    otherBroadType2: "Type",
+    otherBroadType2List: typeList,
   });
 });
 
@@ -67,6 +77,10 @@ router.post("/:cuisineName/number", async (req, res) => {
     specificType: cuisineName,
     numberOfRecipes: numOfRecipes,
     queryList: cuisineList,
+    otherBroadType1: "Diet",
+    otherBroadType1List: dietList,
+    otherBroadType2: "Type",
+    otherBroadType2List: typeList,
   });
 });
 

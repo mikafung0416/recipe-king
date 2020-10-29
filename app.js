@@ -10,9 +10,9 @@ const cuisineList = require("./queryList/cuisineList");
 const dietList = require("./queryList/dietList");
 const typeList = require("./queryList/typeList");
 
-const cuisineRoute = require('./routes/cuisine');
-const dietRoute = require('./routes/diet');
-const typeRoute = require('./routes/type');
+const cuisineRoute = require("./routes/cuisine");
+const dietRoute = require("./routes/diet");
+const typeRoute = require("./routes/type");
 
 app.set("view engine", "ejs");
 
@@ -43,7 +43,6 @@ app.get("/recipes/:id", async (req, res) => {
   const builtInURL = result.spoonacularSourceUrl;
   res.send(builtInURL);
 });
-
 
 app.listen(4000, () => {
   console.log("listening to 4000");

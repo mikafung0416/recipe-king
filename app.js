@@ -40,7 +40,7 @@ app.get("/type", (req, res) => {
 //when user select cuisine, it will direct to listing all recipe pages
 app.post("/cuisine", async (req, res) => {
   const country = req.body.cuisineName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&cuisine=${country}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${country}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log(result);
@@ -61,7 +61,7 @@ app.post("/cuisine", async (req, res) => {
 app.post("/diet", async (req, res) => {
   const diet = req.body.dietName;
   console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${diet}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${diet}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -81,7 +81,7 @@ app.post("/diet", async (req, res) => {
 app.post("/type", async (req, res) => {
   const type = req.body.typeName;
   console.log(type);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&type=${type}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${type}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -100,7 +100,7 @@ app.post("/type", async (req, res) => {
 
 app.post("/diet/:dietName", async (req, res) => {
   const dietName = req.params.dietName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&diet=${dietName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${dietName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in diet/:dietName route");
@@ -120,7 +120,7 @@ app.post("/diet/:dietName", async (req, res) => {
 
 app.post("/cuisine/:cuisineName", async (req, res) => {
   const cuisineName = req.params.cuisineName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&cuisine=${cuisineName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${cuisineName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in cuisine/:cuisineName route");
@@ -140,7 +140,7 @@ app.post("/cuisine/:cuisineName", async (req, res) => {
 
 app.post("/type/:typeName", async (req, res) => {
   const typeName = req.params.typeName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&type=${typeName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${typeName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in type/typeName route");
@@ -161,7 +161,7 @@ app.post("/type/:typeName", async (req, res) => {
 //Search by recipe ID
 app.get("/recipes/:id", async (req, res) => {
   const recipeId = req.params.id;
-  const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY1}`;
+  const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY21}`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in recipes/id route");

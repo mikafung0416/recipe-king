@@ -32,7 +32,7 @@ a:hover{
   /* height: 50%; */
   /* border: 1px solid black; */
   /* margin: 20px; */
-  padding: 20px;
+  padding: 40px 20px;;
 }
 
 #leftTop h1 {
@@ -68,11 +68,28 @@ a:hover{
   padding: 20px;
 }
 
+#rightContentHead{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #rightContentContent {
   width: 100%;
   /* border: 1px solid black; */
   display: grid;
   grid-template-columns: auto auto auto;
+}
+
+.slideContainer{
+  display: flex;
+}
+
+.slideContainer p{
+  margin: 0;
+  padding: 50px 10px;
+  /* text-align: center; */
+  /* vertical-align: middle; */
 }
 
 .rightContentEach {
@@ -84,11 +101,11 @@ a:hover{
 .rightContentEach img {
   width: 220px;
   height: 220px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .rightContentEachTitle {
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 
 #tip{
@@ -103,4 +120,8 @@ a:hover{
 
 .filterDivHead{
   position: relative;
+}
+
+#leftTop h1, #leftBottom h1, #rightContentHead h1{
+  font-size: 40px;
 }

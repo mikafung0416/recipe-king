@@ -9,8 +9,8 @@
         <div id="leftTop">
             <h1><%= broadType %></h1>
             <div id="leftTop_child">
-                <div class="leftTop_child_head"><a href=""><%= broadType %></a><span id="<%=broadType%>-id" onclick="toggleBroadQuery(this)" class="hide-arrow"><i
-                            class="fas fa-angle-up"></i></span></div>
+                <div class="leftTop_child_head"><a href=""><%= broadType %></a><span id="<%=broadType%>-id"
+                        onclick="toggleBroadQuery(this)" class="hide-arrow"><i class="fas fa-angle-up"></i></span></div>
                 <div class="leftTop_child_child">
                     <% queryList.forEach(query => { %>
                     <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
@@ -76,8 +76,10 @@
             <div id="rightContentHead">
                 <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
                 <div class="slideContainer">
-                    <p>Number of Recipes</p>
-                    <input type="range" name="" id="" min="1" max="100" value="50">
+                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number" method="post">
+                        <p>Number of Recipes</p>
+                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()" type="range" name="numberOfRecipes" id="" min="1" max="100" value="50">
+                    </form>
                 </div>
             </div>
             <div id="rightContentContent">

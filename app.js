@@ -171,6 +171,27 @@ app.get("/recipes/:id", async (req, res) => {
   res.send(builtInURL);
 });
 
+//Change the number of recipes basing on current cuisine/diet/type to call api
+app.post("/cuisine/:cuisineName/number", async (req, res) => {
+  const cuisineName = req.params.cuisineName;
+  const numOfRecipes = req.body.numberOfRecipes;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${cuisineName}&number=${numOfRecipes}`;
+  const response = await fetch(url);
+  const result = await response.json();
+  console.log("It is in cuisine/:cuisineName/number route");
+  console.log(result);
+  const recipes = result.results;
+
+  //It should be render all information in grid
+  res.render("display", {
+    recipes: recipes,
+    broadType: "Cuisine",
+    specificType: cuisineName,
+    numberOfRecipes: numOfRecipes,
+    queryList: cuisineList,
+  });
+});
+
 app.listen(4000, () => {
   console.log("listening to 4000");
 });

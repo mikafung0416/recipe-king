@@ -1,0 +1,104 @@
+<%- include('partials/header') -%>
+
+<div id="tip">
+    <p>Register can enjoy saving unlimited recipes and have advance search for different nutritional information!</p>
+</div>
+
+<div id="content">
+    <div id="leftBar">
+        <div id="leftTop">
+            <h1><%= broadType %></h1>
+            <div id="leftTop_child">
+                <div class="leftTop_child_head"><a href=""><%= broadType %></a><span id="<%=broadType%>-id"
+                        onclick="toggleBroadQuery(this)" class="hide-arrow"><i class="fas fa-angle-up"></i></span></div>
+                <div class="leftTop_child_child">
+                    <% queryList.forEach(query => { %>
+                    <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
+                        <li>
+                            <a class="queryTag" href="#"
+                                onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
+                            <input type="hidden" name="<%=query%>Name" value="<%=query%>">
+                        </li>
+                    </form>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div id="leftBottom">
+            <h1>FILTER</h1>
+            <hr>
+            <div class="filterDiv">
+                <div class="filterDivHead">
+                    <h3>Diet<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                </div>
+                <div class="filterDivContent">
+                    <form action="" method="post">
+                        <input type="checkbox" name="vegan" id="">
+                        <label for="vegan">
+                            Vegan
+                        </label><br>
+                        <input type="checkbox" name="vegetarian" id="">
+                        <label for="vegetarian">
+                            vegetarian
+                        </label><br>
+                        <input type="checkbox" name="Paleo" id="">
+                        <label for="Paleo">
+                            Paleo
+                        </label><br>
+                        <hr>
+                    </form>
+                </div>
+                <div class="filterDivHead">
+                    <h3>Cuisine<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                </div>
+                <div class="filterDivContent">
+                    <form action="" method="post">
+                        <input type="checkbox" name="japanese" id="">
+                        <label for="japanese">
+                            Japanese
+                        </label><br>
+                        <input type="checkbox" name="thai" id="">
+                        <label for="thai">
+                            Thai
+                        </label><br>
+                        <input type="checkbox" name="chinese" id="">
+                        <label for="chinese">
+                            Chinese
+                        </label><br>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rightBar">
+        <div id="rightContent">
+            <div id="rightContentHead">
+                <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
+                <div class="slideContainer">
+                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number" method="post">
+                        <p>Number of Recipes</p>
+                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()" type="range" name="numberOfRecipes" id="" min="1" max="100" value="50">
+                    </form>
+                </div>
+            </div>
+            <div id="rightContentContent">
+                <% recipes.forEach(recipe => { %>
+                <div class="rightContentEach">
+                    <img src="<%= recipe.image %>" alt="">
+                    <div class="rightContentEachTitle">
+                        <!--Should direct to the each id route, and render stuff-->
+                        <a href="http://localhost:4000/recipes/<%=recipe.id%>"><%= recipe.title %></a>
+                    </div>
+                </div>
+                <%}) %>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<%- include('partials/footer') -%>

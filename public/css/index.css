@@ -1,5 +1,6 @@
 body {
     margin: 0 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
     font-size: 5rem;
@@ -7,6 +8,14 @@ h1 {
 /* navbar */
 nav {
     background-color: #fff;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: black;
 }
 
 /* web banner with hero image */
@@ -76,6 +85,9 @@ nav {
 .footer-container {
     width: 100%;
     background-color: #008080;
+    /* position: absolute;
+    top: 3500px; */
+
 }
 .col-right {
     height: 100%;

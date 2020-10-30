@@ -7,7 +7,7 @@ h1 {
 }
 /* navbar */
 nav {
-    background-color: #fff;
+    background-color: #bedbbb;
 }
 
 a{
@@ -16,6 +16,12 @@ a{
 
 a:hover{
     color: black;
+}
+
+#sign-in {
+    background-color: #86c27f;
+    border-radius: 25px;
+    border: #384f34 solid 1.5px;
 }
 
 /* web banner with hero image */
@@ -27,31 +33,51 @@ a:hover{
 #hero-img { 
     /* photo width: 1425px for reference only */
     width: 100%;
+    height: 100%;
 }
-#hero-words, .hover-div {
+#hero-wordbox {
     position: absolute;
     width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#hero-words {
-    z-index: 1;
-}
-#hover-div {
-    background-color: #fff;
-    opacity: 50%;
-    width: 100%;
-    height: 100%;
-    display: none !important;
-}
-.hero-para {
-    width: 70%;
-}
-.hero-para>h3 {
-    line-height: 3rem;
+
+.hero-words {
+    color: #fff;
 }
 
+#first-line {
+    margin-right: 26rem;
+}
+#second-line {
+    margin-left: 26rem;
+}
+#third-line {
+    margin-top: 1rem;
+}
+
+/* gif */
+.gif-container {
+    background-image: url('https://media.giphy.com/media/2vlSv8KggN9vaJxkor/giphy.gif');
+    /* https://media.giphy.com/media/eeYtwiYHARla8/giphy.gif */
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 70%;
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+#description {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    padding: 0 15rem;
+    z-index: 1;
+}
 /* two columns of recipes and restaurants */
 .col-container, .row {
     width: 100%;

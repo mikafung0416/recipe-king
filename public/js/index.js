@@ -14,7 +14,6 @@ $(() => {
         }
         // console.log(winScroll);
     });
-
     // hero image hovering
     // $('#hero-words').hover(
     //     () => {

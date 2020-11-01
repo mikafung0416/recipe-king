@@ -3,6 +3,8 @@ const fetch = require("node-fetch");
 const cuisineList = require("../../queryList/cuisineList");
 const dietList = require("../../queryList/dietList");
 const typeList = require("../../queryList/typeList");
+const db = require("../../database");
+
 
 const router = express.Router();
 

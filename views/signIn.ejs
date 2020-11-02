@@ -1,29 +1,37 @@
 <%- include('partials/signInUp') -%>
 
 <div class="row">
+    <!-- empty space on left -->
     <div class="col col-0 col-md-2"></div>
+    <!-- the middle div -->
     <div class="col col-12 col-md-8">
         <div class="sign-in-container">
             <h1>Sign In</h1>
             <div class="content">
+                <!-- row of small titles -->
                 <div class="row" id="small-titles">
+                    <!-- left title -->
                     <div class="col col-12 col-md-6">
                         <h5 class="d-flex justify-content-center align-items-center">Sign in with email address / username</h5>
                     </div>
+                    <!-- right title -->
                     <div class="col col-12 col-md-6">
                         <h5 class="d-flex justify-content-center align-items-center">Or sign in with another account</h5>
                     </div>
                 </div>
+                <!-- row of those boxes -->
                 <div class="row">
+                    <!-- sign in form -->
                     <div class="col col-12 col-md-6 d-flex justify-content-center align-items-center flex-column" id="left-col">
                         <form action="/sign-in" method='POST' class="d-flex justify-content-center align-items-center flex-column" id="form">
-                            <input type="text" placeholder="Email address / username" class="textarea">
+                            <input type="text" placeholder="Email address / username" class="textarea" name="email">
                             <br>
-                            <input type="password" placeholder="Password" class="textarea">
+                            <input type="password" placeholder="Password" class="textarea" name="password">
                             <br>
-                            <input type="submit">
+                            <input type="submit" value="Sign In">
                         </form>
                     </div>
+                    <!-- social media sign in -->
                     <div class="col col-12 col-md-6 d-flex align-items-center flex-column">
                         <div class="social-media" id="facebook-div">
                             <img src="/assets/image/facebook.svg" alt="Facebook" class="social-logo">
@@ -37,12 +45,13 @@
                 </div>
             </div>
         </div>
+        <!-- the bottom sentence with sign up link -->
         <div id="no-account-box">
             <span class="sign-up">Don’t have an account yet?</span>
             <a href="#" class="sign-up" id="sign-up-link"><span>Sign Up</span></a>
         </div>
-        
     </div>
+    <!-- empty space on right -->
     <div class="col-0 col-md-2"></div>
 </div>
 

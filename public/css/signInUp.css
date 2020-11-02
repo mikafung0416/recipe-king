@@ -7,7 +7,7 @@ body {
     margin: 0 0;
 }
 /* signIn */
-.sign-in-container {
+.sign-in-container, .sign-up-container{
     border: #000 1px solid;
     background-color: #fff;
     opacity: 80%;
@@ -52,4 +52,47 @@ input[type=submit] {
 #sign-up-link {
     margin-left: 1rem;
     text-decoration: underline;
+}
+/* signUp */
+.big-div {
+    width: 100vw;
+    height: 90vh;
+    position: relative;
+}
+.sign-up-container {
+    width: 40vw;
+    height: 80vh;
+    padding: 2vh 1vh;
+    margin-top: 4vh;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#member {
+    font-size: 4rem;
+}
+#member-intro {
+    list-style-type: circle;
+}
+#sign-up-form {
+    margin-top: 2.5rem;
+}
+.textarea-sign-up {
+    width: 25vw;
+}
+.labels {
+    width: 25vw;
+    margin-bottom: 0.3rem;
+    text-align: left;
+}
+.select-div {
+    width: 100%;
+}
+.select {
+    width: 10vw;
+    text-align: left;
+}
+#sign-up-form-btn {
+    margin-top: 2rem;
 }

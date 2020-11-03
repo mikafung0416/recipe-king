@@ -125,38 +125,17 @@ router.post("/", async (req, res) => {
           });
         });
     });
-
-    //3. render the api stuff to users
-    // res.render("display", {
-    //   recipes: recipes,
-    //   broadType: "Cuisine",
-    //   specificType: country,
-    //   numberOfRecipes: numOfRecipes,
-    //   queryList: cuisineList,
-    //   otherBroadType1: "Diet",
-    //   otherBroadType1List: dietList,
-    //   otherBroadType2: "Type",
-    //   otherBroadType2List: typeList,
-    // });
   } else {
     console.log("Rendering from db");
     //rendering from db
     //base on the recipe_id on recipe_cuisine table to render in recipes table
-    let recipeIDs = await db.select("recipe_id").from("recipe_cuisine");
+    let recipeIDs = await db
+      .select("recipe_id")
+      .from("recipe_cuisine")
+      .where("cuisine_id", "=", cuisineId);
     let dbRecipes = [];
     console.log(recipeIDs);
-    // recipeIDs.forEach(async (recipe) => {
-    //   let eachRecipeId = recipe.recipe_id;
-    //   let data = await db
-    //     .select("recipe_name", "recipe_instruction", "recipe_image")
-    //     .from("recipes")
-    //     .where("recipe_id", "=", eachRecipeId);
-    //   console.log(data);
-    //   dbRecipes.push({
-    //     title: data[0].recipe_name,
-    //     image: data[0].recipe_image,
-    //   });
-    // });
+
     for (let recipe of recipeIDs) {
       let eachRecipeId = recipe.recipe_id;
       let data = await db
@@ -168,6 +147,7 @@ router.post("/", async (req, res) => {
         image: data[0].recipe_image,
       });
     }
+
     console.log(dbRecipes);
     res.render("display", {
       recipes: dbRecipes,

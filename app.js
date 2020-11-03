@@ -24,7 +24,14 @@ app.use("/diet", dietRoute);
 app.use("/type", typeRoute);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.render("index", {
+    cuisineList: cuisineList,
+    dietList: dietList,
+    typeList: typeList,
+    cuisine: "Cuisine",
+    diet: "Diet",
+    type: "Type"
+  });
 });
 
 app.get("/broadsearch", (req, res) => {

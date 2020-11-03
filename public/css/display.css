@@ -126,6 +126,11 @@ a:hover{
   font-size: 40px;
 }
 
+#content {
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* cos bootstrap doesn't have the containers up to the edges */
 .container-fluid{
   padding-left: 0;
@@ -144,12 +149,30 @@ a:hover{
 .recipe-header-div{
  display: flex;
  justify-content: center;
+ flex-direction: column;
+ padding-left: 0;
+ padding-right: 0;
 }
 
 .recipe-img{
   border-radius: 8px;
   width: 370px;
   height: 300px;
+}
+
+.recipeDetails{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.recipeDetails-d{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .stamps{

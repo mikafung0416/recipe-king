@@ -1,0 +1,98 @@
+body {
+    background-image: url('/assets/image/signInUp.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row {
+    margin: 0 0;
+}
+/* signIn */
+.sign-in-container, .sign-up-container{
+    border: #000 1px solid;
+    background-color: #fff;
+    opacity: 80%;
+    padding: 8vh;
+    margin-top: 8vh;
+}
+#small-titles {
+    margin-bottom: 3vh;
+}
+#left-col {
+    border-right: #000 1px solid;
+}
+#form {
+    margin-right: 1vw;
+}
+.textarea {
+    width: 26vw;
+    height: 6vh;
+}
+input[type=submit] {
+    background-color: #86c27f;
+    border-radius: 25px;
+    border: #384f34 solid 1.5px;
+    padding: 10px 25px;
+}
+.social-media {
+    border: #000 1px solid;
+    padding: 1.5vh;
+    width: 23vw;
+}
+.social {
+    display: inline;
+    margin-left: 23px;
+}
+#facebook-div {
+    margin-bottom: 1rem;
+}
+#no-account-box {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+}
+#sign-up-link {
+    margin-left: 1rem;
+    text-decoration: underline;
+}
+/* signUp */
+.big-div {
+    width: 100vw;
+    height: 90vh;
+    position: relative;
+}
+.sign-up-container {
+    width: 40vw;
+    height: 80vh;
+    padding: 2vh 1vh;
+    margin-top: 4vh;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#member {
+    font-size: 4rem;
+}
+#member-intro {
+    list-style-type: circle;
+}
+#sign-up-form {
+    margin-top: 2.5rem;
+}
+.textarea-sign-up {
+    width: 25vw;
+}
+.labels {
+    width: 25vw;
+    margin-bottom: 0.3rem;
+    text-align: left;
+}
+.select-div {
+    width: 100%;
+}
+.select {
+    width: 10vw;
+    text-align: left;
+}
+#sign-up-form-btn {
+    margin-top: 2rem;
+}

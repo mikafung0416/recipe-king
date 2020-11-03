@@ -1,0 +1,49 @@
+<%- include('partials/signInUp') -%>
+<div class="big-div">
+    <div class="sign-up-container">
+        <div class="sign-up-content d-flex justify-content-center align-items-center flex-column">
+            <h2 id="member">Be our member!</h2>
+            <ul id="member-intro">
+                <li>Save & comment on your favourite recipes</li>
+                <li>Enjoy advanced filter function</li>
+                <li>Upload your own recipes</li>
+            </ul>
+            <form action="/sign-up" method="POST" class="d-flex justify-content-center align-items-center flex-column" id="sign-up-form">
+                <!-- email address -->
+                <p class="labels">Email address*</p>
+                <input type="text" name="email" class="textarea-sign-up">
+                <!-- password -->
+                <p class="labels">Password*</p>
+                <input type="password" name="password" class="textarea-sign-up">
+                <!-- username -->
+                <p class="labels">Username*</p>
+                <input type="text" name="username" class="textarea-sign-up">
+                <!-- fav cuisine -->
+                <p class="labels">Tell us your favourite cuisine!</p>
+                <!-- fav cuisine drop down menu -->
+                <div class="select-div">
+                    <select name="fav-cuisine" id="fav-cuisine" class="select">
+                        <option value="null"></option>
+                        <% cuisineList.forEach(query => { %>
+                            <option value="<%=query%>"><%=query%></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <!-- diet -->
+                <p class="labels">Do you have any special diet preference?</p>
+                <!-- diet drop down menu -->
+                <div class="select-div">
+                    <select name="diet" id="diet" class="select">
+                        <option value="null"></option>
+                        <% dietList.forEach(query => { %>
+                            <option value="<%=query%>"><%=query%></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <!-- submit -->
+                <input type="submit" value="Sign Up" id="sign-up-form-btn">
+            </form>
+        </div>
+    </div>
+</div>
+

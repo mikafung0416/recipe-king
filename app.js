@@ -42,6 +42,17 @@ app.get("/type", (req, res) => {
   res.render("selectType");
 });
 
+app.get("/sign-in", (req, res) => {
+  res.render("signIn");
+})
+
+app.get("/sign-up", (req, res) => {
+  res.render("signUp", {
+    cuisineList: cuisineList,
+    dietList: dietList
+  });
+})
+
 //get api: https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&apiKey=4d571645da1d408a9d5b832c5bec6874&diet=vegetarian
 
 //when user select cuisine, it will direct to listing all recipe pages

@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   const type = req.body.typeName;
   console.log(type);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${type}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${type}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
 
 router.post("/:typeName", async (req, res) => {
   const typeName = req.params.typeName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${typeName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${typeName}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in type/typeName route");

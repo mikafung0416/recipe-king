@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "id": 658125,
+      "title": "Red Wine Braised Beef Brisket",
+      "image": "https://spoonacular.com/recipeImages/658125-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 634486,
+      "title": "BBQ Beef Brisket",
+      "image": "https://spoonacular.com/recipeImages/634486-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 634751,
+      "title": "Beer Braised Brisket with Ding Dang Good Sauce",
+      "image": "https://spoonacular.com/recipeImages/634751-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 649300,
+      "title": "Latkes; Fried Vegetable Pancakes from Europe and the Middle East",
+      "image": "https://spoonacular.com/recipeImages/649300-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 648608,
+      "title": "Jojo's Potato Pancakes",
+      "image": "https://spoonacular.com/recipeImages/648608-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 650703,
+      "title": "Mama's Challah",
+      "image": "https://spoonacular.com/recipeImages/650703-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 653234,
+      "title": "Noodle Kugel with Pineapple-Gluten free, Dairy Free",
+      "image": "https://spoonacular.com/recipeImages/653234-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ],
+  "offset": 0,
+  "number": 50,
+  "totalResults": 7
+}

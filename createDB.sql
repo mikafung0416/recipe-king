@@ -22,9 +22,9 @@ CREATE TABLE types(
 CREATE TABLE recipes(
     id serial PRIMARY KEY,
     recipe_id int NOT NULL UNIQUE,
-    user_id int NOT NULL UNIQUE,
+    user_id int,
     recipe_name varchar(255),
-    recipe_instruction varchar(255),
+    recipe_instruction varchar(8000),
     recipe_image varchar(255),
     vegetarian BOOLEAN,
     vegan BOOLEAN,
@@ -90,3 +90,22 @@ INSERT INTO types (name) VALUES ('marinade');
 INSERT INTO types (name) VALUES ('fingerfood');
 INSERT INTO types (name) VALUES ('snack');
 INSERT INTO types (name) VALUES ('drink');
+
+5. Create 3 tables for recipe_cuisine, recipe_diet, recipe_type
+CREATE TABLE recipe_cuisine(
+  id SERIAL PRIMARY KEY,
+  recipe_id int NOT NULL,
+  cuisine_id int NOT NULL  
+);
+
+CREATE TABLE recipe_diet(
+  id SERIAL PRIMARY KEY,
+  recipe_id int NOT NULL,
+  diet_id int NOT NULL  
+);
+
+CREATE TABLE recipe_type(
+  id SERIAL PRIMARY KEY,
+  recipe_id int NOT NULL,
+  type_id int NOT NULL  
+);

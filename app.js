@@ -34,7 +34,7 @@ app.get("/broadsearch", (req, res) => {
 //Search by recipe ID
 app.get("/recipes/:id", async (req, res) => {
   const recipeId = req.params.id;
-  const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY21}`;
+  const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY2}`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in recipes/id route");

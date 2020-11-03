@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   const diet = req.body.dietName;
   console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${diet}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${diet}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 
 router.post("/:dietName", async (req, res) => {
   const dietName = req.params.dietName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${dietName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${dietName}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in diet/:dietName route");

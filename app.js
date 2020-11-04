@@ -50,12 +50,27 @@ app.get("/type", (req, res) => {
   res.render("selectType");
 });
 
+app.get("/sign-in", (req, res) => {
+  res.render("signIn");
+})
+
+app.get("/sign-up", (req, res) => {
+  res.render("signUp", {
+    cuisineList: cuisineList,
+    dietList: dietList
+  });
+})
+
 app.get("/recipes", (req, res) => {
   res.render("recipeDisplay");
 });
 
 app.get("/add-recipe", (req, res) => {
-  res.render("addRecipe");
+  res.render("addRecipe", {
+    cuisineList: cuisineList,
+    dietList: dietList,
+    typeList: typeList
+  });
 })
 
 //get api: https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&apiKey=4d571645da1d408a9d5b832c5bec6874&diet=vegetarian

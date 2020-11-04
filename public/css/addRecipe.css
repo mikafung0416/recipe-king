@@ -1,0 +1,20 @@
+.add-form-container {
+    width: 100%;
+}
+.row-add, .col-add {
+    margin: 0 0;
+    padding: 0 0;
+}
+.right-box {
+    background-color: #bbdbd5;
+}
+#left-img {
+    width: 100%;
+    position: absolute;
+}
+#add-title {
+    position: relative;
+}
+#user-photo {
+    display: none;
+}

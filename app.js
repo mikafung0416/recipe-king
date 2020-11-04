@@ -10,13 +10,28 @@ const cuisineList = require("./queryList/cuisineList");
 const dietList = require("./queryList/dietList");
 const typeList = require("./queryList/typeList");
 
+const cuisineRoute = require("./routes/cuisine");
+const dietRoute = require("./routes/diet");
+const typeRoute = require("./routes/type");
+
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/cuisine", cuisineRoute);
+app.use("/diet", dietRoute);
+app.use("/type", typeRoute);
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.render("index", {
+    cuisineList: cuisineList,
+    dietList: dietList,
+    typeList: typeList,
+    cuisine: "Cuisine",
+    diet: "Diet",
+    type: "Type"
+  });
 });
 
 app.get("/broadsearch", (req, res) => {
@@ -35,9 +50,9 @@ app.get("/type", (req, res) => {
   res.render("selectType");
 });
 
-app.get("/recipes", (req, res) => {
-  res.render("recipeDisplay");
-});
+// app.get("/recipes", (req, res) => {
+//   res.render("recipeDisplay");
+// });
 
 
 //get api: https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&apiKey=4d571645da1d408a9d5b832c5bec6874&diet=vegetarian
@@ -45,7 +60,7 @@ app.get("/recipes", (req, res) => {
 //when user select cuisine, it will direct to listing all recipe pages
 app.post("/cuisine", async (req, res) => {
   const country = req.body.cuisineName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${country}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${country}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log(result);
@@ -66,7 +81,7 @@ app.post("/cuisine", async (req, res) => {
 app.post("/diet", async (req, res) => {
   const diet = req.body.dietName;
   // console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${diet}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${diet}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -86,7 +101,7 @@ app.post("/diet", async (req, res) => {
 app.post("/type", async (req, res) => {
   const type = req.body.typeName;
   console.log(type);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&type=${type}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${type}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -105,7 +120,7 @@ app.post("/type", async (req, res) => {
 
 app.post("/diet/:dietName", async (req, res) => {
   const dietName = req.params.dietName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${dietName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&diet=${dietName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in diet/:dietName route");
@@ -125,7 +140,7 @@ app.post("/diet/:dietName", async (req, res) => {
 
 app.post("/cuisine/:cuisineName", async (req, res) => {
   const cuisineName = req.params.cuisineName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${cuisineName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${cuisineName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in cuisine/:cuisineName route");
@@ -145,7 +160,7 @@ app.post("/cuisine/:cuisineName", async (req, res) => {
 
 app.post("/type/:typeName", async (req, res) => {
   const typeName = req.params.typeName;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&type=${typeName}&number=50`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${typeName}&number=50`;
   const response = await fetch(url);
   const result = await response.json();
   // console.log("It is in type/typeName route");
@@ -165,14 +180,7 @@ app.post("/type/:typeName", async (req, res) => {
 
 //Search by recipe ID
 app.get("/recipes/:id", async (req, res) => {
-  const recipeId = req.params.id;
-  const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true&equipment=true`;
-  const response = await fetch(url);
   const result = await response.json();
-  console.log("It is in recipes/id route");
-  console.log(result);
-  const recipes = result.results;
-  const builtInURL = result.spoonacularSourceUrl;
   res.send(result);
 });
 
@@ -180,7 +188,7 @@ app.get("/recipes/:id", async (req, res) => {
 app.post("/cuisine/:cuisineName/number", async (req, res) => {
   const cuisineName = req.params.cuisineName;
   const numOfRecipes = req.body.numberOfRecipes;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${cuisineName}&number=${numOfRecipes}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&cuisine=${cuisineName}&number=${numOfRecipes}`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in cuisine/:cuisineName/number route");
@@ -196,26 +204,6 @@ app.post("/cuisine/:cuisineName/number", async (req, res) => {
     queryList: cuisineList,
   });
 });
-
-// app.post("/recipes/:id", async (req, res) => {
-//   const recipeId = req.params.id;
-//   // const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
-//   const url = `https://api.spoonacular.com/recipes/14003`;
-//   const response = await fetch(url);
-//   const result = await response.json();
-//   console.log("It is in recipes/id route");
-//   console.log(result);
-//   const recipes = result.results;
-//   const builtInURL = result.spoonacularSourceUrl;
-
-//   res.render("display", {
-//     recipes: recipes,
-//     broadType: "Cuisine",
-//     specificType: cuisineName,
-//     numberOfRecipes: numOfRecipes,
-//     queryList: cuisineList,
-//   });
-// });
 
 
 app.listen(4000, () => {

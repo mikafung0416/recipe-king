@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "id": 663822,
+      "title": "Trinidad Callaloo Soup",
+      "image": "https://spoonacular.com/recipeImages/663822-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 637099,
+      "title": "Caribbean black bean and sweet potato soup",
+      "image": "https://spoonacular.com/recipeImages/637099-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 637103,
+      "title": "Caribbean Chicken Thighs",
+      "image": "https://spoonacular.com/recipeImages/637103-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 637116,
+      "title": "Caribbean Truffle Pie",
+      "image": "https://spoonacular.com/recipeImages/637116-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 655687,
+      "title": "Peppermint White Chocolate Fudge",
+      "image": "https://spoonacular.com/recipeImages/655687-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ],
+  "offset": 0,
+  "number": 99,
+  "totalResults": 5
+}

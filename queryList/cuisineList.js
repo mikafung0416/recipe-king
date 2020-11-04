@@ -27,4 +27,6 @@ const cuisineList = [
   "Vietnamese",
 ];
 
+// 26 in total
+
 module.exports = cuisineList;

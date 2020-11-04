@@ -13,6 +13,7 @@ const getRecipesHeight = () => {
 };
 
 //For zooming to 25%, the footer should be at least top = 3500px;
+//For footer to stick at the bottom after rendering recipes
 getRecipesHeight();
 
 const toggleBroadQuery = (e) => {
@@ -35,5 +36,4 @@ const toggleBroadQuery = (e) => {
       }
     }
   }
-  //need toggle the arrow button
 };

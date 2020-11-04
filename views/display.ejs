@@ -30,42 +30,32 @@
             <hr>
             <div class="filterDiv">
                 <div class="filterDivHead">
-                    <h3>Diet<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                    <h3><%=otherBroadType1%><span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
                 </div>
                 <div class="filterDivContent">
                     <form action="" method="post">
-                        <input type="checkbox" name="vegan" id="">
-                        <label for="vegan">
-                            Vegan
+                        <% otherBroadType1List.forEach(query => { %>
+                        <input type="checkbox" name="<%=query%>" id="">
+                        <label for="<%=query%>">
+                            <%=query%>
                         </label><br>
-                        <input type="checkbox" name="vegetarian" id="">
-                        <label for="vegetarian">
-                            vegetarian
-                        </label><br>
-                        <input type="checkbox" name="Paleo" id="">
-                        <label for="Paleo">
-                            Paleo
-                        </label><br>
+                        <% }) %>
                         <hr>
                     </form>
                 </div>
+            </div>
+            <div class="filterDiv">
                 <div class="filterDivHead">
-                    <h3>Cuisine<span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                    <h3><%=otherBroadType2%><span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
                 </div>
                 <div class="filterDivContent">
                     <form action="" method="post">
-                        <input type="checkbox" name="japanese" id="">
-                        <label for="japanese">
-                            Japanese
+                        <% otherBroadType2List.forEach(query => { %>
+                        <input type="checkbox" name="<%=query%>" id="">
+                        <label for="<%=query%>">
+                            <%=query%>
                         </label><br>
-                        <input type="checkbox" name="thai" id="">
-                        <label for="thai">
-                            Thai
-                        </label><br>
-                        <input type="checkbox" name="chinese" id="">
-                        <label for="chinese">
-                            Chinese
-                        </label><br>
+                        <% }) %>
                         <hr>
                     </form>
                 </div>
@@ -77,9 +67,11 @@
             <div id="rightContentHead">
                 <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
                 <div class="slideContainer">
-                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number" method="post">
+                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number"
+                        method="post">
                         <p>Number of Recipes</p>
-                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()" type="range" name="numberOfRecipes" id="" min="1" max="100" value="50">
+                        <input onchange="document.getElementById('<%= specificType %>-number-form').submit()"
+                            type="range" name="numberOfRecipes" id="" min="1" max="100" value="<%=numberOfRecipes%>">
                     </form>
                 </div>
             </div>
@@ -89,7 +81,9 @@
                     <img src="<%= recipe.image %>" alt="">
                     <div class="rightContentEachTitle">
                         <!--Should direct to the each id route, and render stuff-->
-                        <a href="http://localhost:4000/recipes"><%= recipe.title %></a>
+                        <form id="<%=recipe.id%>-form" action="/recipes/<%=recipe.id%>" method="post">
+                        <a href="#" onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %></a>
+                        </form>
                         <!-- <a href="http://localhost:4000/recipes/<%=recipe.id%>"><%= recipe.title %></a> -->
                     </div>
                 </div>

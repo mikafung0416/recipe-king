@@ -1,75 +1,84 @@
 <%- include('partials/header') -%>
 <div class="add-form-container">
     <div class="row row-add">
-        <div class="col-add col-1 col-sm-2"></div>
-        <div class="col-add col-0 col-sm-2 left-box">
-            <img src="/assets/image/addRecipe.jpeg" alt="add-recipe" id="left-img">
-            <h3 id="add-title">Share your recipe with everyone!</h3>
-        </div>
-        <div class="col-add col-10 col-sm-6 right-box">
+        <div class="col-add col-2"></div>
+        <div class="col-add col-8 form-box">
+            <div class="head-photo">
+                <img src="/assets/image/addRecipe.jpg" alt="Add Your Recipe!" id="add-photo">
+            </div>
             <form action="/add-recipe" method="POST">
                 <div class="row">
-                    <div class="col-6"><p>Dish Name:</p></div>
-                    <div class="col-6"><input type="text" name="dishName"></div>
+                    <div class="col-6 col-tag"><p class="add-p">Dish Name:</p></div>
+                    <div class="col-6"><input type="text" name="dishName" class="add-text"></div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Photo:</p></div>
-                    <div class="col-6"><input type="file" id="recipe-img" name="recipe-img" accept="image/*"></div>
-                    <img src="#" alt="your photo" id="user-photo">
+                    <div class="col-6 col-tag"><p class="add-p">Photo:</p></div>
+                    <div class="col-6">
+                        <input type="file" id="recipe-img" name="recipe-img" accept="image/*">
+                        <img src="#" alt="your photo" id="user-photo">
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Cuisine:</p></div>
-                    <select name="cuisine" id="cuisine">
+                    <div class="col-6 col-tag"><p class="add-p">Cuisine:</p></div>
+                    <div class="col-6">
+                        <select name="cuisine" id="cuisine">
                         <% cuisineList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
                         <% }) %>
                     </select>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Diet:</p></div>
-                    <select name="diet" id="diet">
+                    <div class="col-6 col-tag"><p class="add-p">Diet:</p></div>
+                    <div class="col-6">
+                        <select name="diet" id="diet">
                         <option value="null"></option>
                         <% dietList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
                         <% }) %>
                     </select>
+                    </div> 
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Meal Type:</p></div>
-                    <select name="cuisine" id="cuisine">
+                    <div class="col-6 col-tag"><p class="add-p">Meal Type:</p></div>
+                    <div class="col-6">
+                        <select name="cuisine" id="cuisine">
                         <% typeList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
                         <% }) %>
                     </select>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Ingredients:</p></div>
+                    <div class="col-6 col-tag"><p class="add-p">Ingredients:</p></div>
                     <div class="col-6">
-                        <input type="text" name="ingredient-1">
+                        <input type="text" name="ingredient-1" class="add-text">
                         <button>More!</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Equipment:</p></div>
+                    <div class="col-6 col-tag"><p class="add-p">Equipment:</p></div>
                     <div class="col-6">
-                        <input type="text" name="equipment-1">
+                        <input type="text" name="equipment-1" class="add-text">
                         <button>More!</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p>Instructions:</p></div>
+                    <div class="col-6 col-tag"><p class="add-p">Instructions:</p></div>
                     <div class="col-6">
-                        <input type="text" name="instruction-1">
+                        <input type="text" name="instruction-1" class="add-text">
                         <button>More!</button>
                     </div>
                 </div>
-                <input type="submit">
+                <div class="submit-div" id="add-form-btn">
+                    <input type="submit">
+                </div>
+                
             </form>
         </div>
-        <div class="col-add col-1 col-sm-2"></div>
+        <div class="col-add col-2"></div>
     </div>
     <div class="add-form">
-
     </div>
 </div>
 

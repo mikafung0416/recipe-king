@@ -5,16 +5,27 @@
     margin: 0 0;
     padding: 0 0;
 }
-.right-box {
+.col-tag {
+    text-align: right;
+}
+.add-p {
+    width: 75%;
+    font-size: 1.5rem;
+}
+#add-photo {
+    width: 100%;
+}
+.form-box {
     background-color: #bbdbd5;
 }
-#left-img {
-    width: 100%;
-    position: absolute;
+.add-text {
+    width: 25vw;
 }
-#add-title {
-    position: relative;
+#add-form-btn {
+    width: 100%;
+    text-align: center;
 }
 #user-photo {
     display: none;
+    width: 40%;
 }

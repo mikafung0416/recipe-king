@@ -23,7 +23,7 @@ exports.up = function (knex, Promise) {
     })
     .createTable('recipes', (table) => {
         table.increments().primary();
-        table.integer('recipe_id').notNullable();
+        table.integer('recipe_id').notNullable(); // only recipes from api has it? we don't need to set any ids for user-added recipes??
         table.integer('user_id');
         table.foreign('user_id').references('users.id');
         table.string('recipe_name');
@@ -35,11 +35,11 @@ exports.up = function (knex, Promise) {
         table.boolean('dairyFree');
         table.boolean('veryHealthy');
         table.boolean('cheap');
-        table.boolean('veryPopular');
-        table.boolean('sustainable');
+        table.boolean('veryPopular'); // blank for user-added recipes?
+        table.boolean('sustainable'); // blank for user-added recipes?
         table.json('ingredients').notNullable();
         table.json('equipment').notNullable();
-        table.json('nutrient').notNullable();
+        table.json('nutrient').notNullable(); // blank for user-added recipes?
     })
     .createTable('comment', (table) => {
         table.increments().primary();

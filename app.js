@@ -50,10 +50,13 @@ app.get("/type", (req, res) => {
   res.render("selectType");
 });
 
-// app.get("/recipes", (req, res) => {
-//   res.render("recipeDisplay");
-// });
+app.get("/recipes", (req, res) => {
+  res.render("recipeDisplay");
+});
 
+app.get("/add-recipe", (req, res) => {
+  res.render("addRecipe");
+})
 
 //get api: https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&apiKey=4d571645da1d408a9d5b832c5bec6874&diet=vegetarian
 

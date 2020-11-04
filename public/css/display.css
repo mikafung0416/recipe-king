@@ -149,6 +149,7 @@ a:hover{
 .recipe-header-div{
  display: flex;
  justify-content: center;
+ align-items: center;
  flex-direction: column;
  padding-left: 0;
  padding-right: 0;

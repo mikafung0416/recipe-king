@@ -19,6 +19,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use("/cuisine", cuisineRoute);
 app.use("/diet", dietRoute);
 app.use("/type", typeRoute);
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
     typeList: typeList,
     cuisine: "Cuisine",
     diet: "Diet",
-    type: "Type"
+    type: "Type",
   });
 });
 

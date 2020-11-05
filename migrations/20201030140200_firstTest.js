@@ -37,8 +37,8 @@ exports.up = function (knex, Promise) {
         table.boolean('cheap');
         table.boolean('veryPopular');
         table.boolean('sustainable');
-        table.json('ingredients').notNullable();
-        table.json('equipment').notNullable();
+        table.json('ingredients');
+        table.json('equipment');
         table.json('nutrient');
     })
     .createTable('comment', (table) => {

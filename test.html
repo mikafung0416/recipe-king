@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let recipes = [
+        { id: 716268, title: "African Chicken Peanut Stew", image: "https://spoonacular.com/recipeImages/716268-312x231.jpg", imageType: "jpg" },
+        { id: 632003, title: "African Bean Soup", image: "https://spoonacular.com/recipeImages/632003-312x231.jpg", imageType: "jpg" },
+        { id: 716298, title: "How to Make Party Jollof Rice", image: "https://spoonacular.com/recipeImages/716298-312x231.jpg", imageType: "jpg" },
+        { id: 444444, recipe_id: 333333, cuisine_id: 1 },
+        { id: 44445, recipe_id: 333333, cuisine_id: 1 },
+        { id: 555555, recipe_id: 333333, cuisine_id: 1 },
+        { id: 653275, title: "North African Chickpea Soup", image: "https://spoonacular.com/recipeImages/653275-312x231.jpg", imageType: "jpg" },
+        { id: 111111, title: "North African Chickpea Soup", image: "https://spoonacular.com/recipeImages/653275-312x231.jpg", imageType: "jpg" },
+        { id: 222222, title: "North African Chickpea Soup" },
+        { id: 333333, recipe_id: 333333, cuisine_id: 1 }
+    ];
+
+    let recipeCuisineData = [
+        { id: 32, recipe_id: 716268, cuisine_id: 1 },
+        { id: 33, recipe_id: 632003, cuisine_id: 1 },
+        { id: 33, recipe_id: 111111, cuisine_id: 1 },
+        { id: 33, recipe_id: 222222, cuisine_id: 1 },
+        { id: 33, recipe_id: 333333, cuisine_id: 1 },
+        { id: 33, recipe_id: 444444, cuisine_id: 1 },
+        { id: 555555, recipe_id: 555555, cuisine_id: 1 },
+    ]
+
+    let arr1 = [1, 2, 3];
+    let removedRow = arr1.splice(0, 1);
+
+    let myLove = [];
+    let copy = [...recipes];
+
+    for (let i = 0; i < recipeCuisineData.length; i++) {
+        let eachRecipeCuisineId = recipeCuisineData[i].recipe_id;
+        if (recipes.findIndex(obj => obj.id === eachRecipeCuisineId) !== -1) {
+            recipes.splice(recipes.findIndex(i => i.id === eachRecipeCuisineId), 1); //716268 is the same recipeID needed to remove
+        }
+    }
+    console.log(recipes);
+
+</script>
+
+</html>

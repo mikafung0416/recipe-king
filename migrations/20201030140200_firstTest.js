@@ -29,6 +29,11 @@ exports.up = function (knex, Promise) {
         table.string('recipe_name').notNullable();
         table.string('recipe_instruction', 8000).notNullable();
         table.string('recipe_image').notNullable();
+        table.integer('recipe_cooking_time');
+        table.integer('servings');
+        table.json('cuisines');
+        table.json('dishTypes');
+        table.json('diets');
         table.boolean('vegetarian');
         table.boolean('vegan');
         table.boolean('glutenFree');

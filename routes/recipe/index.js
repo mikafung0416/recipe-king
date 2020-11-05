@@ -1,17 +1,16 @@
 const express = require("express");
-const fetch = require("node-fetch");
 const cuisineList = require("../../queryList/cuisineList");
 const dietList = require("../../queryList/dietList");
 const typeList = require("../../queryList/typeList");
 const db = require("../../database");
-const { route } = require("../diet");
+// const { route } = require("../diet");
 
 const router = express.Router(); 
 
 router.post("/", async(req,res)=>{
     //getting the id from the hidden input
     let id = req.body.idName
-
+    
     //getting the recipe from the database
     let recipeDetails = await db
      .select('*')

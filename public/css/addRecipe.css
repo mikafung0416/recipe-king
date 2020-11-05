@@ -20,6 +20,7 @@
 }
 .add-text {
     width: 25vw;
+    margin-bottom: 10px;
 }
 #add-form-btn {
     width: 100%;
@@ -27,5 +28,11 @@
 }
 #user-photo {
     display: none;
-    width: 40%;
+    width: 80%;
+}
+#more-ingredient, #more-equipment, #more-instruction {
+    cursor: pointer;
+}
+.add-text-box {
+    width: fit-content;
 }

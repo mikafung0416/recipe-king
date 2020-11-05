@@ -1,4 +1,4 @@
-<%- include('partials/header') -%>
+<%- include('partials/headerSignOut') -%>
 <div class="add-form-container">
     <div class="row row-add">
         <div class="col-add col-2"></div>
@@ -52,22 +52,28 @@
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Ingredients:</p></div>
                     <div class="col-6">
-                        <input type="text" name="ingredient-1" class="add-text">
-                        <button>More!</button>
+                        <span id="ingredient-box-1" class="add-text-box">
+                            <input type="text" name="ingredient-1" class="add-text" id="ingredient-1">
+                        </span>
+                        <span id="more-ingredient">More!</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Equipment:</p></div>
                     <div class="col-6">
-                        <input type="text" name="equipment-1" class="add-text">
-                        <button>More!</button>
+                        <span id="equipment-box-1" class="add-text-box">
+                            <input type="text" name="equipment-1" class="add-text" id="equipment-1">
+                        </span>
+                        <span id="more-equipment">More!</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Instructions:</p></div>
                     <div class="col-6">
-                        <input type="text" name="instruction-1" class="add-text">
-                        <button>More!</button>
+                        <span id="instruction-box-1" class="add-text-box">
+                            <input type="text" name="instruction-1" class="add-text" id="instruction-1">
+                        </span>
+                        <span id="more-instruction">More!</span>
                     </div>
                 </div>
                 <div class="submit-div" id="add-form-btn">

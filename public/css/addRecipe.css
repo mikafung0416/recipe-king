@@ -1,6 +1,21 @@
 .add-form-container {
     width: 100%;
 }
+.head-photo {
+    position: relative;
+}
+#add-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+}
+#add-form {
+    margin: 2vh 2vw;
+}
 .row-add, .col-add {
     margin: 0 0;
     padding: 0 0;

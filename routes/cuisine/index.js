@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
     let result = await response.json();
     let recipes = result.results;
     let numOfRecipes = result.number;
-    console.log(recipes);
+    // console.log(recipes);
 
     //2. insert the api stuff into db
     //2a. get every recipe id
@@ -99,13 +99,13 @@ router.post("/", async (req, res) => {
         diets: dietJSONResult
       };
 
-      console.log(dataIwant);
+      // console.log(dataIwant);
 
       //2c. insert the information of all the recipeId into recipe table
       db.insert({
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: "instruction",
+        recipe_instruction: ["instructions"],
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],
@@ -292,7 +292,7 @@ router.post("/:cuisineName", async (req, res) => {
       db.insert({
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: "instruction",
+        recipe_instruction: ["instructions"],
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],

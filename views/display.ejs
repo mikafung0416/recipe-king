@@ -71,6 +71,7 @@
                         <p>Number of Recipes</p>
                         <input onchange="document.getElementById('<%= specificType %>-number-form').submit()"
                             type="range" name="numberOfRecipes" id="" min="1" max="100" value="<%=numberOfRecipes%>">
+                        <input type="hidden" name="totalRecipes" value="<%= totalRecipes %>">
                     </form>
                 </div>
             </div>

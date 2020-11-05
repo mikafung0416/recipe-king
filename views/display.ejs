@@ -82,9 +82,9 @@
                     <div class="rightContentEachTitle">
                         <!--Should direct to the each id route, and render stuff-->
                         <form id="<%=recipe.id%>-form" action="/recipes/<%=recipe.id%>" method="post">
-                        <a href="#" onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %></a>
+                        <a href="#" onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
+                            <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
                         </form>
-                        <!-- <a href="http://localhost:4000/recipes/<%=recipe.id%>"><%= recipe.title %></a> -->
                     </div>
                 </div>
                 <%}) %>

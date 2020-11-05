@@ -87,9 +87,11 @@ router.post("/", async (req, res) => {
         ingredients: ingredientJSONResult,
         equipment: equipmentJSONResult,
         nutrient: nutrientJSONResult,
+        recipe_cooking_time: recipeResult["readyInMinutes"],
+        servings: recipeResult["servings"]
       };
 
-      console.log(dataIwant);
+      // console.log(dataIwant);
 
       //2c. insert the information of all the recipeId into recipe table
       db.insert({
@@ -108,6 +110,8 @@ router.post("/", async (req, res) => {
         ingredients: ingredientJSONResult,
         equipment: equipmentJSONResult,
         nutrient: nutrientJSONResult,
+        recipe_cooking_time: recipeResult["readyInMinutes"],
+        servings: recipeResult["servings"]
       })
         .into("recipes")
         .then(() => {

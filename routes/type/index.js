@@ -47,7 +47,7 @@ router.post("/:typeName", async (req, res, next) => {
       .select("*")
       .from("types")
       .where("name", "=", country.toLowerCase());
-    
+
     let typeId = typeData[0].type_id; //get Thai cuisine ID = 23
 
     let recipeTypeData = await db
@@ -68,16 +68,6 @@ router.post("/:typeName", async (req, res, next) => {
 
     if (recipeTypeData.length === 0) {
       //1. call the api
-      // console.log("Calling from API");
-      // let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&cuisine=${country}&number=2`;
-      // let response = await fetch(url);
-      // let result = await response.json();
-      // let recipes = result.results;
-      // let numOfRecipes = result.number;
-      // totalRecipes = result.totalResults;
-      // console.log("Results from API");
-      // console.log(recipes);
-
       //2a. For each recipe ID from API
       //2b. Call the api by recipe ID
       recipes.forEach(async (recipe) => {
@@ -136,6 +126,8 @@ router.post("/:typeName", async (req, res, next) => {
               otherBroadType2: "Diet",
               otherBroadType2List: dietList,
               totalRecipes: totalRecipes,
+              showingOtherBroadType: "",
+              showingOtherSpecificType: "",
             });
           });
       });
@@ -184,34 +176,13 @@ router.post("/:typeName", async (req, res, next) => {
         otherBroadType2: "Diet",
         otherBroadType2List: dietList,
         totalRecipes: totalRecipes,
+        showingOtherBroadType: "",
+        showingOtherSpecificType: "",
       });
     }
   } catch (err) {
     next(err);
   }
-
-  //Original Code
-  // const typeName = req.params.typeName;
-  // const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY2}&type=${typeName}&number=2`;
-  // const response = await fetch(url);
-  // const result = await response.json();
-  // console.log("It is in type/typeName route");
-  // console.log(result);
-  // const recipes = result.results;
-  // const numOfRecipes = result.number;
-
-  // //It should be render all information in grid
-  // res.render("display", {
-  //   recipes: recipes,
-  //   broadType: "Type",
-  //   specificType: type,
-  //   numberOfRecipes: numOfRecipes,
-  //   queryList: typeList,
-  //   otherBroadType1: "Cuisine",
-  //   otherBroadType1List: cuisineList,
-  //   otherBroadType2: "Diet",
-  //   otherBroadType2List: dietList,
-  // });
 });
 
 //Range bar for numbre of recipes of type

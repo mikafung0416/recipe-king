@@ -4,7 +4,7 @@ const footerDOM = document.querySelector(".footer-container"); //get the footer 
 const getRecipesHeight = () => {
   let addedHeight = recipesDOM.offsetHeight + 200;
   if (addedHeight < 1500) {
-    addedHeight = 1500; //should be minimum height for footer to stay at bottom
+    addedHeight = 2500; //should be minimum height for footer to stay at bottom
   } else {
     addedHeight = recipesDOM.offsetHeight + 400;
   }

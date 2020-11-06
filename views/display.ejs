@@ -28,51 +28,62 @@
         <div id="leftBottom">
             <h1>FILTER</h1>
             <hr>
-            <div class="filterDiv">
-                <div class="filterDivHead">
-                    <h3><%=otherBroadType1%><span id="<%=otherBroadType1%>-id" onclick="toggleFilterQuery(this)"
-                            class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
-                </div>
-                <div class="filterDivContent">
-                    <form action="" method="post">
+            <form action="/filter/<%=otherBroadType1%>/<%=otherBroadType2%>" method="post">
+                <div class="filterDiv">
+                    <div class="filterDivHead">
+                        <h3><%=otherBroadType1%><span id="<%=otherBroadType1%>-id" onclick="toggleFilterQuery(this)"
+                                class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
+                    </div>
+                    <div class="filterDivContent">
                         <% otherBroadType1List.forEach(query => { %>
                         <div class="<%=otherBroadType1%>-id-query">
-                            <input type="checkbox" name="<%=query%>" id="">
+                            <input type="radio" name="<%=query%>-<%=otherBroadType1%>" id=""
+                                onchange="this.form.submit()">
                             <label for="<%=query%>">
                                 <%=query%>
                             </label><br>
+
                         </div>
                         <% }) %>
                         <hr>
-                    </form>
+                        <input type="hidden" name="broadType" value="<%=broadType %>">
+                        <input type="hidden" name="specificType" value="<%=specificType %>">
+                        <!-- <input type="hidden" name="otherBroadType1" value="<%=otherBroadType1%>">
+                            <input type="hidden" name="otherBroadType2" value="<%=otherBroadType2 %>"> -->
+                    </div>
                 </div>
-            </div>
-            <div class="filterDiv">
-                <div class="filterDivHead">
-                    <h3><%=otherBroadType2%><span id="<%=otherBroadType2%>-id" onclick="toggleFilterQuery(this)"
-                            class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
-                </div>
-                <div class="filterDivContent">
-                    <form action="" method="post">
+                <div class="filterDiv">
+                    <div class="filterDivHead">
+                        <h3><%=otherBroadType2%><span id="<%=otherBroadType2%>-id" onclick="toggleFilterQuery(this)"
+                                class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
+                    </div>
+                    <div class="filterDivContent">
                         <% otherBroadType2List.forEach(query => { %>
                         <div class="<%=otherBroadType2%>-id-query">
-                            <input type="checkbox" name="<%=query%>" id="">
+                            <input type="radio" name="<%=query%>-<%=otherBroadType2%>" id=""
+                                onchange="this.form.submit()">
                             <label for="<%=query%>">
                                 <%=query%>
                             </label><br>
                         </div>
                         <% }) %>
                         <hr>
-
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+
         </div>
     </div>
     <div id="rightBar">
         <div id="rightContent">
             <div id="rightContentHead">
-                <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
+                <div>
+                    <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
+                    <% if(showingOtherBroadType !== "" && showingOtherSpecificType !== ""){ %>
+                    <h3><%= showingOtherBroadType %> - <%= showingOtherSpecificType %></h3>
+                    <% } %>
+                </div>
+
                 <div class="slideContainer">
                     <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number"
                         method="post">
@@ -90,8 +101,9 @@
                     <div class="rightContentEachTitle">
                         <!--Should direct to the each id route, and render stuff-->
                         <form id="<%=recipe.id%>-form" action="/recipes/<%=recipe.id%>" method="post">
-                        <a href="#" onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
-                            <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
+                            <a href="#"
+                                onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
+                                <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
                         </form>
                     </div>
                 </div>

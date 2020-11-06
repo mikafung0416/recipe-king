@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   const diet = req.body.dietName;
   console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&diet=${diet}&number=2`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY6}&diet=${diet}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
@@ -59,7 +59,7 @@ router.post("/:dietName", async (req, res, next) => {
     console.log(recipeDietData); //find if any information in recipe_cuisine table
 
     console.log("Calling from API");
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&diet=${country}&number=2`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY6}&diet=${country}&number=2`;
     let response = await fetch(url);
     let result = await response.json();
     let recipes = result.results;
@@ -71,7 +71,7 @@ router.post("/:dietName", async (req, res, next) => {
     if (recipeDietData.length === 0) {
       //1. call the api
       // console.log("Calling from API");
-      // let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&cuisine=${country}&number=2`;
+      // let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY6}&cuisine=${country}&number=2`;
       // let response = await fetch(url);
       // let result = await response.json();
       // let recipes = result.results;
@@ -90,18 +90,18 @@ router.post("/:dietName", async (req, res, next) => {
           .into("recipe_diet");
 
         //2b. call the api with recipeId
-        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY7}&includeNutrition=true`;
+        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY6}&includeNutrition=true`;
         let recipeResponse = await fetch(recipeURL);
         let recipeResult = await recipeResponse.json();
         let nutrientResult = recipeResult.nutrition.nutrients;
         let nutrientJSONResult = JSON.stringify(nutrientResult);
 
-        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY7}`;
+        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY6}`;
         let ingredientResponse = await fetch(ingredientURL);
         let ingredientResult = await ingredientResponse.json();
         let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
 
-        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY7}`;
+        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY6}`;
         let equipmentResponse = await fetch(equipmentURL);
         let equipmentResult = await equipmentResponse.json();
         let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);
@@ -158,6 +158,8 @@ router.post("/:dietName", async (req, res, next) => {
               otherBroadType2: "Type",
               otherBroadType2List: typeList,
               totalRecipes: totalRecipes,
+              showingOtherBroadType: "",
+              showingOtherSpecificType: "",
             });
           });
       });
@@ -206,41 +208,20 @@ router.post("/:dietName", async (req, res, next) => {
         otherBroadType2: "Type",
         otherBroadType2List: typeList,
         totalRecipes: totalRecipes,
+        showingOtherBroadType: "",
+        showingOtherSpecificType: "",
       });
     }
   } catch (err) {
     next(err);
   }
-
-  //Original Code
-  // const dietName = req.params.dietName;
-  // const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&diet=${dietName}&number=2`;
-  // const response = await fetch(url);
-  // const result = await response.json();
-  // console.log("It is in diet/:dietName route");
-  // console.log(result);
-  // const recipes = result.results;
-  // const numOfRecipes = result.number;
-
-  // //It should be render all information in grid
-  // res.render("display", {
-  //   recipes: recipes,
-  //   broadType: "Diet",
-  //   specificType: diet,
-  //   numberOfRecipes: numOfRecipes,
-  //   queryList: dietList,
-  //   otherBroadType1: "Cuisine",
-  //   otherBroadType1List: cuisineList,
-  //   otherBroadType2: "Type",
-  //   otherBroadType2List: typeList,
-  // });
 });
 
 //Range bar for numbre of recipes of diet
 router.post("/:dietName/number", async (req, res) => {
   const dietName = req.params.dietName;
   const numOfRecipes = req.body.numberOfRecipes;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&diet=${dietName}&number=${numOfRecipes}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY6}&diet=${dietName}&number=${numOfRecipes}`;
   const response = await fetch(url);
   const result = await response.json();
   console.log("It is in diet/:dietName/number route");

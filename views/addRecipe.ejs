@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Photo:</p></div>
                     <div class="col-6">
-                        <input type="file" id="recipe-img" name="recipe-img" accept="image/*">
+                        <input type="file" id="recipe-img" name="recipeImg" accept="image/*">
                         <img src="#" alt="your photo" id="user-photo">
                     </div>
                 </div>
@@ -43,12 +43,20 @@
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Meal Type:</p></div>
                     <div class="col-6">
-                        <select name="cuisine" id="cuisine">
+                        <select name="type" id="type">
                         <% typeList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
                         <% }) %>
                     </select>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-tag"><p class="add-p">Cooking Time:</p></div>
+                    <div class="col-6"><input type="text" name="time" class="add-text"></div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-tag"><p class="add-p">Servings:</p></div>
+                    <div class="col-6"><input type="text" name="servings" class="add-text"></div>
                 </div>
                 <div class="row">
                     <div class="col-6 col-tag"><p class="add-p">Ingredients:</p></div>

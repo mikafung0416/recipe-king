@@ -59,8 +59,8 @@ module.exports = (app) => {
                     username: req.body.username,
                     email: email,
                     password: hash,
-                    user_diet: req.body.favCuisine,
-                    fav_cuisine: req.body.diet,
+                    user_diet: req.body.diet,
+                    fav_cuisine: req.body.favCuisine,
                 };
                 console.log(newUser);
                 let userId = await db('users').insert(newUser).returning('id');

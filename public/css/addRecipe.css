@@ -1,0 +1,53 @@
+.add-form-container {
+    width: 100%;
+}
+.head-photo {
+    position: relative;
+}
+#add-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+}
+#add-form {
+    margin: 2vh 2vw;
+}
+.row-add, .col-add {
+    margin: 0 0;
+    padding: 0 0;
+}
+.col-tag {
+    text-align: right;
+}
+.add-p {
+    width: 75%;
+    font-size: 1.5rem;
+}
+#add-photo {
+    width: 100%;
+}
+.form-box {
+    background-color: #bbdbd5;
+}
+.add-text {
+    width: 25vw;
+    margin-bottom: 10px;
+}
+#add-form-btn {
+    width: 100%;
+    text-align: center;
+}
+#user-photo {
+    display: none;
+    width: 80%;
+}
+#more-ingredient, #more-equipment, #more-instruction {
+    cursor: pointer;
+}
+.add-text-box {
+    width: fit-content;
+}

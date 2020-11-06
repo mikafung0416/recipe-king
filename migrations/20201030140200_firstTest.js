@@ -5,8 +5,8 @@ exports.up = function (knex, Promise) {
       table.string("username").notNullable();
       table.string("email").notNullable();
       table.string("password").notNullable();
-      table.integer("user_diet"); // not using foreign key here as no need to join this table and recipe_diet table
-      table.integer("fav_cuisine");
+      table.string("user_diet"); // not using foreign key here as no need to join this table and recipe_diet table
+      table.string("fav_cuisine");
       table.timestamps();
     })
     .createTable("cuisines", (table) => {

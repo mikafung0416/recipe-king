@@ -130,3 +130,125 @@ a:hover{
   width: 100%;
   margin: 0 auto;
 }
+
+/* cos bootstrap doesn't have the containers up to the edges */
+.container-fluid{
+  padding-left: 0;
+  padding-right: 0;
+  margin-right:auto;
+  margin-left:auto;
+  overflow-x: hidden;
+}
+.row{
+  padding-left: 0;
+  padding-right: 0;
+  margin-right:auto;
+  margin-left:auto;
+  overflow-x: hidden;
+}
+.recipe-header-div{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ padding-left: 0;
+ padding-right: 0;
+}
+
+.recipe-img{
+  border-radius: 8px;
+  width: 370px;
+  height: 300px;
+}
+
+.recipeDetails{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.recipeDetails-d{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.stamps{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.stamps-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stamp-p{
+  display: inline-block;
+  margin: auto;
+}
+
+.stamp-i{
+  display: inline-block;
+  border-radius:50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.vegetarian{
+  background-color: green;
+}
+.vegan{
+  background-color: greenyellow;
+}
+.glutenFree{
+  background-color: orange;
+}
+.dairyFree{
+  background-color: gray;
+}
+.veryHealthy{
+  background-color:pink;
+}
+.cheap{
+  background-color: yellow;
+}
+.veryPopular{
+  background-color: lightblue;
+}
+.sustainable{
+  background-color: gold;
+}
+
+.stamp-img{
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+.user{
+  text-align: center;
+}
+.userPic{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.liked{
+  display: flex;
+  padding-top: 10px;
+}
+.likedPic{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.liked-p{
+  font-size: 0.95rem;
+  padding-left: 5px;
+}

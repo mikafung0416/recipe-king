@@ -399,7 +399,7 @@ router.post("/:cuisineName/number", async (req, res, next) => {
       // console.log(recipes);
 
       //recipeCuisineData is the remaining recipes inside DB, need to find the recipeID, assuming already have data inside db
-      
+
       for (let recipe of recipeCuisineData) {
         let eachRecipeId = recipe.recipe_id;
         //there is no information in recipes table yet

@@ -1,7 +1,8 @@
 <%- include('partials/header') -%>
 
 <div id="tip">
-    <p>Register can enjoy saving unlimited recipes and have advance search for different nutritional information!</p>
+    <p> If you register you can enjoy advanced features such as saving unlimited recipes and searching for
+        different nutritional information!</p>
 </div>
 
 <div id="content">
@@ -88,7 +89,10 @@
                     <img src="<%= recipe.image %>" alt="">
                     <div class="rightContentEachTitle">
                         <!--Should direct to the each id route, and render stuff-->
-                        <a href="http://localhost:4000/recipes/<%=recipe.id%>"><%= recipe.title %></a>
+                        <form id="<%=recipe.id%>-form" action="/recipes/<%=recipe.id%>" method="post">
+                        <a href="#" onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
+                            <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
+                        </form>
                     </div>
                 </div>
                 <%}) %>

@@ -26,6 +26,8 @@ CREATE TABLE recipes(
     recipe_name varchar(255),
     recipe_instruction varchar(8000),
     recipe_image varchar(255),
+    recipe_cooking_time int,
+    servings int,
     vegetarian BOOLEAN,
     vegan BOOLEAN,
     glutenFree BOOLEAN,

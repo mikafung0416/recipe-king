@@ -5,8 +5,8 @@ exports.up = function (knex, Promise) {
       table.string("username").notNullable();
       table.string("email").notNullable();
       table.string("password").notNullable();
-      table.integer("user_diet"); // not using foreign key here as no need to join this table and recipe_diet table
-      table.integer("fav_cuisine");
+      table.string("user_diet"); // not using foreign key here as no need to join this table and recipe_diet table
+      table.string("fav_cuisine");
       table.timestamps();
     })
     .createTable("cuisines", (table) => {
@@ -74,11 +74,17 @@ exports.up = function (knex, Promise) {
       // table.foreign('recipe_id').references('recipes.id');
       table.integer("type_id").notNullable();
       // table.foreign('type_id').references('types.type_id');
-    });
+    })
+    .createTable("recipe_user", (table) => {
+      table.increments().primary();
+      table.integer("user_id").notNullable();
+      table.integer("recipe_id").notNullable();
+    })
 };
 
 exports.down = function (knex, Promise) {
   return knex.schema
+    .dropTable("recipe_user")
     .dropTable("recipe_type")
     .dropTable("recipe_diet")
     .dropTable("recipe_cuisine")

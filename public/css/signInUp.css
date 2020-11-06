@@ -61,7 +61,7 @@ input[type=submit] {
 }
 .sign-up-container {
     width: 40vw;
-    height: 80vh;
+    height: fit-content;
     padding: 2vh 1vh;
     margin-top: 4vh;
     position: absolute;

@@ -29,15 +29,18 @@
             <hr>
             <div class="filterDiv">
                 <div class="filterDivHead">
-                    <h3><%=otherBroadType1%><span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                    <h3><%=otherBroadType1%><span id="<%=otherBroadType1%>-id" onclick="toggleFilterQuery(this)"
+                            class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
                 </div>
                 <div class="filterDivContent">
                     <form action="" method="post">
                         <% otherBroadType1List.forEach(query => { %>
-                        <input type="checkbox" name="<%=query%>" id="">
-                        <label for="<%=query%>">
-                            <%=query%>
-                        </label><br>
+                        <div class="<%=otherBroadType1%>-id-query">
+                            <input type="checkbox" name="<%=query%>" id="">
+                            <label for="<%=query%>">
+                                <%=query%>
+                            </label><br>
+                        </div>
                         <% }) %>
                         <hr>
                     </form>
@@ -45,17 +48,21 @@
             </div>
             <div class="filterDiv">
                 <div class="filterDivHead">
-                    <h3><%=otherBroadType2%><span class="hide-arrow"><i class="fas fa-angle-down"></i></span></h3>
+                    <h3><%=otherBroadType2%><span id="<%=otherBroadType2%>-id" onclick="toggleFilterQuery(this)"
+                            class="hide-arrow"><i class="fas fa-angle-up"></i></span></h3>
                 </div>
                 <div class="filterDivContent">
                     <form action="" method="post">
                         <% otherBroadType2List.forEach(query => { %>
-                        <input type="checkbox" name="<%=query%>" id="">
-                        <label for="<%=query%>">
-                            <%=query%>
-                        </label><br>
+                        <div class="<%=otherBroadType2%>-id-query">
+                            <input type="checkbox" name="<%=query%>" id="">
+                            <label for="<%=query%>">
+                                <%=query%>
+                            </label><br>
+                        </div>
                         <% }) %>
                         <hr>
+
                     </form>
                 </div>
             </div>

@@ -37,3 +37,26 @@ const toggleBroadQuery = (e) => {
     }
   }
 };
+
+const toggleFilterQuery = (e) => {
+  const spanID = e.id;
+  const broadQueryTag = document.querySelectorAll(`.${spanID}-query`);
+  const arrowDOM = document.querySelector(`#${spanID} i`);
+  console.log(broadQueryTag);
+  if (broadQueryTag.length > 10) {
+    if (arrowDOM.className === "fas fa-angle-up") {
+      // console.log(arrowDOM.className);
+      for (let i = 10; i < broadQueryTag.length; i++) {
+        broadQueryTag[i].style.display = "none";
+        arrowDOM.className = "fas fa-angle-down"; //change the up arraow to down arrow
+      }
+    } else {
+      for (let i = 0; i < broadQueryTag.length; i++) {
+        broadQueryTag[i].style.display = "block";
+        arrowDOM.className = "fas fa-angle-up";
+      }
+    }
+  } else {
+    arrowDOM.style.display = "none";
+  }
+};

@@ -166,6 +166,25 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="nutritionalTitle">
+          <h2>Nutritional Information</h2>
+        </div>
+        <div class="nutrition">
+          <ul>
+            <%nutrition.forEach(query => {%>
+              <li class="leftList">
+                <%=query.title %>
+                <%=query.amount %>
+                <%=query.unit %>
+                <%=query.percentOfDailyNeeds %>
+              </li>
+              <%})%>
+            </ul>
+        </div>
+      </div>
+    </div>
   </div>
   
 <%- include('partials/footer') -%>

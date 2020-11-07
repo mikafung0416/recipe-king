@@ -36,7 +36,8 @@ router.post("/", async (req, res) => {
   let veryPopular = recipeDetails[0].veryPopular;
   let sustainable = recipeDetails[0].sustainable;
   let instructions = recipeDetails[0].recipe_instruction;
-  //  console.log(instructions)
+  let nutrition = recipeDetails[0].nutrient;
+  //  console.log(nutrition)
 
   //pushing the ingredient details into the same objects
   let ingredientDetails = [...ingredients];
@@ -54,7 +55,7 @@ router.post("/", async (req, res) => {
     let cap = ingredientDetails[i].name.charAt(0).toUpperCase() + ingredientDetails[i].name.slice(1)
     ingredientDetails[i].name = cap
   }
-  console.log(instructions)
+  // console.log(instructions)
  
   //render to page
   res.render("recipeDisplay", {
@@ -73,7 +74,8 @@ router.post("/", async (req, res) => {
     cheap,
     veryPopular,
     sustainable,
-    instructions
+    instructions,
+    nutrition
    });
 });
 

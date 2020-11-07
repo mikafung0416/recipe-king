@@ -27,7 +27,7 @@ exports.up = function (knex, Promise) {
       table.integer("user_id");
       table.foreign("user_id").references("users.id");
       table.string("recipe_name").notNullable();
-      table.string("recipe_instruction", 8000);
+      table.json("recipe_instruction");
       table.string("recipe_image");
       table.integer("recipe_cooking_time");
       table.integer("servings");
@@ -79,7 +79,7 @@ exports.up = function (knex, Promise) {
       table.increments().primary();
       table.integer("user_id").notNullable();
       table.integer("recipe_id").notNullable();
-    })
+    });
 };
 
 exports.down = function (knex, Promise) {

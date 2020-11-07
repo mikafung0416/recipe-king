@@ -98,7 +98,7 @@ router.post("/:typeName", async (req, res, next) => {
         db.insert({
           recipe_id: recipeResult["id"],
           recipe_name: recipeResult["title"],
-          recipe_instruction: "instruction",
+          recipe_instruction: recipeResult["instruction"],
           recipe_image: recipeResult["image"],
           vegetarian: recipeResult["vegetarian"],
           vegan: recipeResult["vegan"],

@@ -24,8 +24,8 @@
   
   .recipe-img{
     border-radius: 8px;
-    width: 370px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
   }
   
   .recipeDetails{
@@ -47,13 +47,13 @@
   .stamps{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-end;
   }
   .stamps-right{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   
   .stamp-p{
@@ -121,4 +121,25 @@
     font-size: 0.95rem;
     padding-left: 5px;
   }
+  .ingredientsRow{
+    display: inline;
+  }
+  .ingredientVals{
+    display: flex;
+    justify-content: space-between;
+    /* right: 50% */
+    width:50%;
+  }
+  .leftList li:before{
+    font-family: arial;
+    color:#666;
+    font: bold;
+    font-size: 2em;
+    margin-right: .5em;
+  }
+ 
+  .equipmentRow{
+    display: inline;
+  }
+
   

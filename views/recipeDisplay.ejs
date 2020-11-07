@@ -119,16 +119,20 @@
               <h2>Ingredients</h2>
             </div>
             <div class="ingredients">
-              <ul class="leftList">
+              <ol class="leftList">
               <%ingredients.forEach(query => {%>
-              <li class="row">
-                <%=query.name %> 
-               <div class="ingredientVals">
-                <%=query.value %> <%=query.unit %> 
-               </div> 
+              <li class="">
+                <div class='ingredientVals'>
+                  <div>
+                    <%=query.name %> 
+                  </div>
+                  <div class="">
+                    <%=query.value %> <%=query.unit %> 
+                  </div>
+                </div>
               </li>
               <%})%>
-            </ul>
+            </ol>
             </div>
           </div>
           <div class="equipmentRow">
@@ -152,11 +156,11 @@
           </div>
           <div class="instructions">
             <ol>
-              <% for(let i=0; i < instructions.length; i++) {%>
-              <li>
-                <%= ingredients[i] %>
-              </li>
-              <% } %>
+              <%instructions.map(query => {%>
+                <li class="leftList">
+                  <%=query %>
+                </li>
+                <%})%>
             </ol>
           </div>
         </div>

@@ -24,7 +24,7 @@
   
   .recipe-img{
     border-radius: 8px;
-    width: 450px;
+    width: 500px;
     height: 400px;
   }
   
@@ -126,11 +126,11 @@
   }
   .ingredientVals{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    /* right: 50% */
+    width:50%;
   }
   .leftList li:before{
-    content: counter(list-counter);
-    counter-increment: list-counter;
     font-family: arial;
     color:#666;
     font: bold;

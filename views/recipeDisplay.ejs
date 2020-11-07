@@ -25,102 +25,124 @@
     </div>
       </div>
       <div class="col-sm-2 stamps vege">
+        <% if (vegetarian) { %>
         <div class="stamp-d">
           <p class="stamp-p">Vegetarian</p>
           <div class="stamp-i vegetarian">
              <img src="/assets/image/vegetarian.png" class="stamp-img"/>
           </div>
         </div>
+        <% } %>
+        <% if (vegan) { %>
         <div class="stamp-d vega">
           <p class="stamp-p">Vegan</p>
           <div class="stamp-i vegan">
             <img src="/assets/image/vegan.png" class="stamp-img"/>
           </div>
         </div>
+        <% } %>
+        <% if (glutenFree) { %>
         <div class="stamp-d gluten">
             <p class="stamp-p">Gluten Free</p>
             <div class="stamp-i glutenFree">
                 <img src="/assets/image/gluten.png" class="stamp-img"/>
             </div>
+            <% } %>
           </div>
+          <% if (dairyFree) { %>
           <div class="stamp-d dairy">
             <p class="stamp-p">Dairy Free</p>
             <div class="stamp-i dairyFree">
                 <img src="/assets/image/dairy.png" class="stamp-img"/>
             </div>
           </div>
+          <% } %>
       </div>
       <div class="col-sm-4 recipe-header-div">
         <img src="<%= recipeImage%>" class="recipe-img"/>
         <div class="row recipeDetails">
-          <div class="liked">
-            <img src="/assets/image/like.png" class="likedPic">
-            <p class="liked-p">
-              3 people liked this recipe
-            </p>
-        </div>
       </div>
       </div>
       <div class="col-sm-2 stamps-right">
+        <% if (veryHealthy) { %>
         <div class="stamp-d healthy">
             <div class="stamp-i veryHealthy">
                 <img src="/assets/image/heart.png" class="stamp-img"/>
              </div>
           <p class="stamp-p">Very Healthy</p>
         </div>
+        <% } %>
+        <% if (cheap) { %>
         <div class="stamp-d chea">
             <div class="stamp-i cheap">
                 <img src="/assets/image/cheap.png" class="stamp-img"/>
               </div>
           <p class="stamp-p">Cheap</p>
         </div>
+        <% } %>
+        <% if (veryPopular) { %>
         <div class=" stamp-d popular">
             <div class="stamp-i veryPopular">
                 <img src="/assets/image/like.png" class="stamp-img"/>
             </div>
             <p class="stamp-p">Very Popular</p>
           </div>
+          <% } %>
+          <% if (sustainable) { %>
           <div class="stamp-d sus">
             <div class="stamp-i sustainable">
                 <img src="/assets/image/sustainable.png" class="stamp-img"/>
             </div>
             <p class="stamp-p">Sustainable</p>
           </div>
+          <% } %>
       </div>
         <div class="col-sm-2 user">
             <img class="userPic" src="/assets/image/facebook.svg">
             <p class="username">
                 Made by Spoonacular API
             </p>
+            <div class="liked">
+              <img src="/assets/image/like.png" class="likedPic">
+              <p class="liked-p">
+                3 people liked this recipe
+              </p>
+          </div>
       </div>
       </div>
     </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-5">
-          <div class="row">
+          <div class="ingredientsRow">
             <div class="ingredientsTitle">
               <h2>Ingredients</h2>
             </div>
             <div class="ingredients">
+              <ul class="leftList">
               <%ingredients.forEach(query => {%>
-              <li>
-                <%=query.name %>
-
+              <li class="row">
+                <%=query.name %> 
+               <div class="ingredientVals">
+                <%=query.value %> <%=query.unit %> 
+               </div> 
               </li>
               <%})%>
+            </ul>
             </div>
           </div>
-          <div class="row">
+          <div class="equipmentRow">
             <div class="equipmentTitle">
             <h2>Equipment</h2>
           </div>
           <div class="equipment">
+            <ol>
             <%equipment.forEach(query => {%>
-              <li>
+              <li class="leftList">
                 <%=query.name %>
               </li>
               <%})%>
+            </ol>
           </div>
           </div>
         </div>
@@ -129,6 +151,13 @@
             <h2>Instructions</h2>
           </div>
           <div class="instructions">
+            <ol>
+              <% for(let i=0; i < instructions.length; i++) {%>
+              <li>
+                <%= ingredients[i] %>
+              </li>
+              <% } %>
+            </ol>
           </div>
         </div>
       </div>

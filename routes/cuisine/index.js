@@ -105,7 +105,7 @@ router.post("/", async (req, res) => {
       db.insert({
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: ["instructions"],
+        recipe_instruction: recipeResult["instructions"],
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],
@@ -200,7 +200,7 @@ router.post("/:cuisineName", async (req, res) => {
 
   const countryCapitalized = country.charAt(0).toUpperCase() + country.slice(1);
 
-  console.log(countryCapitalized);
+  // console.log(countryCapitalized);
 
   //if database is not found , then render the api to user, and insert the information into db
   let cuisineData = await db
@@ -208,7 +208,7 @@ router.post("/:cuisineName", async (req, res) => {
     .from("cuisines")
     .where("name", "=", countryCapitalized);
   let cuisineId = cuisineData[0].cuisine_id; //get Thai cuisine ID = 23
-  console.log(cuisineId); //this works
+  // console.log(cuisineId); //this works
 
   let recipeCuisineData = await db
     .select("*")
@@ -248,9 +248,20 @@ router.post("/:cuisineName", async (req, res) => {
       let cuisineJSONResult = JSON.stringify(cuisineResult);
       let dishJSONResult = JSON.stringify(dishResult);
       let dietJSONResult = JSON.stringify(dietResult);
+      let instructionAnal = recipeResult.analyzedInstructions;
+      let instructionSteps = [];
+      
+      for(let i = 0; i < instructionAnal[0].steps.length; i++){
+        // let steps = instructionAnal[0].steps[i].step
+        let data = instructionAnal[0].steps[i].step;
+        instructionSteps.push(data)
+      }
+      // console.log(instructionSteps);
+      let instructionJSONresult = JSON.stringify(instructionSteps);
       // console.log(cuisineResult);
       // console.log(dishResult);
       // console.log(dietResult);
+      // console.log(instructionJSONresult);
 
       let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY2}`;
       let ingredientResponse = await fetch(ingredientURL);
@@ -265,7 +276,7 @@ router.post("/:cuisineName", async (req, res) => {
       let dataIwant = {
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: recipeResult["instructions"],
+        recipe_instruction: instructionJSONresult,
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],
@@ -282,7 +293,7 @@ router.post("/:cuisineName", async (req, res) => {
         servings: recipeResult["servings"],
         cuisines: cuisineJSONResult,
         dishTypes: dishJSONResult,
-        diets: dietJSONResult
+        diets: dietJSONResult,
       };
 
       // console.log('dataIwant')
@@ -292,7 +303,7 @@ router.post("/:cuisineName", async (req, res) => {
       db.insert({
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: ["instructions"],
+        recipe_instruction: instructionJSONresult,
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],
@@ -309,7 +320,7 @@ router.post("/:cuisineName", async (req, res) => {
         servings: recipeResult["servings"],
         cuisines: cuisineJSONResult,
         dishTypes: dishJSONResult,
-        diets: dietJSONResult
+        diets: dietJSONResult,
       })
         .into("recipes")
         .then(() => {
@@ -393,7 +404,7 @@ router.post("/:cuisineName/number", async (req, res) => {
     .from("cuisines")
     .where("name", "=", countryCapitalized);
   let cuisineId = cuisineData[0].cuisine_id; //get Thai cuisine ID = 23
-  console.log(cuisineId); //this works
+  // console.log(cuisineId); //this works
 
   //1. if user requests 15 recipes with that cuisineID, find "recipe_cuisine" table with that cuisineID, to see how many recipesID return
   //2. if returnData.length < number of recipes requested by user, then call api of 15 recipes
@@ -430,9 +441,17 @@ router.post("/:cuisineName/number", async (req, res) => {
       let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY2}&includeNutrition=true`;
       let recipeResponse = await fetch(recipeURL);
       let recipeResult = await recipeResponse.json();
+      let cuisineResult = recipeResult.cuisines;
+      let dishResult = recipeResult.dishTypes;
+      let dietResult = recipeResult.diets;
       let nutrientResult = recipeResult.nutrition.nutrients;
       let nutrientJSONResult = JSON.stringify(nutrientResult);
-      // console.log(nutrientResult);
+      let cuisineJSONResult = JSON.stringify(cuisineResult);
+      let dishJSONResult = JSON.stringify(dishResult);
+      let dietJSONResult = JSON.stringify(dietResult);
+      // console.log(cuisineResult);
+      // console.log(dishResult);
+      // console.log(dietResult);
 
       let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY2}`;
       let ingredientResponse = await fetch(ingredientURL);
@@ -460,15 +479,16 @@ router.post("/:cuisineName/number", async (req, res) => {
         ingredients: ingredientJSONResult,
         equipment: equipmentJSONResult,
         nutrient: nutrientJSONResult,
+        recipe_instruction: recipeResult,
       };
 
-      // console.log(dataIwant);
+      console.log(dataIwant);
 
       //2c. insert the information of all the recipeId into recipe table
       db.insert({
         recipe_id: recipeResult["id"],
         recipe_name: recipeResult["title"],
-        recipe_instruction: "instruction",
+        recipe_instruction: recipeResult["instructions"],
         recipe_image: recipeResult["image"],
         vegetarian: recipeResult["vegetarian"],
         vegan: recipeResult["vegan"],

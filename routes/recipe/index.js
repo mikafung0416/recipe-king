@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   let instructions = recipeDetails[0].recipe_instruction;
   let nutrition = recipeDetails[0].nutrient;
   console.log("instructions is below");
-  console.log(instructions);
+  // console.log(instructions);
 
   //pushing the ingredient details into the same objects
   let ingredientDetails = [...ingredients];

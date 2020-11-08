@@ -11,11 +11,13 @@ const advanceCuisineRoute = require("./cuisine");
 const advanceDietRoute = require("./diet");
 const advanceTypeRoute = require("./type");
 const advanceFilterRoute = require("./filter");
+const advanceRecipesRoute = require("./recipes");
 
 router.use("/cuisine", advanceCuisineRoute);
 router.use("/diet", advanceDietRoute);
 router.use("/type", advanceTypeRoute);
 router.use("/filter", advanceFilterRoute);
+router.use("/recipes/:id", advanceRecipesRoute);
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

@@ -208,8 +208,8 @@ router.post("/:dietName", async (req, res, next) => {
           )
           .from("recipes")
           .where("recipe_id", "=", eachRecipeId);
-        // console.log(`data is below`);
-        // console.log(data);
+        console.log(`Dietdata is below`);
+        console.log(data);
         dbRecipes.push({
           id: data[0].recipe_id,
           title: data[0].recipe_name,

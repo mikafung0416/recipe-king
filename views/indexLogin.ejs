@@ -37,7 +37,7 @@
                     <div class="row categories-options">
                         <% cuisineList.forEach(query => { %>
                         <div class="col col-6 col-md-3">
-                            <form id="<%= query %>-form" action="/<%=cuisine%>/<%=query%>" method="post">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=cuisine%>/<%=query%>" method="post">
                                 <a class="queryTag"
                                     onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                 <input type="hidden" name="<%=query%>Name" value="<%=query%>">
@@ -65,7 +65,7 @@
                     <div class="row categories-options">
                         <% dietList.forEach(query => { %>
                         <div class="col col-6 col-md-3">
-                            <form id="<%= query %>-form" action="/<%=diet%>/<%=query%>" method="post">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=diet%>/<%=query%>" method="post">
                                 <a class="queryTag"
                                     onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                 <input type="hidden" name="<%=query%>Name" value="<%=query%>">
@@ -93,7 +93,7 @@
                     <div class="row categories-options">
                         <% typeList.forEach(query => { %>
                         <div class="col col-6 col-md-3">
-                            <form id="<%= query %>-form" action="/<%=type%>/<%=query%>" method="post">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=type%>/<%=query%>" method="post">
                                 <a class="queryTag"
                                     onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                 <input type="hidden" name="<%=query%>Name" value="<%=query%>">

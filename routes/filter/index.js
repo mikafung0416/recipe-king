@@ -1,3 +1,4 @@
+const passport = require('passport');
 const express = require("express");
 const fetch = require("node-fetch");
 const cuisineList = require("../../queryList/cuisineList");
@@ -7,9 +8,13 @@ const db = require("../../database");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Hi, is in filter route");
-});
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/sign-in");
+}
+
 
 router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
   let type1 = req.params.otherBroadType1; //eg.Cuisine

@@ -16,6 +16,7 @@
                     <div class="col-6 col-tag"><p class="add-p">Photo:</p></div>
                     <div class="col-6">
                         <input type="file" id="recipe-img" name="recipeImg" accept="image/*">
+                        <canvas id="mycanvas" style="display: none;"></canvas>
                         <img src="#" alt="your photo" id="user-photo">
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                     <div class="col-6 col-tag"><p class="add-p">Ingredients:</p></div>
                     <div class="col-6">
                         <span id="ingredient-box-1" class="add-text-box">
-                            <input type="text" name="ingredient-1" class="add-text" id="ingredient-1">
+                            <input type="text" name="ingredient" class="add-text" id="ingredient-1">
                         </span>
                         <span id="more-ingredient">More!</span>
                     </div>
@@ -71,7 +72,7 @@
                     <div class="col-6 col-tag"><p class="add-p">Equipment:</p></div>
                     <div class="col-6">
                         <span id="equipment-box-1" class="add-text-box">
-                            <input type="text" name="equipment-1" class="add-text" id="equipment-1">
+                            <input type="text" name="equipment" class="add-text" id="equipment-1">
                         </span>
                         <span id="more-equipment">More!</span>
                     </div>
@@ -80,13 +81,13 @@
                     <div class="col-6 col-tag"><p class="add-p">Instructions:</p></div>
                     <div class="col-6">
                         <span id="instruction-box-1" class="add-text-box">
-                            <input type="text" name="instruction-1" class="add-text" id="instruction-1">
+                            <input type="text" name="instruction" class="add-text" id="instruction-1">
                         </span>
                         <span id="more-instruction">More!</span>
                     </div>
                 </div>
                 <div class="submit-div" id="add-form-btn">
-                    <input type="submit">
+                    <input type="submit" id="add-click">
                 </div>
                 
             </form>

@@ -27,6 +27,7 @@ const signInRoute = require("./routes/signIn");
 const signUpRoute = require("./routes/signUp");
 const signOutRoute = require("./routes/signOut");
 const errorRoute = require("./routes/errorPage");
+const profileRoute = require("./routes/profile")
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -51,6 +52,7 @@ app.use("/sign-in", signInRoute);
 app.use("/sign-up", signUpRoute);
 app.use("/sign-out", signOutRoute);
 app.use("/error", errorRoute);
+app.use("/profile", profileRoute);
 
 app.get("/", (req, res) => {
   res.render("index", {

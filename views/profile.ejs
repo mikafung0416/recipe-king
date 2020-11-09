@@ -7,8 +7,18 @@
                    <span class="profile-pic"></span>
                     <h4><%= username %></h4>
                     <h4><%= email %></h4>
-                    <h4>My Favourite Cuisine: xxx</h4>
-                    <h4>My Diet Preference: xxx</h4> 
+                    <% if (favCui === undefined) { %>
+                        <br>
+                    <% } else { %>
+                        <h4>My Favourite Cuisine:</h4>
+                        <a href="http://localhost:4000/<%= favCui %>"><%= favCui %></a>
+                    <% } %>
+                    <% if (diet === undefined) { %>
+                        <br>
+                    <% } else { %>
+                        <h4>My Diet Preference:</h4>
+                        <a href="http://localhost:4000/<%= diet %>"><%= diet %></a>
+                    <% } %>
                 </div>
             </div>
             <div class="col-9">

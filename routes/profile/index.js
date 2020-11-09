@@ -23,6 +23,16 @@ router.get('/', isLoggedIn, async (req, res) => {
     // get email address
     let emailArr = await db.select('email').from("users").where("id", "=", userId);
     let email = emailArr[0]['email'];
+    // get fav cuisine
+    let favCuiArr = await db.select('fav_cuisine').from("users").where("id", "=", userId);
+    let favCui = favCuiArr[0]['fav_cuisine'];
+    // get diet
+    let dietArr = await db.select('fav_cuisine').from("users").where("id", "=", userId);
+    let diet = dietArr[0]['user_diet'];
+    
+    
+    
+    
     // get user added recipe
     let userRecipeArr = await db.select('recipe_name', 'recipe_image').from('recipes').where("user_id", "=", userId);
     // get user fav recipe
@@ -41,7 +51,9 @@ router.get('/', isLoggedIn, async (req, res) => {
     res.render('profile',{
         username: username,
         email: email,
-        recipeArr: userRecipeArr
+        recipeArr: userRecipeArr,
+        favCui: favCui,
+        diet: diet
     });
 });
 

@@ -6,7 +6,7 @@ a {
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
 
@@ -32,18 +32,18 @@ a:hover{
   /* height: 50%; */
   /* border: 1px solid black; */
   /* margin: 20px; */
-  padding: 40px 20px;;
+  padding: 40px 20px;
 }
 
 #leftTop h1 {
   border-bottom: 1px solid rgb(231, 230, 230);
 }
 
-.leftTop_child_head{
+.leftTop_child_head {
   position: relative;
 }
 
-.hide-arrow{
+.hide-arrow {
   position: absolute;
   right: 0;
 }
@@ -68,7 +68,7 @@ a:hover{
   padding: 20px;
 }
 
-#rightContentHead{
+#rightContentHead {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -81,11 +81,11 @@ a:hover{
   grid-template-columns: auto auto auto;
 }
 
-.slideContainer{
+.slideContainer {
   display: flex;
 }
 
-.slideContainer p{
+.slideContainer p {
   margin: 0;
   padding: 50px 10px;
   /* text-align: center; */
@@ -108,21 +108,23 @@ a:hover{
   /* padding-left: 20px; */
 }
 
-#tip{
-  background-color: #E7EAEA;
+#tip {
+  background-color: #e7eaea;
   padding: 20px;
 }
 
-#tip p{
+#tip p {
   text-align: center;
   margin: 0;
 }
 
-.filterDivHead{
+.filterDivHead {
   position: relative;
 }
 
-#leftTop h1, #leftBottom h1, #rightContentHead h1{
+#leftTop h1,
+#leftBottom h1,
+#rightContentHead h1 {
   font-size: 40px;
 }
 
@@ -132,42 +134,42 @@ a:hover{
 }
 
 /* cos bootstrap doesn't have the containers up to the edges */
-.container-fluid{
+.container-fluid {
   padding-left: 0;
   padding-right: 0;
-  margin-right:auto;
-  margin-left:auto;
+  margin-right: auto;
+  margin-left: auto;
   overflow-x: hidden;
 }
-.row{
+.row {
   padding-left: 0;
   padding-right: 0;
-  margin-right:auto;
-  margin-left:auto;
+  margin-right: auto;
+  margin-left: auto;
   overflow-x: hidden;
 }
-.recipe-header-div{
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- padding-left: 0;
- padding-right: 0;
+.recipe-header-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.recipe-img{
+.recipe-img {
   border-radius: 8px;
   width: 370px;
   height: 300px;
 }
 
-.recipeDetails{
+.recipeDetails {
   display: flex;
   justify-content: space-around;
   padding: 10px;
 }
 
-.recipeDetails-d{
+.recipeDetails-d {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,79 +178,106 @@ a:hover{
   padding: 5px;
 }
 
-.stamps{
+.stamps {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 }
-.stamps-right{
+.stamps-right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.stamp-p{
+.stamp-p {
   display: inline-block;
   margin: auto;
 }
 
-.stamp-i{
+.stamp-i {
   display: inline-block;
-  border-radius:50%;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   text-align: center;
 }
 
-.vegetarian{
+.vegetarian {
   background-color: green;
 }
-.vegan{
+.vegan {
   background-color: greenyellow;
 }
-.glutenFree{
+.glutenFree {
   background-color: orange;
 }
-.dairyFree{
+.dairyFree {
   background-color: gray;
 }
-.veryHealthy{
-  background-color:pink;
+.veryHealthy {
+  background-color: pink;
 }
-.cheap{
+.cheap {
   background-color: yellow;
 }
-.veryPopular{
+.veryPopular {
   background-color: lightblue;
 }
-.sustainable{
+.sustainable {
   background-color: gold;
 }
 
-.stamp-img{
+.stamp-img {
   width: 40px;
   height: 40px;
   margin-top: 5px;
 }
-.user{
+.user {
   text-align: center;
 }
-.userPic{
+.userPic {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
-.liked{
+.liked {
   display: flex;
   padding-top: 10px;
 }
-.likedPic{
+.likedPic {
   display: inline-block;
   width: 20px;
   height: 20px;
 }
-.liked-p{
+.liked-p {
   font-size: 0.95rem;
   padding-left: 5px;
+}
+
+.range-wrap {
+  position: relative;
+  margin: 0 auto 3rem;
+}
+.range {
+  width: 100%;
+}
+.bubble {
+  background: grey;
+  color: white;
+  padding: 4px 12px;
+  position: absolute;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60px;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: grey;
+  top: -1px;
+  left: 50%;
 }

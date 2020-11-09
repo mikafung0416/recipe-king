@@ -38,6 +38,7 @@ router.post('/', isLoggedIn, (req, res) => {
     let userId = req.session.passport.user; // input to db
     let recipeName = req.body.dishName; // input to db
     let instruction = req.body.instruction; // input to db
+    let instructionJson = JSON.stringify(instruction);
     // image
     let time = req.body.time; // input to db
     let servings = req.body.servings; // input to db
@@ -67,7 +68,7 @@ router.post('/', isLoggedIn, (req, res) => {
         recipe_id: recipeId,
         user_id: userId,
         recipe_name: recipeName,
-        recipe_instruction: instruction,
+        recipe_instruction: instructionJson,
         recipe_image: null,
         recipe_cooking_time: time,
         servings: servings,

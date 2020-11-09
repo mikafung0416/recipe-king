@@ -37,39 +37,58 @@ router.post('/', isLoggedIn, (req, res) => {
 
     let userId = req.session.passport.user; // input to db
     let recipeName = req.body.dishName; // input to db
+    // instructions
     let instruction = req.body.instruction; // input to db
+    if (Array.isArray(instruction) === false) {
+        instruction = [instruction];
+    }
     let instructionJson = JSON.stringify(instruction);
-    // image
+    
+    let img = req.body.photo; // input to db
     let time = req.body.time; // input to db
     let servings = req.body.servings; // input to db
     let cuisine = JSON.stringify([req.body.cuisine]); // input to db
     let type = JSON.stringify([req.body.type]); // input to db
     let diet = req.body.diet === 'null' ? null : JSON.stringify([req.body.diet]); // input to db
+    
     // ingredients
     let ingredientArr = req.body.ingredient;
-    let ingredientObj = {};
     let ingredientArrtoJson = [];
-    for (let i = 0; i < ingredientArr.length; i++) {
-        ingredientObj[i] = ingredientArr[i];
+    if (Array.isArray(ingredientArr) === false) {
+        let ingredientObj = {};
+        ingredientObj['name'] = ingredientArr;
+        ingredientArrtoJson.push(ingredientObj);
+    } else {
+        for (let i = 0; i < ingredientArr.length; i++) {
+            let ingredientObj = {};
+            ingredientObj['name'] = ingredientArr[i];
+            ingredientArrtoJson.push(ingredientObj);
+        }        
     }
-    ingredientArrtoJson.push(ingredientObj);
     let ingredientJson = JSON.stringify(ingredientArrtoJson); // input to db
+    
     // equipment
     let equipmentArr = req.body.equipment;
-    let equipmentObj = {};
     let equipmentArrtoJson = [];
-    for (let i = 0; i < equipmentArr.length; i++) {
-        equipmentObj[i] = equipmentArr[i];
+    if (Array.isArray(equipmentArr) === false) {
+        let equipmentObj = {};
+        equipmentObj['name'] = equipmentArr;
+        equipmentArrtoJson.push(equipmentObj); 
+    } else {
+        for (let i = 0; i < equipmentArr.length; i++) {
+            let equipmentObj = {};
+            equipmentObj['name'] = equipmentArr[i];
+            equipmentArrtoJson.push(equipmentObj);
+        }
     }
-    equipmentArrtoJson.push(equipmentObj);
     let equipmentJson = JSON.stringify(equipmentArrtoJson); // input to db
-    
+
     db.insert({
         recipe_id: recipeId,
         user_id: userId,
         recipe_name: recipeName,
         recipe_instruction: instructionJson,
-        recipe_image: null,
+        recipe_image: img,
         recipe_cooking_time: time,
         servings: servings,
         cuisines: cuisine,
@@ -84,9 +103,5 @@ router.post('/', isLoggedIn, (req, res) => {
     })
 });
 
-// router.get('/img64', (req, res) => {
-//     res.send(req.body);
-
-// })
 
 module.exports = router;

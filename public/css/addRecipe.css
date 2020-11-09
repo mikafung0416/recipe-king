@@ -42,7 +42,6 @@
     text-align: center;
 }
 #user-photo {
-    display: none;
     width: 80%;
 }
 #more-ingredient, #more-equipment, #more-instruction {
@@ -50,4 +49,8 @@
 }
 .add-text-box {
     width: fit-content;
+}
+/* imgur photo upload */
+.bg-success {
+    background-color: transparent !important;
 }

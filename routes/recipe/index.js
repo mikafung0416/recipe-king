@@ -27,24 +27,57 @@ router.post("/", async (req, res) => {
   let cuisines = recipeDetails[0].cuisines;
   let ingredients = recipeDetails[0].ingredients;
   let equipment = recipeDetails[0].equipment;
-  //   console.log(equipment)
+  let vegetarian = recipeDetails[0].vegetarian;
+  let vegan = recipeDetails[0].vegan;
+  let glutenFree = recipeDetails[0].glutenFree;
+  let dairyFree = recipeDetails[0].dairyFree;
+  let veryHealthy = recipeDetails[0].veryHealthy;
+  let cheap = recipeDetails[0].cheap;
+  let veryPopular = recipeDetails[0].veryPopular;
+  let sustainable = recipeDetails[0].sustainable;
+  let instructions = recipeDetails[0].recipe_instruction;
+  let nutrition = recipeDetails[0].nutrient;
+  console.log("instructions is below");
+  console.log(instructions);
 
-  let ingredientMetric = [];
+  //pushing the ingredient details into the same objects
+  let ingredientDetails = [...ingredients];
+  let ingredientMetricValue = [];
+  let ingredientMetricUnit = [];
   for (let i = 0; i < ingredients.length; i++) {
-    let ingredientM = ingredients[i].amount.metric.value;
-    ingredientMetric.push(ingredientM);
-  }
-  // console.log(ingredientMetric)
+    let ingredientV = ingredients[i].amount.metric.value;
+    let ingredientU = ingredients[i].amount.metric.unit;
+    ingredientMetricValue.push(ingredientV);
+    ingredientMetricUnit.push(ingredientU);
+    ingredientDetails[i].value = ingredientMetricValue[i];
+    ingredientDetails[i].unit = ingredientMetricUnit[i];
 
+    let cap =
+      ingredientDetails[i].name.charAt(0).toUpperCase() +
+      ingredientDetails[i].name.slice(1);
+    ingredientDetails[i].name = cap;
+  }
+  // console.log(instructions);
+
+  //render to page
   res.render("recipeDisplay", {
-    recipeName: recipeName,
-    recipeImage: recipeImage,
-    recipeCookingTime: recipeCookingTime,
-    dishTypes: dishTypes,
-    cuisines: cuisines,
-    ingredients: ingredients,
-    metric: ingredientMetric,
-    equipment: equipment,
+    recipeName,
+    recipeImage,
+    recipeCookingTime,
+    dishTypes,
+    cuisines,
+    ingredients,
+    equipment,
+    vegetarian,
+    vegan,
+    glutenFree,
+    dairyFree,
+    veryHealthy,
+    cheap,
+    veryPopular,
+    sustainable,
+    instructions,
+    nutrition
   });
 });
 

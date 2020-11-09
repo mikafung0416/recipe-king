@@ -12,24 +12,23 @@ router.get("/", (req, res) => {
 });
 
 router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
-  let type1 = req.params.otherBroadType1;
-  let type2 = req.params.otherBroadType2;
-  let { broadType, specificType } = req.body;
+  let type1 = req.params.otherBroadType1; //eg.Cuisine
+  let type2 = req.params.otherBroadType2; //eg. Diet
+  let { broadType, specificType } = req.body; //eg. broadType = Type
+  console.log(type1, type2, broadType, specificType);
   let broadList;
   let type1List;
   let type2List;
-  let showingOtherBroadType;
-  let showingOtherSpecificType;
+  let showingOtherBroadType; //the filter broad catergroy user click
+  let showingOtherSpecificType; //the filter speific catergroy user click
 
-  let checkboxes = [];
+  let checkboxes = []; //select all filtering parts
 
   let type1CheckBox = [];
   let type2CheckBox = [];
 
-  let type1Querys = "";
-  let type2Querys = "";
-  //type1Querys = 'Chinese,Japanese,Thai';
-  //type2Querys = 'Vegan,vegetarian';
+  let type1Querys = ""; //type1Querys = 'Chinese,Japanese,Thai';
+  let type2Querys = ""; //type2Querys = 'Vegan,vegetarian';
 
   //take away the checkboxes which are clicked
   for (let item in req.body) {
@@ -46,8 +45,8 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
     }
   }
 
-  let stype1 = type1.charAt(0).toLowerCase() + type1.slice(1);
-  let stype2 = type2.charAt(0).toLowerCase() + type2.slice(1);
+  let stype1 = type1.charAt(0).toLowerCase() + type1.slice(1); //get small letter of "cuisine"
+  let stype2 = type2.charAt(0).toLowerCase() + type2.slice(1); //get small letter of "type"
   let sbroadType = broadType.charAt(0).toLowerCase() + broadType.slice(1);
   let sspecificType =
     specificType.charAt(0).toLowerCase() + specificType.slice(1);
@@ -87,8 +86,8 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
         type1Querys += ",";
       }
     }
-    showingOtherBroadType = type1;
-    showingOtherSpecificType = type1Querys;
+    showingOtherBroadType = type1; //Diet
+    showingOtherSpecificType = type1Querys; // Vegan
   }
 
   if (type2CheckBox.length === 0) {
@@ -116,7 +115,109 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
 
   console.log("Filtering Results from API");
   console.log(recipes);
+
   //2b At the same time, insert the missing recipes to "recipes" table, recipesIDs to "reicpe-cuisine/diet/type" table
+  // - if recipes table dont have these recipes ID, then add these recipes ID into recipes
+  // - find cuisine_id, diet_id, type_id, and added into recipes table
+  for (let recipe of recipes) {
+    let eachRecipeId = recipe.id;
+    let data = await db
+      .select("recipe_id")
+      .from("recipes")
+      .where("recipe_id", "=", eachRecipeId);
+    console.log(data);
+    if (data.length === 0) {
+      let recipeURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
+      console.log(recipeURL);
+      let recipeResponse = await fetch(recipeURL);
+      let recipeResult = await recipeResponse.json();
+      let cuisineResult = recipeResult.cuisines;
+      let dishResult = recipeResult.dishTypes;
+      let dietResult = recipeResult.diets;
+      let nutrientResult = recipeResult.nutrition.nutrients;
+      let nutrientJSONResult = JSON.stringify(nutrientResult);
+      let cuisineJSONResult = JSON.stringify(cuisineResult);
+      let dishJSONResult = JSON.stringify(dishResult);
+      let dietJSONResult = JSON.stringify(dietResult);
+      let instructionAnal = recipeResult.analyzedInstructions;
+      let instructionSteps = [];
+      for (let i = 0; i < instructionAnal[0].steps.length; i++) {
+        // let steps = instructionAnal[0].steps[i].step
+        let data = instructionAnal[0].steps[i].step;
+        instructionSteps.push(data);
+      }
+      console.log(`instructionSteps`);
+      console.log(instructionSteps);
+      let instructionJSONresult = JSON.stringify(instructionSteps);
+
+      let ingredientURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/ingredientWidget.json?apiKey=${process.env.API_KEY1}`;
+      let ingredientResponse = await fetch(ingredientURL);
+      let ingredientResult = await ingredientResponse.json();
+      let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
+
+      let equipmentURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/equipmentWidget.json?apiKey=${process.env.API_KEY1}`;
+      let equipmentResponse = await fetch(equipmentURL);
+      let equipmentResult = await equipmentResponse.json();
+      let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);
+
+      let dataIwant = {
+        recipe_id: recipeResult["id"],
+        recipe_name: recipeResult["title"],
+        recipe_instruction: instructionJSONresult,
+        recipe_image: recipeResult["image"],
+        vegetarian: recipeResult["vegetarian"],
+        vegan: recipeResult["vegan"],
+        glutenFree: recipeResult["glutenFree"],
+        dairyFree: recipeResult["dairyFree"],
+        veryHealthy: recipeResult["veryHealthy"],
+        cheap: recipeResult["cheap"],
+        veryPopular: recipeResult["veryPopular"],
+        sustainable: recipeResult["sustainable"],
+        ingredients: ingredientJSONResult,
+        equipment: equipmentJSONResult,
+        nutrient: nutrientJSONResult,
+        recipe_cooking_time: recipeResult["readyInMinutes"],
+        servings: recipeResult["servings"],
+        cuisines: cuisineJSONResult,
+        dishTypes: dishJSONResult,
+        diets: dietJSONResult,
+      };
+
+      console.log(`dataIwant is below`);
+      console.log(dataIwant);
+
+      //2c. insert the information of all the recipeId into recipe table
+      db.insert({
+        recipe_id: recipeResult["id"],
+        recipe_name: recipeResult["title"],
+        recipe_instruction: instructionJSONresult,
+        recipe_image: recipeResult["image"],
+        vegetarian: recipeResult["vegetarian"],
+        vegan: recipeResult["vegan"],
+        glutenFree: recipeResult["glutenFree"],
+        dairyFree: recipeResult["dairyFree"],
+        veryHealthy: recipeResult["veryHealthy"],
+        cheap: recipeResult["cheap"],
+        veryPopular: recipeResult["veryPopular"],
+        sustainable: recipeResult["sustainable"],
+        ingredients: ingredientJSONResult,
+        equipment: equipmentJSONResult,
+        nutrient: nutrientJSONResult,
+        recipe_cooking_time: recipeResult["readyInMinutes"],
+        servings: recipeResult["servings"],
+        cuisines: cuisineJSONResult,
+        dishTypes: dishJSONResult,
+        diets: dietJSONResult,
+      })
+        .into("recipes")
+        .then(() => {
+          console.log("All data are added");
+        });
+    }
+    //2. insert the missing api into db
+    //2a. get every recipe id
+  }
+
   res.render("display", {
     recipes: recipes, //Result from API
     broadType: broadType,

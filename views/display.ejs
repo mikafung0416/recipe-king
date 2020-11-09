@@ -15,7 +15,7 @@
                 <div class="leftTop_child_child">
                     <% queryList.forEach(query => { %>
                     <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
-                        <li>
+                        <li class="leftLi">
                             <a class="queryTag" href="#"
                                 onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                             <input type="hidden" name="<%=query%>Name" value="<%=query%>">

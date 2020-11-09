@@ -56,7 +56,9 @@ router.post("/:typeName", async (req, res, next) => {
       .where("type_id", "=", typeId);
     console.log(recipeTypeData); //find if any information in recipe_cuisine table
 
-    console.log("Calling from API");
+    console.log(
+      "I just take the total recipes from api, so it may still render by db"
+    );
     let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY7}&type=${country}&number=2`;
     let response = await fetch(url);
     let result = await response.json();
@@ -68,6 +70,7 @@ router.post("/:typeName", async (req, res, next) => {
 
     if (recipeTypeData.length === 0) {
       //1. call the api
+      console.log("Calling from API");
       //2a. For each recipe ID from API
       //2b. Call the api by recipe ID
       recipes.forEach(async (recipe) => {
@@ -78,27 +81,42 @@ router.post("/:typeName", async (req, res, next) => {
           .into("recipe_type");
 
         //2b. call the api with recipeId
-        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY7}&includeNutrition=true`;
+        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
         let recipeResponse = await fetch(recipeURL);
         let recipeResult = await recipeResponse.json();
+        let cuisineResult = recipeResult.cuisines;
+        let dishResult = recipeResult.dishTypes;
+        let dietResult = recipeResult.diets;
         let nutrientResult = recipeResult.nutrition.nutrients;
         let nutrientJSONResult = JSON.stringify(nutrientResult);
+        let cuisineJSONResult = JSON.stringify(cuisineResult);
+        let dishJSONResult = JSON.stringify(dishResult);
+        let dietJSONResult = JSON.stringify(dietResult);
+        let instructionAnal = recipeResult.analyzedInstructions;
+        let instructionSteps = [];
+        for (let i = 0; i < instructionAnal[0].steps.length; i++) {
+          // let steps = instructionAnal[0].steps[i].step
+          let data = instructionAnal[0].steps[i].step;
+          instructionSteps.push(data);
+        }
+        console.log(`instructionSteps`);
+        console.log(instructionSteps);
+        let instructionJSONresult = JSON.stringify(instructionSteps);
 
-        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY7}`;
+        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY1}`;
         let ingredientResponse = await fetch(ingredientURL);
         let ingredientResult = await ingredientResponse.json();
         let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
 
-        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY7}`;
+        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY1}`;
         let equipmentResponse = await fetch(equipmentURL);
         let equipmentResult = await equipmentResponse.json();
         let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);
 
-        //2c. insert the information of all the recipeId into recipe table
-        db.insert({
+        let dataIwant = {
           recipe_id: recipeResult["id"],
           recipe_name: recipeResult["title"],
-          recipe_instruction: "instruction",
+          recipe_instruction: instructionJSONresult,
           recipe_image: recipeResult["image"],
           vegetarian: recipeResult["vegetarian"],
           vegan: recipeResult["vegan"],
@@ -111,6 +129,38 @@ router.post("/:typeName", async (req, res, next) => {
           ingredients: ingredientJSONResult,
           equipment: equipmentJSONResult,
           nutrient: nutrientJSONResult,
+          recipe_cooking_time: recipeResult["readyInMinutes"],
+          servings: recipeResult["servings"],
+          cuisines: cuisineJSONResult,
+          dishTypes: dishJSONResult,
+          diets: dietJSONResult,
+        };
+
+        console.log(`dataIwant is below`);
+        console.log(dataIwant);
+
+        //2c. insert the information of all the recipeId into recipe table
+        db.insert({
+          recipe_id: recipeResult["id"],
+          recipe_name: recipeResult["title"],
+          recipe_instruction: instructionJSONresult,
+          recipe_image: recipeResult["image"],
+          vegetarian: recipeResult["vegetarian"],
+          vegan: recipeResult["vegan"],
+          glutenFree: recipeResult["glutenFree"],
+          dairyFree: recipeResult["dairyFree"],
+          veryHealthy: recipeResult["veryHealthy"],
+          cheap: recipeResult["cheap"],
+          veryPopular: recipeResult["veryPopular"],
+          sustainable: recipeResult["sustainable"],
+          ingredients: ingredientJSONResult,
+          equipment: equipmentJSONResult,
+          nutrient: nutrientJSONResult,
+          recipe_cooking_time: recipeResult["readyInMinutes"],
+          servings: recipeResult["servings"],
+          cuisines: cuisineJSONResult,
+          dishTypes: dishJSONResult,
+          diets: dietJSONResult,
         })
           .into("recipes")
           .then(() => {

@@ -23,7 +23,7 @@ exports.up = function (knex, Promise) {
     })
     .createTable("recipes", (table) => {
       table.increments().primary();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
       table.integer("user_id");
       table.foreign("user_id").references("users.id");
       table.string("recipe_name").notNullable();

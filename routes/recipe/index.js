@@ -1,9 +1,5 @@
 const express = require("express");
-const cuisineList = require("../../queryList/cuisineList");
-const dietList = require("../../queryList/dietList");
-const typeList = require("../../queryList/typeList");
 const db = require("../../database");
-// const { route } = require("../diet");
 
 const router = express.Router();
 router.use(express.json());
@@ -20,6 +16,7 @@ router.post("/", async (req, res) => {
   console.log(recipeDetails);
 
   //finding paths in db to render to page
+  let recipeID = recipeDetails[0].recipe_id;
   let recipeName = recipeDetails[0].recipe_name;
   let recipeImage = recipeDetails[0].recipe_image;
   let recipeCookingTime = recipeDetails[0].recipe_cooking_time;
@@ -37,8 +34,8 @@ router.post("/", async (req, res) => {
   let sustainable = recipeDetails[0].sustainable;
   let instructions = recipeDetails[0].recipe_instruction;
   let nutrition = recipeDetails[0].nutrient;
-  console.log("instructions is below");
-  // console.log(instructions);
+  // console.log("instructions is below");
+  // console.log(recipeID);
 
   //pushing the ingredient details into the same objects
   let ingredientDetails = [...ingredients];
@@ -61,6 +58,7 @@ router.post("/", async (req, res) => {
 
   //render to page
   res.render("recipeDisplay", {
+    recipeID,
     recipeName,
     recipeImage,
     recipeCookingTime,

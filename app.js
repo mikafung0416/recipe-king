@@ -16,7 +16,7 @@ const cuisineList = require("./queryList/cuisineList");
 const dietList = require("./queryList/dietList");
 const typeList = require("./queryList/typeList");
 
-//routes for the pages
+//routes
 const cuisineRoute = require("./routes/cuisine");
 const dietRoute = require("./routes/diet");
 const typeRoute = require("./routes/type");
@@ -27,6 +27,7 @@ const signInRoute = require("./routes/signIn");
 const signUpRoute = require("./routes/signUp");
 const signOutRoute = require("./routes/signOut");
 const errorRoute = require("./routes/errorPage");
+const commentsRoute = require("./routes/comments");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -51,6 +52,7 @@ app.use("/sign-in", signInRoute);
 app.use("/sign-up", signUpRoute);
 app.use("/sign-out", signOutRoute);
 app.use("/error", errorRoute);
+app.use("/comments", commentsRoute);
 
 app.get("/", (req, res) => {
   res.render("index", {

@@ -40,14 +40,14 @@ router.post("/:cuisineName", async (req, res, next) => {
     console.log(
       "I just take the total recipes from api, so it may still render by db"
     );
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${country}&number=2`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY4}&cuisine=${country}&number=2`;
     let response = await fetch(url);
     let result = await response.json();
     let recipes = result.results;
     let numOfRecipes = result.number;
     totalRecipes = result.totalResults;
-    console.log("Results from API");
-    console.log(recipes);
+    // console.log("Results from API");
+    // console.log(recipes);
 
     if (recipeCuisineData.length === 0) {
       //1. call the api
@@ -63,7 +63,7 @@ router.post("/:cuisineName", async (req, res, next) => {
           .into("recipe_cuisine");
 
         //2b. call the api with recipeId
-        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
+        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY4}&includeNutrition=true`;
         let recipeResponse = await fetch(recipeURL);
         let recipeResult = await recipeResponse.json();
         let cuisineResult = recipeResult.cuisines;
@@ -81,16 +81,16 @@ router.post("/:cuisineName", async (req, res, next) => {
           let data = instructionAnal[0].steps[i].step;
           instructionSteps.push(data);
         }
-        console.log(`instructionSteps`);
-        console.log(instructionSteps);
+        // console.log(`instructionSteps`);
+        // console.log(instructionSteps);
         let instructionJSONresult = JSON.stringify(instructionSteps);
 
-        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY1}`;
+        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY4}`;
         let ingredientResponse = await fetch(ingredientURL);
         let ingredientResult = await ingredientResponse.json();
         let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
 
-        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY1}`;
+        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY4}`;
         let equipmentResponse = await fetch(equipmentURL);
         let equipmentResult = await equipmentResponse.json();
         let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);
@@ -118,8 +118,8 @@ router.post("/:cuisineName", async (req, res, next) => {
           diets: dietJSONResult,
         };
 
-        console.log(`dataIwant is below`);
-        console.log(dataIwant);
+        // console.log(`dataIwant is below`);
+        // console.log(dataIwant);
 
         //2c. insert the information of all the recipeId into recipe table
         db.insert({
@@ -243,8 +243,8 @@ router.post("/:cuisineName/number", async (req, res, next) => {
       .select("recipe_id")
       .from("recipe_cuisine")
       .where("cuisine_id", "=", cuisineId);
-    console.log("Below is the recipeCuisineData");
-    console.log(recipeCuisineData);
+    // console.log("Below is the recipeCuisineData");
+    // console.log(recipeCuisineData);
 
     if (recipeCuisineData.length < numOfRecipes) {
       //1. call the api basing on the number that user request
@@ -252,7 +252,7 @@ router.post("/:cuisineName/number", async (req, res, next) => {
       if (numOfRecipes > totalRecipes) {
         numOfRecipes = totalRecipes;
       }
-      let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&cuisine=${country}&number=${numOfRecipes}`;
+      let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY4}&cuisine=${country}&number=${numOfRecipes}`;
       let response = await fetch(url);
       let result = await response.json();
       let recipes = result.results;
@@ -310,19 +310,19 @@ router.post("/:cuisineName/number", async (req, res, next) => {
           .into("recipe_cuisine");
 
         //2b. call the api with recipeId
-        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
+        let recipeURL = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${process.env.API_KEY4}&includeNutrition=true`;
         let recipeResponse = await fetch(recipeURL);
         let recipeResult = await recipeResponse.json();
         let nutrientResult = recipeResult.nutrition.nutrients;
         let nutrientJSONResult = JSON.stringify(nutrientResult);
         // console.log(nutrientResult);
 
-        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY1}`;
+        let ingredientURL = `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?apiKey=${process.env.API_KEY4}`;
         let ingredientResponse = await fetch(ingredientURL);
         let ingredientResult = await ingredientResponse.json();
         let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
 
-        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY1}`;
+        let equipmentURL = `https://api.spoonacular.com/recipes/${recipeID}/equipmentWidget.json?apiKey=${process.env.API_KEY4}`;
         let equipmentResponse = await fetch(equipmentURL);
         let equipmentResult = await equipmentResponse.json();
         let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);

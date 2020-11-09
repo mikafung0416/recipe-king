@@ -1,11 +1,10 @@
-const passport = require('passport');
+const passport = require("passport");
 const express = require("express");
 const fetch = require("node-fetch");
-const cuisineList = require("../../queryList/cuisineList");
-const dietList = require("../../queryList/dietList");
-const typeList = require("../../queryList/typeList");
-const db = require("../../database");
-
+const cuisineList = require("../../../queryList/cuisineList");
+const dietList = require("../../../queryList/dietList");
+const typeList = require("../../../queryList/typeList");
+const db = require("../../../database");
 const router = express.Router();
 
 function isLoggedIn(req, res, next) {
@@ -15,8 +14,11 @@ function isLoggedIn(req, res, next) {
   res.redirect("/sign-in");
 }
 
+router.get("/", isLoggedIn, (req, res) => {
+  res.send("Only logged in can come to /advanceSearch/filter route");
+});
 
-router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
+router.post("/:otherBroadType1/:otherBroadType2", isLoggedIn, async (req, res) => {
   let type1 = req.params.otherBroadType1; //eg.Cuisine
   let type2 = req.params.otherBroadType2; //eg. Diet
   let { broadType, specificType } = req.body; //eg. broadType = Type
@@ -111,7 +113,7 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
   console.log(type1Querys);
   console.log(type2Querys);
 
-  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&${sbroadType}=${sspecificType}&${stype1}=${type1Querys}&${stype2}=${type2Querys}&number=2`;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY5}&${sbroadType}=${sspecificType}&${stype1}=${type1Querys}&${stype2}=${type2Querys}&number=2`;
   console.log(url);
   let response = await fetch(url);
   let result = await response.json();
@@ -132,7 +134,7 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
       .where("recipe_id", "=", eachRecipeId);
     console.log(data);
     if (data.length === 0) {
-      let recipeURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/information?apiKey=${process.env.API_KEY1}&includeNutrition=true`;
+      let recipeURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/information?apiKey=${process.env.API_KEY5}&includeNutrition=true`;
       console.log(recipeURL);
       let recipeResponse = await fetch(recipeURL);
       let recipeResult = await recipeResponse.json();
@@ -155,12 +157,12 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
       console.log(instructionSteps);
       let instructionJSONresult = JSON.stringify(instructionSteps);
 
-      let ingredientURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/ingredientWidget.json?apiKey=${process.env.API_KEY1}`;
+      let ingredientURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/ingredientWidget.json?apiKey=${process.env.API_KEY5}`;
       let ingredientResponse = await fetch(ingredientURL);
       let ingredientResult = await ingredientResponse.json();
       let ingredientJSONResult = JSON.stringify(ingredientResult.ingredients);
 
-      let equipmentURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/equipmentWidget.json?apiKey=${process.env.API_KEY1}`;
+      let equipmentURL = `https://api.spoonacular.com/recipes/${eachRecipeId}/equipmentWidget.json?apiKey=${process.env.API_KEY5}`;
       let equipmentResponse = await fetch(equipmentURL);
       let equipmentResult = await equipmentResponse.json();
       let equipmentJSONResult = JSON.stringify(equipmentResult.equipment);
@@ -223,7 +225,7 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
     //2a. get every recipe id
   }
 
-  res.render("display", {
+  res.render("advanceDisplay", {
     recipes: recipes, //Result from API
     broadType: broadType,
     specificType: specificType,

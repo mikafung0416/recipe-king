@@ -127,9 +127,9 @@
                   <div>
                     <%=query.name %>
                   </div>
-                  <div class="">
+                  <!-- <div class="">
                     <%=query.value %> <%=query.unit %>
-                  </div>
+                  </div> -->
                 </div>
               </li>
               <%})%>
@@ -166,61 +166,6 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid">
-      <div class="">
-        <div class="nutritionalTitle">
-          <h2>Nutritional Information</h2>
-        </div>
-        <div class="nutrition">
-          <ul>
-             <%for(let i = 0; i < 9; i++) {%>
-              <li class="leftList">
-                <%=nutrition[i].title %>
-                <%=nutrition[i].amount %>
-                <%=nutrition[i].unit%>
-                <%=nutrition[i].percentOfDailyNeeds %>% of daily needs
-              </li>
-              <%}%>
-            <!-- <%nutrition.forEach(query => {%>
-              <li class="leftList">
-                <%=query.title %>
-                <%=query.amount %>
-                <%=query.unit %>
-                <%=query.percentOfDailyNeeds %>% of daily needs
-              </li>
-              <%})%> -->
-            </ul>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid commentsBox">
-      <div>
-        <div class="commentsTitle">
-          <h2>
-            Comments
-          </h2>
-        </div>
-        <div class="commentsInsert">
-         <div class="commentsInsertName">John Smith</div>
-         <div class="commentsInsertContainer">
-        <textarea id="commentPostText" class="commentsInsertText"></textarea>
-         </div>
-         <div id="commentPostBtn" class="commentsPostBtnHolder">
-          Post
-         </div>
-        </div>
-        <div class="comments" id="commentsIn">
-          <div class="commentAppended">
-          <ul class="commentsUl">
-          </ul>
-        </div>
-        </div>
-      </div>
-      <input type="hidden" id="userID" value="1" />
-      <input type="hidden" id="username" value="john" />
-      <input type="hidden" id="recipeID" value="<%= recipeID%>" />
-    </div>
   </div>
-</div>
 
 <%- include('partials/footer') -%>

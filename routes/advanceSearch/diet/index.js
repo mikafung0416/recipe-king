@@ -1,41 +1,24 @@
+const passport = require("passport");
 const express = require("express");
 const fetch = require("node-fetch");
-const cuisineList = require("../../queryList/cuisineList");
-const dietList = require("../../queryList/dietList");
-const typeList = require("../../queryList/typeList");
-const db = require("../../database");
-
+const cuisineList = require("../../../queryList/cuisineList");
+const dietList = require("../../../queryList/dietList");
+const typeList = require("../../../queryList/typeList");
+const db = require("../../../database");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("selectDiet");
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/sign-in");
+}
+
+router.get("/", isLoggedIn, (req, res) => {
+  res.send("Only logged in can come to /advanceSearch/diet route");
 });
 
-router.post("/", async (req, res) => {
-  const diet = req.body.dietName;
-  console.log(diet);
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${diet}&number=2`;
-  const response = await fetch(url);
-  const result = await response.json();
-  const recipes = result.results;
-  const numOfRecipes = result.number;
-  console.log(recipes);
-
-  //It should be render all information in grid
-  res.render("display", {
-    recipes: recipes,
-    broadType: "Diet",
-    specificType: diet,
-    numberOfRecipes: numOfRecipes,
-    queryList: dietList,
-    otherBroadType1: "Cuisine",
-    otherBroadType1List: cuisineList,
-    otherBroadType2: "Type",
-    otherBroadType2List: typeList,
-  });
-});
-
-router.post("/:dietName", async (req, res, next) => {
+router.post("/:dietName", isLoggedIn, async (req, res, next) => {
   try {
     const country = req.params.dietName;
     const countryCapitalized =
@@ -168,7 +151,7 @@ router.post("/:dietName", async (req, res, next) => {
           .into("recipes")
           .then(() => {
             console.log("All data are added");
-            res.render("display", {
+            res.render("advanceDisplay", {
               recipes: recipes, //Result from API
               broadType: "Diet",
               specificType: country,
@@ -208,8 +191,8 @@ router.post("/:dietName", async (req, res, next) => {
           )
           .from("recipes")
           .where("recipe_id", "=", eachRecipeId);
-        console.log(`Dietdata is below`);
-        console.log(data);
+        // console.log(`data is below`);
+        // console.log(data);
         dbRecipes.push({
           id: data[0].recipe_id,
           title: data[0].recipe_name,
@@ -218,7 +201,7 @@ router.post("/:dietName", async (req, res, next) => {
       }
       // console.log("dbRecipes is below");
       // console.log(dbRecipes);
-      res.render("display", {
+      res.render("advanceDisplay", {
         recipes: recipes, //Result from API
         broadType: "Diet",
         specificType: country,
@@ -236,31 +219,6 @@ router.post("/:dietName", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
-
-//Range bar for numbre of recipes of diet
-router.post("/:dietName/number", async (req, res) => {
-  const dietName = req.params.dietName;
-  const numOfRecipes = req.body.numberOfRecipes;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY1}&diet=${dietName}&number=${numOfRecipes}`;
-  const response = await fetch(url);
-  const result = await response.json();
-  console.log("It is in diet/:dietName/number route");
-  console.log(result);
-  const recipes = result.results;
-
-  //It should be render all information in grid
-  res.render("display", {
-    recipes: recipes,
-    broadType: "Diet",
-    specificType: diet,
-    numberOfRecipes: numOfRecipes,
-    queryList: dietList,
-    otherBroadType1: "Cuisine",
-    otherBroadType1List: cuisineList,
-    otherBroadType2: "Type",
-    otherBroadType2List: typeList,
-  });
 });
 
 module.exports = router;

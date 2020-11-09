@@ -1,0 +1,113 @@
+<%- include('partials/headerSignOut') -%>
+
+<!-- web banner with hero image -->
+<div class="hero-container" id="hero">
+    <img src="/assets/image/hero.jpg" alt="food banner" id="hero-img">
+    <div id="hero-wordbox">
+        <h1 class="hero-words" id="first-line">Eat Healthy!</h1>
+        <h1 class="hero-words" id="second-line">Find Recipes!</h1>
+        <h3 class="hero-words" id="third-line">Check out the healthy recipes and restaurants in our website</h3>
+    </div>
+</div>
+<!-- gif -->
+<div class="gif-container">
+    <h3 id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat.</h3>
+</div>
+<!-- 3 categories -->
+<div class="categories">
+    <div class="accordion" id="accordionExample">
+        <!-- cuisine -->
+        <div class="card">
+            <!-- cuisine title -->
+            <div class="card-header" id="headingOne">
+                <!-- <img src="/assets/image/index-cuisine.jpg" alt="cuisine"> -->
+                <h2 class="mb-0">
+                    <button class="btn btn-block cat-words collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Cuisine
+                    </button>
+                </h2>
+            </div>
+            <!-- cuisine options -->
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <!--take out show from class-->
+                <div class="card-body">
+                    <div class="row categories-options">
+                        <% cuisineList.forEach(query => { %>
+                        <div class="col col-6 col-md-3">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=cuisine%>/<%=query%>" method="post">
+                                <a class="queryTag"
+                                    onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
+                                <input type="hidden" name="<%=query%>Name" value="<%=query%>">
+                            </form>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- diet -->
+        <div class="card">
+            <!-- diet title -->
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-block cat-words" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Diet
+                    </button>
+                </h2>
+            </div>
+            <!-- diet options -->
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row categories-options">
+                        <% dietList.forEach(query => { %>
+                        <div class="col col-6 col-md-3">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=diet%>/<%=query%>" method="post">
+                                <a class="queryTag"
+                                    onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
+                                <input type="hidden" name="<%=query%>Name" value="<%=query%>">
+                            </form>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- meal type -->
+        <div class="card">
+            <!-- meal type title -->
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-block cat-words" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Meal Type
+                    </button>
+                </h2>
+            </div>
+            <!-- meal type options -->
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row categories-options">
+                        <% typeList.forEach(query => { %>
+                        <div class="col col-6 col-md-3">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=type%>/<%=query%>" method="post">
+                                <a class="queryTag"
+                                    onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
+                                <input type="hidden" name="<%=query%>Name" value="<%=query%>">
+                            </form>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<%- include('partials/footer') -%>

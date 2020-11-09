@@ -1,4 +1,4 @@
-<%- include('partials/header') -%>
+<%- include('partials/headerSignOut') -%>
 
 <div id="tip">
     <p> If you register you can enjoy advanced features such as saving unlimited recipes and searching for
@@ -14,7 +14,7 @@
                         onclick="toggleBroadQuery(this)" class="hide-arrow"><i class="fas fa-angle-up"></i></span></div>
                 <div class="leftTop_child_child">
                     <% queryList.forEach(query => { %>
-                    <form id="<%= query %>-form" action="/<%=broadType%>/<%=query%>" method="post">
+                    <form id="<%= query %>-form" action="/advanceSearch/<%=broadType%>/<%=query%>" method="post">
                         <li class="leftLi">
                             <a class="queryTag" href="#"
                                 onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
@@ -28,7 +28,7 @@
         <div id="leftBottom">
             <h1>FILTER</h1>
             <hr>
-            <form action="/filter/<%=otherBroadType1%>/<%=otherBroadType2%>" method="post">
+            <form action="/advanceSearch/filter/<%=otherBroadType1%>/<%=otherBroadType2%>" method="post">
                 <div class="filterDiv">
                     <div class="filterDivHead">
                         <h3><%=otherBroadType1%><span id="<%=otherBroadType1%>-id" onclick="toggleFilterQuery(this)"
@@ -70,7 +70,7 @@
                         <hr>
                     </div>
                 </div>
-                <!-- <div class="advanced filterDiv">
+                <div class="advanced filterDiv">
                     <div class="filterDivContent">
                         <p>Calories</p>
                         <input type="range" name="caloriesVal" id="caloriesVal" min="0" max="1000">
@@ -81,7 +81,7 @@
                         <p>Carbs</p>
                         <input type="range" name="carbsVal" id="carbsVal" min="0" max="1000">
                     </div>
-                </div> -->
+                </div>
             </form>
 
         </div>
@@ -112,7 +112,7 @@
                     <img src="<%= recipe.image %>" alt="">
                     <div class="rightContentEachTitle">
                         <!--Should direct to the each id route, and render stuff-->
-                        <form id="<%=recipe.id%>-form" action="/recipes/<%=recipe.id%>" method="post">
+                        <form id="<%=recipe.id%>-form" action="/advanceSearch/recipes/<%=recipe.id%>" method="post">
                             <a href="#"
                                 onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
                                 <input type="hidden" name="idName" value="<%=recipe.id%>"></a>

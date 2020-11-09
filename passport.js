@@ -62,7 +62,7 @@ module.exports = (app) => {
                     user_diet: req.body.diet,
                     fav_cuisine: req.body.favCuisine,
                 };
-                console.log(newUser);
+                // console.log(newUser);
                 let userId = await db('users').insert(newUser).returning('id');
                 newUser.id = userId[0];
                 done(null,newUser);

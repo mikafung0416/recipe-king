@@ -6,27 +6,11 @@ $(document).ready(function(){
     $.post('/comments/existing', 
     {"recipeID" : recipeID}, 
     function(data){
-        console.log(data)
-        $("#commentsIn").append(
-            data.map((username,comment)=>
-           `<div class="commentAppended">
-           <ul class="commentsUl">
-             <li class="commentsLi" id="commentsPlace">
-               <div class="usernameField">
-                 ${username}
-               </div>
-               <div class="commentText">
-               ${comment}
-               </div>
-               <div class="commentsButtonsHolder">
-                 <ul>
-                 <li class="deleteBtn">X</li>
-                 </ul>
-               </div>
-             </li>
-           </ul>
-         </div>`)
-        );
+        // console.log(data)
+        for(let i = 0; i < data.length; i++){
+          onloadInsert(data[i]);
+        }
+        
     });
     $('#commentPostBtn').click(function(){
         let text = $('#commentPostText').val()
@@ -44,8 +28,8 @@ $(document).ready(function(){
                 data: fd,
                 
                 success: (data) =>{
-                    console.log(data)
-                    
+                    // console.log(data);
+                    commentInsert(data);
                 }
             
             });
@@ -53,29 +37,46 @@ $(document).ready(function(){
             //make red border if no text
             $('#commentPostText').css('border', '1px solid red')
         }
-
-
-
-
-
-
-
-
-
-
-
-
         //to empty the textbox once post happens
         $('#commentPostText').val('')
     });
 
-    
-    
 
+    function commentInsert(data){
+      var t = '' ;
+    t+='<li class="commentsLi" id="commentsPlace">';
+    t+='<div class="usernameField">';
+    t+=` ${data.username}`;
+    t+='</div>';
+    t+='<div class="commentText">';
+    t+=`${data.comment}`;
+    t+='</div>';
+    t+='<div class="commentsButtonsHolder">';
+    t+=' <ul>';
+    t+=' <li class="deleteBtn">X</li>';
+    t+=' </ul>';
+    t+='</div>';
+    t+='</li>';
+    $('.commentsUl').prepend(t);
+}
 
-
-
-
+function onloadInsert(data){
+  var v = '' ;
+v+='<li class="commentsLi" id="commentsPlace">';
+v+='<div class="usernameField">';
+v+=` ${data.username}`;
+v+='</div>';
+v+='<div class="commentText">';
+v+=`${data.comment}`;
+v+='</div>';
+v+='<div class="commentsButtonsHolder">';
+v+=' <ul>';
+v+=' <li class="deleteBtn">X</li>';
+v+=' </ul>';
+v+='</div>';
+v+='</li>';
+$('.commentsUl').append(v);
+}
 
 
 });

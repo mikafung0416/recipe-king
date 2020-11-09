@@ -10,7 +10,7 @@ router.post("/", async (req, res)=>{
     let recipeID = req.body.recipeID
     let username = req.body.username
     let comment = req.body.text
-    console.log(userID)
+    console.log(comment)
 
     await db.insert({
         user_id: userID,
@@ -36,7 +36,7 @@ router.post("/existing", async(req,res)=>{
     .select ('*')
     .from ('comment')
     .where('recipe_id', '=', recipeID)
-    // console.log(commentData)
+    console.log(commentData)
     res.send(commentData)
 })
 module.exports = router;

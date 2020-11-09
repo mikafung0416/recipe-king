@@ -178,6 +178,8 @@
    line-height: 22px;
    margin: 0 0 0 10px;
    color: grey;
+    /* to keep the spaces between the text
+    white-space: pre; */
  }
  .commentsInsert{
    height: 150px;
@@ -233,6 +235,8 @@
    float: left;
    width: auto;
    margin: 0 10px 5px 10px;
+   /* to keep the spaces between the text */
+   /* white-space: pre; */
  }
  .commentsButtonsHolder{
    display: none;

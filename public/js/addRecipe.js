@@ -171,7 +171,7 @@ let feedback = function(res) {
       var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
       document.querySelector('.status').classList.add('bg-success');
       document.querySelector('.status').innerHTML =
-          '<br><input class="image-url" name="photo" value=\"' + get_link + '\"/ readonly>' + '<img id="user-photo" class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>' + '<br>';
+          '<br><input class="image-url" name="photo" value=\"' + get_link + '\"/ style="display: none">' + '<img id="user-photo" class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>' + '<br>';
   }
 };
 

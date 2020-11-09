@@ -41,8 +41,16 @@
                                             <img src="<%= recipeArr[i]['recipe_image'] %>" alt="<%= recipeArr[i]['recipe_name'] %>" class="added-recipe-photo">
                                         </div>
                                         <div class="col-8 d-flex align-items-center">
-                                            <!-- <a href=""></a> what should be the link ??????? -->
-                                            <p><%= recipeArr[i]['recipe_name'] %></p>
+                                            <!-- <p><%= recipeArr[i]['recipe_name'] %></p> -->
+                                            <form id="<%=recipeArr[i]['recipe_id']%>-form" action="/recipes/<%=recipeArr[i]['recipe_id']%>" method="post">
+                                                <a href="#"
+                                                    onclick="document.getElementById('<%=recipeArr[i].recipe_id%>-form').submit()"><%= recipeArr[i]['recipe_name'] %>
+                                                    <input type="hidden" name="idName" value="<%=recipeArr[i]['recipe_id']%>"></a>
+                                            </form>
+
+
+
+
                                         </div>
                                     </div>
                                 <% } %>

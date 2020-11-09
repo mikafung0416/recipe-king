@@ -34,7 +34,13 @@ router.get('/', isLoggedIn, async (req, res) => {
     
     
     // get user added recipe
-    let userRecipeArr = await db.select('recipe_name', 'recipe_image').from('recipes').where("user_id", "=", userId);
+    let userRecipeArr = await db.select('recipe_id', 'recipe_name', 'recipe_image').from('recipes').where("user_id", "=", userId);
+    
+    
+    
+    
+    
+    
     // get user fav recipe
     let favByUserArr = await db.select('recipe_id').from('recipe_user').where("user_id", "=", userId); // [{id: 123}, {id: 456}]
     let favIdArr = [];

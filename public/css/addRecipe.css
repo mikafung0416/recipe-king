@@ -9,7 +9,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3rem;
+    font-size: 5rem;
     width: 100%;
     text-align: center;
 }
@@ -20,12 +20,15 @@
     margin: 0 0;
     padding: 0 0;
 }
+.row-add-each {
+    margin-bottom: 1rem;
+}
 .col-tag {
     text-align: right;
 }
 .add-p {
-    width: 75%;
-    font-size: 1.5rem;
+    width: 85%;
+    font-size: 2rem;
 }
 #add-photo {
     width: 100%;
@@ -46,10 +49,19 @@
 }
 #more-ingredient, #more-equipment, #more-instruction {
     cursor: pointer;
+    text-decoration: underline;
 }
 .add-text-box {
     width: fit-content;
 }
+#add-click {
+    background-color: #86c27f;
+    border-radius: 25px;
+    border: #384f34 solid 1.5px;
+    padding: 10px 25px;
+    margin: 1rem 0 2rem;
+}
+
 /* imgur photo upload */
 .bg-success {
     background-color: transparent !important;

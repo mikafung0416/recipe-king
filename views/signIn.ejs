@@ -1,22 +1,13 @@
 <%- include('partials/improveHeaderSignInUp') -%>
 
-<div class="row">
+<div class="row" id="sign-in-box">
     <!-- empty space on left -->
     <div class="col col-0 col-md-2"></div>
     <!-- the middle div -->
     <div class="col col-12 col-md-8">
         <div class="sign-in-container">
-            <h1>Sign In</h1>
+            <h1 id="sign-in-title">Sign In</h1>
             <div class="content">
-                <!-- row of small titles -->
-                <div class="row" id="small-titles">
-                    <!-- left title -->
-                    <div class="col">
-                        <h5 class="d-flex justify-content-center align-items-center">Sign in with email address /
-                            username</h5>
-                    </div>
-                    <!-- right title -->
-                </div>
                 <!-- row of those boxes -->
                 <div class="row">
                     <!-- sign in form -->
@@ -26,7 +17,10 @@
                             class="d-flex justify-content-center align-items-center flex-column" id="form">
                             <input type="text" placeholder="Email address" class="textarea" name="email">
                             <br>
+                            <br>
                             <input type="password" placeholder="Password" class="textarea" name="password">
+                            <br>
+                            <br>
                             <br>
                             <input type="submit" value="Sign In">
                         </form>
@@ -37,7 +31,7 @@
         <!-- the bottom sentence with sign up link -->
         <div id="no-account-box">
             <span class="sign-up">Don’t have an account yet?</span>
-            <a href="http://localhost:4000/sign-up" class="sign-up" id="sign-up-link"><span>Sign Up</span></a>
+            <a href="http://localhost:4000/sign-up" class="sign-up" id="sign-up-link"><span id="sign-up-link-word">Sign Up</span></a>
         </div>
     </div>
     <!-- empty space on right -->

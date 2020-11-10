@@ -1,5 +1,5 @@
 body {
-    background-image: url('/assets/image/signInUp.png');
+    background-image: url('/assets/image/signInUp-1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -14,14 +14,19 @@ body {
     padding: 8vh;
     margin-top: 8vh;
 }
-#small-titles {
-    margin-bottom: 3vh;
+#sign-in-box {
+    margin-top: 4rem;
 }
-#left-col {
-    border-right: #000 1px solid;
+#sign-in-title {
+    text-align: center;
+    font-size: 8rem;
+    margin-bottom: 3rem;
+}
+#small-title {
+    text-align: center;
 }
 #form {
-    margin-right: 1vw;
+    text-align: center;
 }
 .textarea {
     width: 26vw;
@@ -33,24 +38,14 @@ input[type=submit] {
     border: #384f34 solid 1.5px;
     padding: 10px 25px;
 }
-.social-media {
-    border: #000 1px solid;
-    padding: 1.5vh;
-    width: 23vw;
-}
-.social {
-    display: inline;
-    margin-left: 23px;
-}
-#facebook-div {
-    margin-bottom: 1rem;
-}
 #no-account-box {
-    margin-top: 1rem;
-    font-size: 1.25rem;
+    margin: 1rem 0 4rem;
+    font-size: 2rem;
 }
 #sign-up-link {
     margin-left: 1rem;
+}
+#sign-up-link-word {
     text-decoration: underline;
 }
 /* signUp */
@@ -63,11 +58,17 @@ input[type=submit] {
     width: 40vw;
     height: fit-content;
     padding: 2vh 1vh;
-    margin-top: 4vh;
+    margin-top: 5vh;
     position: absolute;
     top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.sign-up-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 #member {
     font-size: 4rem;
@@ -77,6 +78,10 @@ input[type=submit] {
 }
 #sign-up-form {
     margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .textarea-sign-up {
     width: 25vw;
@@ -94,5 +99,5 @@ input[type=submit] {
     text-align: left;
 }
 #sign-up-form-btn {
-    margin-top: 2rem;
+    margin: 2rem 0 2rem;
 }

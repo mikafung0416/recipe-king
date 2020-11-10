@@ -1,29 +1,29 @@
 <%- include('partials/improveHeaderSignout') -%>
 <div class="add-form-container">
     <div class="row row-add">
-        <div class="col-add col-2"></div>
-        <div class="col-add col-8 form-box">
+        <!-- <div class="col-add col-2"></div> -->
+        <div class="col-add form-box">
             <div class="head-photo">
                 <img src="/assets/image/addRecipe.jpg" alt="Add Your Recipe!" id="add-photo">
                 <h2 id="add-title">Share your recipe with everyone!</h2>
             </div>
             <form action="/add-recipe" method="POST" id="add-form">
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Dish Name:</p></div>
-                    <div class="col-6"><input type="text" name="dishName" class="add-text" required></div>
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Dish Name:</p></div>
+                    <div class="col-sm-6"><input type="text" name="dishName" class="add-text" required></div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Photo:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Photo:</p></div>
+                    <div class="col-sm-6">
                         <div class="dropzone">
                             <div class="info"></div>
                         </div>
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Cuisine:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Cuisine:</p></div>
+                    <div class="col-sm-6">
                         <select name="cuisine" id="cuisine">
                         <% cuisineList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
@@ -31,9 +31,9 @@
                     </select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Diet:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Diet:</p></div>
+                    <div class="col-sm-6">
                         <select name="diet" id="diet">
                         <option value="null"></option>
                         <% dietList.forEach(query => { %>
@@ -42,9 +42,9 @@
                     </select>
                     </div> 
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Meal Type:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Meal Type:</p></div>
+                    <div class="col-sm-6">
                         <select name="type" id="type">
                         <% typeList.forEach(query => { %>
                             <option value="<%=query%>"><%=query%></option>
@@ -52,35 +52,35 @@
                     </select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Cooking Time:</p></div>
-                    <div class="col-6"><input type="text" name="time" class="add-text" placeholder="minutes" required></div>
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Cooking Time:</p></div>
+                    <div class="col-sm-6"><input type="text" name="time" class="add-text" placeholder="minutes" required></div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Servings:</p></div>
-                    <div class="col-6"><input type="text" name="servings" class="add-text" required></div>
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Servings:</p></div>
+                    <div class="col-sm-6"><input type="text" name="servings" class="add-text" required></div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Ingredients:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Ingredients:</p></div>
+                    <div class="col-sm-6">
                         <span id="ingredient-box-1" class="add-text-box">
                             <input type="text" name="ingredient" class="add-text" id="ingredient-1" placeholder="e.g. salt" required>
                         </span>
                         <span id="more-ingredient">More!</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Equipment:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Equipment:</p></div>
+                    <div class="col-sm-6">
                         <span id="equipment-box-1" class="add-text-box">
                             <input type="text" name="equipment" class="add-text" id="equipment-1" placeholder="e.g. spatula" required>
                         </span>
                         <span id="more-equipment">More!</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-tag"><p class="add-p">Instructions:</p></div>
-                    <div class="col-6">
+                <div class="row row-add-each">
+                    <div class="col-sm-6 col-tag"><p class="add-p">Instructions:</p></div>
+                    <div class="col-sm-6">
                         <span id="instruction-box-1" class="add-text-box">
                             <input type="text" name="instruction" class="add-text" id="instruction-1" placeholder="e.g. Add rigatoni and boil until al dente." required>
                         </span>
@@ -93,7 +93,7 @@
                 
             </form>
         </div>
-        <div class="col-add col-2"></div>
+        <!-- <div class="col-add col-2"></div> -->
     </div>
 </div>
 

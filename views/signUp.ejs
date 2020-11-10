@@ -1,15 +1,14 @@
-<%- include('partials/improveHeader') -%>
+<%- include('partials/improveHeaderSignInUp') -%>
 <div class="big-div">
     <div class="sign-up-container">
-        <div class="sign-up-content d-flex justify-content-center align-items-center flex-column">
+        <div class="sign-up-content">
             <h2 id="member">Be our member!</h2>
             <ul id="member-intro">
                 <li>Save & comment on your favourite recipes</li>
                 <li>Enjoy advanced filter function</li>
                 <li>Upload your own recipes</li>
             </ul>
-            <form action="/sign-up" method="POST" class="d-flex justify-content-center align-items-center flex-column"
-                id="sign-up-form">
+            <form action="/sign-up" method="POST" id="sign-up-form">
                 <!-- email address -->
                 <p class="labels">Email address*</p>
                 <input type="text" name="email" class="textarea-sign-up" required>

@@ -1,5 +1,5 @@
 const recipesDOM = document.getElementById("rightContentContent"); //get the recipes DOM
-const footerDOM = document.querySelector(".footer-container"); //get the footer DOM
+const footerDOM = document.getElementById("footer"); //get the footer DOM
 
 const getRecipesHeight = () => {
   let addedHeight = recipesDOM.offsetHeight + 200;

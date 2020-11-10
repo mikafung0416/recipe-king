@@ -44,8 +44,8 @@
                     <div class="tab-pane active" id="tab01" role="tabpanel">
                         <!-- <div class="tab-pane-item"> -->
                         <% cuisineList.forEach(query => { %>
-                        <div class="col col-6 col-md-3 text-center">
-                            <form id="<%= query %>-form" action="/<%=cuisine%>/<%=query%>" method="post">
+                        <div class="col col-6 col-md-3">
+                            <form id="<%= query %>-form" action="/advanceSearch/<%=cuisine%>/<%=query%>" method="post">
                                 <a class="queryTag"
                                     onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                 <input type="hidden" name="<%=query%>Name" value="<%=query%>">
@@ -60,8 +60,8 @@
                     <div class="tab-pane" id="tab02" role="tabpanel">
                         <div class="tab-pane-item">
                             <% dietList.forEach(query => { %>
-                            <div class="col col-6 col-md-3 text-center">
-                                <form id="<%= query %>-form" action="/<%=diet%>/<%=query%>" method="post">
+                            <div class="col col-6 col-md-3">
+                                <form id="<%= query %>-form" action="/advanceSearch/<%=diet%>/<%=query%>" method="post">
                                     <a class="queryTag"
                                         onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                     <input type="hidden" name="<%=query%>Name" value="<%=query%>">
@@ -75,8 +75,8 @@
                     <div class="tab-pane" id="tab03" role="tabpanel">
                         <div class="tab-pane-item">
                             <% typeList.forEach(query => { %>
-                            <div class="col col-6 col-md-3 text-center">
-                                <form id="<%= query %>-form" action="/<%=type%>/<%=query%>" method="post">
+                            <div class="col col-6 col-md-3">
+                                <form id="<%= query %>-form" action="/advanceSearch/<%=type%>/<%=query%>" method="post">
                                     <a class="queryTag"
                                         onclick="document.getElementById('<%=query %>-form').submit()"><%= query %></a>
                                     <input type="hidden" name="<%=query%>Name" value="<%=query%>">

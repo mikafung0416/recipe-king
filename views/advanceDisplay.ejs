@@ -73,7 +73,7 @@
                         <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/calories" method="post">
                             <p>Calories</p>
                             <input class="range" type="range" name="caloriesVal" id="caloriesVal" min="0" max="1000"
-                                onchange="this.form.submit()" value="<%=advanceFilterValue %>">
+                                onchange="this.form.submit()" value="0">
                             <output class="bubble"></output>
                             <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
                             <input type="hidden" name="showingOtherSpecificType"
@@ -85,12 +85,14 @@
                     <div class="range-wrap">
                         <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/fats" method="post">
                             <p>Fats</p>
-                            <input class="range" type="range" name="fatsVal" id="fatsVal" min="0" max="1000"
-                                onchange="this.form.submit()">
+                            <input class="range" type="range" name="fatsVal" id="fatsVal" min="0" max="100"
+                                onchange="this.form.submit()" value="0">
                             <output class="bubble"></output>
                             <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
                             <input type="hidden" name="showingOtherSpecificType"
                                 value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
                         </form>
                     </div>
                     <div class="range-wrap">
@@ -98,22 +100,26 @@
                             method="post">
                             <p>Saturated Fat</p>
                             <input class="range" type="range" name="saturatedFatVal" id="saturatedFatVal" min="0"
-                                max="1000" onchange="this.form.submit()">
+                                max="100" onchange="this.form.submit()" value="0">
                             <output class="bubble"></output>
                             <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
                             <input type="hidden" name="showingOtherSpecificType"
                                 value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
                         </form>
                     </div>
                     <div class="range-wrap">
                         <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/carbs" method="post">
-                            <p>Carbs</p>
-                            <input class="range" type="range" name="carbsVal" id="carbsVal" min="0" max="1000"
-                                onchange="this.form.submit()">
+                            <p>Carbohydrates</p>
+                            <input class="range" type="range" name="carbsVal" id="carbsVal" min="0" max="100"
+                                onchange="this.form.submit()" value="0">
                             <output class="bubble"></output>
                             <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
                             <input type="hidden" name="showingOtherSpecificType"
                                 value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
                         </form>
                     </div>
                 </div>

@@ -108,9 +108,9 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
     showingOtherBroadType = type2;
     showingOtherSpecificType = type2Querys;
   }
-  console.log(broadType, specificType, sbroadType, sspecificType);
-  console.log(type1, type1Querys, stype1);
-  console.log(type2, type2Querys, stype2);
+  // console.log(broadType, specificType, sbroadType, sspecificType);
+  // console.log(type1, type1Querys, stype1);
+  // console.log(type2, type2Querys, stype2);
 
   //eg. Broad: Diet - Vegan ; otherBroad: Cuisine - American
   //1. find the dietID = vegan in diets table
@@ -129,18 +129,18 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
       .from(`${sbroadType}s`)
       .where("name", "=", specificType);
   }
-  console.log(`broadData is below`);
-  console.log(broadData);
+  // console.log(`broadData is below`);
+  // console.log(broadData);
   let broadId = broadData[0][`${sbroadType}_id`];
-  console.log(`broadId - ${sbroadType}Id is below`);
-  console.log(broadId);
+  // console.log(`broadId - ${sbroadType}Id is below`);
+  // console.log(broadId);
 
   let recipeBroadData = await db
     .select("recipe_id")
     .from(`recipe_${sbroadType}`)
     .where(`${sbroadType}_id`, "=", broadId);
-  console.log(`recipeBroadData - recipe${sbroadType}Data is below`);
-  console.log(recipeBroadData);
+  // console.log(`recipeBroadData - recipe${sbroadType}Data is below`);
+  // console.log(recipeBroadData);
 
   for (let recipe of recipeBroadData) {
     let eachRecipeId = recipe.recipe_id;
@@ -163,9 +163,9 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
       dataCuisines = data[0]["cuisines"];
       dataTypes = data[0]["dishTypes"];
       dataDiets = data[0]["diets"];
-      console.log(dataCuisines);
-      console.log(dataTypes);
-      console.log(dataDiets);
+      // console.log(dataCuisines);
+      // console.log(dataTypes);
+      // console.log(dataDiets);
       if (showingOtherBroadType === "Cuisine") {
         if (dataCuisines.length !== 0) {
           if (dataCuisines.includes(showingOtherSpecificType)) {

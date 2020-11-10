@@ -47,7 +47,9 @@ body {
     display: flex;
     justify-content: center;
 }
-
+#window-profile {
+    margin: 15rem 0 6rem;
+}
 /* for profileSuccess */
 #tip {
     width: 100%;

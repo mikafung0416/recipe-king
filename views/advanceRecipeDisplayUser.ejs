@@ -159,33 +159,6 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div class="">
-          <div class="nutritionalTitle">
-            <h2>Nutritional Information</h2>
-          </div>
-          <div class="nutrition">
-            <ul>
-               <!-- <%for(let i = 0; i < 9; i++) {%>
-                <li class="leftList">
-                  <%=nutrition[i].title %>
-                  <%=nutrition[i].amount %>
-                  <%=nutrition[i].unit%>
-                  <%=nutrition[i].percentOfDailyNeeds %>% of daily needs
-                </li>
-                <%}%> -->
-              <%nutrition.forEach(query => {%>
-                <li class="leftList">
-                  <%=query.title %>
-                  <%=query.amount %>
-                  <%=query.unit %>
-                  <%=query.percentOfDailyNeeds %>% of daily needs
-                </li>
-                <%})%>
-              </ul>
-          </div>
-        </div>
-      </div>
       <div class="container-fluid commentsBox">
         <div>
           <div class="commentsTitle">

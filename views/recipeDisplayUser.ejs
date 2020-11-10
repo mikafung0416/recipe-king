@@ -127,9 +127,9 @@
                   <div>
                     <%=query.name %>
                   </div>
-                  <!-- <div class="">
+                  <div class="">
                     <%=query.value %> <%=query.unit %>
-                  </div> -->
+                  </div>
                 </div>
               </li>
               <%})%>
@@ -166,6 +166,23 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid commentsBox">
+      <div>
+        <div class="commentsTitle">
+          <h2>
+            Comments
+          </h2>
+        </div>
+        <div class="comments" id="commentsIn">
+          <div class="commentAppended">
+          <ul class="commentsUl">
+          </ul>
+        </div>
+        </div>
+      </div>
+      <input type="hidden" id="recipeID" value="<%= recipeID%>" />
+    </div>
   </div>
+</div>
 
 <%- include('partials/footer') -%>

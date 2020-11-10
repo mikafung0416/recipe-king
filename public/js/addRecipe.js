@@ -109,7 +109,7 @@
 
           if (file.type.match(/image/) && file.type !== 'image/svg+xml') {
               document.body.classList.add('loading');
-              status.classList.remove('bg-success', 'bg-danger');
+              status.classList.remove('bg-su', 'bg-danger');
               status.innerHTML = '';
 
               var fd = new FormData();
@@ -120,7 +120,7 @@
                   typeof this.callback === 'function' && this.callback.call(this, data);
               }.bind(this));
           } else {
-              status.classList.remove('bg-success');
+              status.classList.remove('bg-su');
               status.classList.add('bg-danger');
               status.innerHTML = 'Invalid archive';
           }
@@ -169,7 +169,7 @@
 let feedback = function(res) {
   if (res.success === true) {
       var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
-      document.querySelector('.status').classList.add('bg-success');
+      document.querySelector('.status').classList.add('bg-su');
       document.querySelector('.status').innerHTML =
           '<br><input class="image-url" name="photo" value=\"' + get_link + '\"/ style="display: none">' + '<img id="user-photo" class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>' + '<br>';
   }

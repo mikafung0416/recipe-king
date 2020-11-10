@@ -35,10 +35,24 @@ router.post("/", async (req, res) => {
   let cheap = recipeDetails[0].cheap;
   let veryPopular = recipeDetails[0].veryPopular;
   let sustainable = recipeDetails[0].sustainable;
+  let user_id = recipeDetails[0].user_id;
+  // console.log(user_id)
+
+  
 
   if (id.toString().length === 8) {
     // user added recipe rendering
-    console.log('this is an user added recipe');
+    // console.log('this is an user added recipe');
+
+    //db call so able to put into made by comment 
+    let getUsername = await db
+    .select('username')
+    .from ('users')
+    .where('id', '=', user_id);
+    
+    let madeByUsername = getUsername[0].username;
+    // console.log(madeByUsername)
+
     res.render("recipeDisplayUser", {
       recipeID,
       recipeName,
@@ -57,6 +71,7 @@ router.post("/", async (req, res) => {
       veryPopular,
       sustainable,
       instructions,
+      madeByUsername
     });
   } else {
     //finding paths in db to render to page
@@ -81,7 +96,7 @@ router.post("/", async (req, res) => {
         ingredientDetails[i].name.slice(1);
       ingredientDetails[i].name = cap;
     }
-    console.log('this is an api recipe');
+    // console.log('this is an api recipe');
 
     //render to page
     res.render("recipeDisplay", {
@@ -107,4 +122,45 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/favourited", async (req, res) => {
+  // console.log(req.body);
+  let userid = req.body.user_id
+  let recipeid = req.body.recipeID
+
+  let checking = await db 
+    .select('recipe_id')
+    .from ('recipe_user')
+    .where('user_id', '=', userid);
+    // console.log(checking)
+
+    let checkResult = checking.filter((item) => {
+      return item.recipe_id === recipeid
+    })
+  
+  if(checkResult.length === 0){
+    await db.insert({
+      user_id: userid,
+      recipe_id: recipeid
+    })
+    .into('recipe_user')
+  
+      let data = await db 
+      .select('*')
+      .from ('recipe_user')
+      .where('recipe_id', '=', recipeid);
+      // console.log(data)
+      res.send(data)
+  }
+});
+
+router.post("/favourited/existing", async(req,res)=>{
+  // console.log(req.body)
+  let recipe = req.body.recipeID
+  let data = await db 
+  .select ('*')
+  .from ('recipe_user')
+  .where('recipe_id', '=', recipe)
+  console.log(data)
+  res.send(data)
+})
 module.exports = router;

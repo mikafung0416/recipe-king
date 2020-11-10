@@ -33,12 +33,12 @@ router.post("/", isLoggedIn, async (req, res) => {
 
   let userID = userDetails[0].id;
   let username = userDetails[0].username;
-  console.log(username);
+  // console.log(username);
 
   //getting the id from the hidden input
   let id = req.body.idName;
   // let id = 'wcykio'; // wcykio || 644826
-  let regex = /^[a-z]+$/;
+  // let regex = /^[a-z]+$/;
   //getting the recipe from the database
   let recipeDetails = await db
     .select("*")
@@ -68,11 +68,19 @@ router.post("/", isLoggedIn, async (req, res) => {
   let cheap = recipeDetails[0].cheap;
   let veryPopular = recipeDetails[0].veryPopular;
   let sustainable = recipeDetails[0].sustainable;
+  let user_id = recipeDetails[0].user_id;
+  // console.log(recipeDetails)
 
-  if (id.match(regex)) {
+  if (id.toString().length === 8) {
     // user added recipe rendering- since we use letters for user added recipes we can check for them
-    // console.log(equipment);
-    // console.log(ingredients);
+
+    let getUsername = await db
+    .select('username')
+    .from ('users')
+    .where('id', '=', user_id);
+    
+    let madeByUsername = getUsername[0].username;
+
     res.render("advanceRecipeDisplayUser", {
       recipeID,
       recipeName,
@@ -93,6 +101,7 @@ router.post("/", isLoggedIn, async (req, res) => {
       instructions,
       userID,
       username,
+      madeByUsername
     });
   } else {
     //finding paths in db to render to page
@@ -146,3 +155,4 @@ router.post("/", isLoggedIn, async (req, res) => {
 });
 
 module.exports = router;
+

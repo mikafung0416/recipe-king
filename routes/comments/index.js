@@ -6,7 +6,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.post("/", async (req, res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     let userID = req.body.userID
     let recipeID = req.body.recipeID
     let username = req.body.username

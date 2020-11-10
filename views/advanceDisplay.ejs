@@ -1,10 +1,5 @@
 <%- include('partials/headerSignOut') -%>
 
-<div id="tip">
-    <p> If you register you can enjoy advanced features such as saving unlimited recipes and searching for
-        different nutritional information!</p>
-</div>
-
 <div id="content">
     <div id="leftBar">
         <div id="leftTop">
@@ -133,29 +128,31 @@
                     <h3><%= showingOtherBroadType %> - <%= showingOtherSpecificType %></h3>
                     <% } %>
                 </div>
-
+                <% if(!afterFilter){ %>
                 <div class="slideContainer">
-                    <form id="<%=specificType%>-number-form" action="/advanceSearch/<%=broadType%>/<%=specificType%>/number"
-                        method="post">
+                    <form id="<%=specificType%>-number-form"
+                        action="/advanceSearch/<%=broadType%>/<%=specificType%>/number" method="post">
                         <p>Number of Recipes</p>
                         <input onchange="document.getElementById('<%= specificType %>-number-form').submit()"
                             type="range" name="numberOfRecipes" id="" min="1" max="50" value="<%=numberOfRecipes%>">
                         <input type="hidden" name="totalRecipes" value="<%= totalRecipes %>">
                     </form>
                 </div>
+                <% } %>
             </div>
             <div id="rightContentContent">
                 <% recipes.forEach(recipe => { %>
                 <div class="rightContentEach">
-                    <img src="<%= recipe.image %>" alt="">
-                    <div class="rightContentEachTitle">
-                        <!--Should direct to the each id route, and render stuff-->
-                        <form id="<%=recipe.id%>-form" action="/advanceSearch/recipes/<%=recipe.id%>" method="post">
+                    <form id="<%=recipe.id%>-form" action="/advanceSearch/recipes/<%=recipe.id%>" method="post">
+                        <img style="cursor: pointer;" src="<%= recipe.image %>" alt=""
+                            onclick="document.getElementById('<%=recipe.id%>-form').submit()">
+                        <div class="rightContentEachTitle">
+                            <!--Should direct to the each id route, and render stuff-->
                             <a href="#"
                                 onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
                                 <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <%}) %>
             </div>

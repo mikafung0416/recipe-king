@@ -76,6 +76,7 @@ router.post("/:cuisineName", async (req, res, next) => {
       totalRecipes: "",
       showingOtherBroadType: "",
       showingOtherSpecificType: "",
+      afterFilter: false
     });
   } catch (err) {
     next(err);
@@ -148,6 +149,7 @@ router.post("/:cuisineName/number", async (req, res, next) => {
         totalRecipes: "",
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
+        afterFilter: false
       });
     } else {
       console.log("request num is less than the total data in db");
@@ -190,6 +192,7 @@ router.post("/:cuisineName/number", async (req, res, next) => {
         totalRecipes: "",
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
+        afterFilter: false
       });
     }
   } catch (err) {

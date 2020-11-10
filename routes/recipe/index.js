@@ -160,7 +160,7 @@ router.post("/favourited/existing", async(req,res)=>{
   .select ('*')
   .from ('recipe_user')
   .where('recipe_id', '=', recipe)
-  console.log(data)
+  // console.log(data)
   res.send(data)
 })
 module.exports = router;

@@ -13,7 +13,7 @@ $(document).ready(function () {
   });
 
   $.post("/recipes/:id/favourited/existing", { recipeID: recipeID }, function(data){
-    console.log(data)
+    // console.log(data)
     count(data);
   })
 
@@ -75,7 +75,8 @@ $(document).ready(function () {
       count++
     }
     console.log(count)
-    $(".liked-p").replaceWith(count + " people have added this recipe to favourites");
+    $(".liked-p").text(count + " people have added this recipe to favourites");
+    
   }
 
   function commentInsert(data) {

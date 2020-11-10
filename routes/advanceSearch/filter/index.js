@@ -244,8 +244,8 @@ router.post(
     let showingSpecificType = req.params.showingSpecificType; //must have
     let type1 = req.body.type1;
     let type2 = req.body.type2;
-    console.log(`type1 = ${type1}`);
-    console.log(`type2 = ${type2}`);
+    // console.log(`type1 = ${type1}`);
+    // console.log(`type2 = ${type2}`);
 
     let dataCuisines;
     let dataDiets;
@@ -290,12 +290,12 @@ router.post(
         showingOtherSpecificType.charAt(0).toLowerCase() +
         showingOtherSpecificType.slice(1);
     }
-    console.log(
-      sShowingBroadType,
-      sShowingSpecificType,
-      sShowingOtherBroadType,
-      sShowingOtherSpecificType
-    );
+    // console.log(
+    //   sShowingBroadType,
+    //   sShowingSpecificType,
+    //   sShowingOtherBroadType,
+    //   sShowingOtherSpecificType
+    // );
 
     if (sShowingBroadType === "type") {
       showingSpecificType = showingSpecificType.toLowerCase();
@@ -305,19 +305,19 @@ router.post(
       .select("*")
       .from(`${sShowingBroadType}s`)
       .where("name", "=", showingSpecificType);
-    console.log(`broadData is below`);
-    console.log(broadData);
+    // console.log(`broadData is below`);
+    // console.log(broadData);
 
     let broadId = broadData[0][`${sShowingBroadType}_id`];
-    console.log(`broadId is below`);
-    console.log(broadId);
+    // console.log(`broadId is below`);
+    // console.log(broadId);
 
     let recipeBroadData = await db
       .select("recipe_id")
       .from(`recipe_${sShowingBroadType}`)
       .where(`${sShowingBroadType}_id`, "=", broadId);
-    console.log(`recipeBroadData is below`);
-    console.log(recipeBroadData);
+    // console.log(`recipeBroadData is below`);
+    // console.log(recipeBroadData);
 
     if (showingOtherBroadType === "") {
       for (let recipe of recipeBroadData) {
@@ -342,7 +342,7 @@ router.post(
           for (let i = 0; i < data[0].nutrient.length; i++) {
             if (data[0].nutrient[i].title === "Calories") {
               if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
-                console.log(data[0].nutrient[i].amount);
+                // console.log(data[0].nutrient[i].amount);
                 dbRecipes.push({
                   id: data[0].recipe_id,
                   title: data[0].recipe_name,
@@ -403,7 +403,7 @@ router.post(
                 for (let i = 0; i < data[0].nutrient.length; i++) {
                   if (data[0].nutrient[i].title === "Calories") {
                     if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -421,7 +421,7 @@ router.post(
                 for (let i = 0; i < data[0].nutrient.length; i++) {
                   if (data[0].nutrient[i].title === "Calories") {
                     if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -437,7 +437,7 @@ router.post(
       }
     }
 
-    console.log(dbRecipes);
+    // console.log(dbRecipes);
 
     res.render("adVanceDisplay", {
       recipes: dbRecipes, //Result from API
@@ -468,8 +468,8 @@ router.post(
     let showingSpecificType = req.params.showingSpecificType; //must have
     let type1 = req.body.type1;
     let type2 = req.body.type2;
-    console.log(`type1 = ${type1}`);
-    console.log(`type2 = ${type2}`);
+    // console.log(`type1 = ${type1}`);
+    // console.log(`type2 = ${type2}`);
 
     let dataCuisines;
     let dataDiets;
@@ -514,12 +514,12 @@ router.post(
         showingOtherSpecificType.charAt(0).toLowerCase() +
         showingOtherSpecificType.slice(1);
     }
-    console.log(
-      sShowingBroadType,
-      sShowingSpecificType,
-      sShowingOtherBroadType,
-      sShowingOtherSpecificType
-    );
+    // console.log(
+    //   sShowingBroadType,
+    //   sShowingSpecificType,
+    //   sShowingOtherBroadType,
+    //   sShowingOtherSpecificType
+    // );
 
     if (sShowingBroadType === "type") {
       showingSpecificType = showingSpecificType.toLowerCase();
@@ -529,19 +529,19 @@ router.post(
       .select("*")
       .from(`${sShowingBroadType}s`)
       .where("name", "=", showingSpecificType);
-    console.log(`broadData is below`);
-    console.log(broadData);
+    // console.log(`broadData is below`);
+    // console.log(broadData);
 
     let broadId = broadData[0][`${sShowingBroadType}_id`];
-    console.log(`broadId is below`);
-    console.log(broadId);
+    // console.log(`broadId is below`);
+    // console.log(broadId);
 
     let recipeBroadData = await db
       .select("recipe_id")
       .from(`recipe_${sShowingBroadType}`)
       .where(`${sShowingBroadType}_id`, "=", broadId);
-    console.log(`recipeBroadData is below`);
-    console.log(recipeBroadData);
+    // console.log(`recipeBroadData is below`);
+    // console.log(recipeBroadData);
 
     if (showingOtherBroadType === "") {
       for (let recipe of recipeBroadData) {
@@ -562,11 +562,11 @@ router.post(
           .from("recipes")
           .where("recipe_id", "=", eachRecipeId);
         if (data[0] !== undefined) {
-          console.log(data[0].nutrient);
+          // console.log(data[0].nutrient);
           for (let i = 0; i < data[0].nutrient.length; i++) {
             if (data[0].nutrient[i].title === "Fat") {
               if (data[0].nutrient[i].amount >= parseInt(fatsVal)) {
-                console.log(data[0].nutrient[i].amount);
+                // console.log(data[0].nutrient[i].amount);
                 dbRecipes.push({
                   id: data[0].recipe_id,
                   title: data[0].recipe_name,
@@ -596,7 +596,7 @@ router.post(
           .from("recipes")
           .where("recipe_id", "=", eachRecipeId);
         if (data[0] !== undefined) {
-          console.log(data[0].nutrient);
+          // console.log(data[0].nutrient);
           dataCuisines = data[0]["cuisines"];
           dataTypes = data[0]["dishTypes"];
           dataDiets = data[0]["diets"];
@@ -610,7 +610,7 @@ router.post(
                 for (let i = 0; i < data[0].nutrient.length; i++) {
                   if (data[0].nutrient[i].title === "Fat") {
                     if (data[0].nutrient[i].amount >= parseInt(fatsVal)) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -628,7 +628,7 @@ router.post(
                 for (let i = 0; i < data[0].nutrient.length; i++) {
                   if (data[0].nutrient[i].title === "Fat") {
                     if (data[0].nutrient[i].amount >= parseInt(fatsVal)) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -646,7 +646,7 @@ router.post(
                 for (let i = 0; i < data[0].nutrient.length; i++) {
                   if (data[0].nutrient[i].title === "Fat") {
                     if (data[0].nutrient[i].amount >= parseInt(fatsVal)) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -662,7 +662,7 @@ router.post(
       }
     }
 
-    console.log(dbRecipes);
+    // console.log(dbRecipes);
 
     res.render("adVanceDisplay", {
       recipes: dbRecipes, //Result from API
@@ -696,8 +696,8 @@ router.post(
     let showingSpecificType = req.params.showingSpecificType; //must have
     let type1 = req.body.type1;
     let type2 = req.body.type2;
-    console.log(`type1 = ${type1}`);
-    console.log(`type2 = ${type2}`);
+    // console.log(`type1 = ${type1}`);
+    // console.log(`type2 = ${type2}`);
 
     let dataCuisines;
     let dataDiets;
@@ -742,12 +742,12 @@ router.post(
         showingOtherSpecificType.charAt(0).toLowerCase() +
         showingOtherSpecificType.slice(1);
     }
-    console.log(
-      sShowingBroadType,
-      sShowingSpecificType,
-      sShowingOtherBroadType,
-      sShowingOtherSpecificType
-    );
+    // console.log(
+    //   sShowingBroadType,
+    //   sShowingSpecificType,
+    //   sShowingOtherBroadType,
+    //   sShowingOtherSpecificType
+    // );
 
     if (sShowingBroadType === "type") {
       showingSpecificType = showingSpecificType.toLowerCase();
@@ -757,19 +757,19 @@ router.post(
       .select("*")
       .from(`${sShowingBroadType}s`)
       .where("name", "=", showingSpecificType);
-    console.log(`broadData is below`);
-    console.log(broadData);
+    // console.log(`broadData is below`);
+    // console.log(broadData);
 
     let broadId = broadData[0][`${sShowingBroadType}_id`];
-    console.log(`broadId is below`);
-    console.log(broadId);
+    // console.log(`broadId is below`);
+    // console.log(broadId);
 
     let recipeBroadData = await db
       .select("recipe_id")
       .from(`recipe_${sShowingBroadType}`)
       .where(`${sShowingBroadType}_id`, "=", broadId);
-    console.log(`recipeBroadData is below`);
-    console.log(recipeBroadData);
+    // console.log(`recipeBroadData is below`);
+    // console.log(recipeBroadData);
 
     if (showingOtherBroadType === "") {
       for (let recipe of recipeBroadData) {
@@ -794,7 +794,7 @@ router.post(
           for (let i = 0; i < data[0].nutrient.length; i++) {
             if (data[0].nutrient[i].title === "Saturated Fat") {
               if (data[0].nutrient[i].amount >= parseInt(saturatedFatVal)) {
-                console.log(data[0].nutrient[i].amount);
+                // console.log(data[0].nutrient[i].amount);
                 dbRecipes.push({
                   id: data[0].recipe_id,
                   title: data[0].recipe_name,
@@ -840,7 +840,7 @@ router.post(
                     if (
                       data[0].nutrient[i].amount >= parseInt(saturatedFatVal)
                     ) {
-                      console.log(data[0].nutrient[i].amount);
+                      // console.log(data[0].nutrient[i].amount);
                       dbRecipes.push({
                         id: data[0].recipe_id,
                         title: data[0].recipe_name,
@@ -896,7 +896,7 @@ router.post(
       }
     }
 
-    console.log(dbRecipes);
+    // console.log(dbRecipes);
 
     res.render("adVanceDisplay", {
       recipes: dbRecipes, //Result from API
@@ -931,8 +931,8 @@ router.post(
     let showingSpecificType = req.params.showingSpecificType; //must have
     let type1 = req.body.type1;
     let type2 = req.body.type2;
-    console.log(`type1 = ${type1}`);
-    console.log(`type2 = ${type2}`);
+    // console.log(`type1 = ${type1}`);
+    // console.log(`type2 = ${type2}`);
 
     let dataCuisines;
     let dataDiets;
@@ -977,12 +977,12 @@ router.post(
         showingOtherSpecificType.charAt(0).toLowerCase() +
         showingOtherSpecificType.slice(1);
     }
-    console.log(
-      sShowingBroadType,
-      sShowingSpecificType,
-      sShowingOtherBroadType,
-      sShowingOtherSpecificType
-    );
+    // console.log(
+    //   sShowingBroadType,
+    //   sShowingSpecificType,
+    //   sShowingOtherBroadType,
+    //   sShowingOtherSpecificType
+    // );
 
     if (sShowingBroadType === "type") {
       showingSpecificType = showingSpecificType.toLowerCase();
@@ -992,19 +992,19 @@ router.post(
       .select("*")
       .from(`${sShowingBroadType}s`)
       .where("name", "=", showingSpecificType);
-    console.log(`broadData is below`);
-    console.log(broadData);
+    // console.log(`broadData is below`);
+    // console.log(broadData);
 
     let broadId = broadData[0][`${sShowingBroadType}_id`];
-    console.log(`broadId is below`);
-    console.log(broadId);
+    // console.log(`broadId is below`);
+    // console.log(broadId);
 
     let recipeBroadData = await db
       .select("recipe_id")
       .from(`recipe_${sShowingBroadType}`)
       .where(`${sShowingBroadType}_id`, "=", broadId);
-    console.log(`recipeBroadData is below`);
-    console.log(recipeBroadData);
+    // console.log(`recipeBroadData is below`);
+    // console.log(recipeBroadData);
 
     if (showingOtherBroadType === "") {
       for (let recipe of recipeBroadData) {
@@ -1029,7 +1029,7 @@ router.post(
           for (let i = 0; i < data[0].nutrient.length; i++) {
             if (data[0].nutrient[i].title === "Carbohydrates") {
               if (data[0].nutrient[i].amount >= parseInt(carbsVal)) {
-                console.log(data[0].nutrient[i].amount);
+                // console.log(data[0].nutrient[i].amount);
                 dbRecipes.push({
                   id: data[0].recipe_id,
                   title: data[0].recipe_name,

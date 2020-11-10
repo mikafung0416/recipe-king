@@ -1,4 +1,30 @@
-<%- include('partials/improveHeaderSignout') -%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>RecipeKing</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/css/tooplate-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+
+</head>
+
+<%- include('partials/improveHeaderAfter') -%>
 <div id="tip">
     <p> Recipe added successfully!</p>
 </div>
@@ -6,7 +32,7 @@
 <div class="window d-flex justify-content-center">
     <div class="profile-bg">
         <div class="row whole-profile">
-            <div class="col-3">
+            <div class="col-sm-3">
                 <div class="profile-left">
                    <!-- <span class="profile-pic"></span> -->
                     <h4><%= username %></h4>
@@ -17,8 +43,8 @@
                         <br>
                     <% } else { %>
                         <h6>My Favourite Cuisine:</h6>
-                        <form id="<%= favCui %>-form" action="/Cuisine/<%= favCui %>" method="post">
-                            <a class="queryTag" onclick="document.getElementById('<%= favCui %>-form').submit()"><%= favCui %></a>
+                        <form id="<%= favCui %>-form" action="/advanceSearch/Cuisine/<%= favCui %>" method="post">
+                            <a class="queryTag" onclick="document.getElementById('<%= favCui %>-form').submit()"><span class="explore-link"><%= favCui %></span></a>
                             <input type="hidden" name="<%= favCui %>Name" value="<%= favCui %>">
                         </form>
                     <% } %>
@@ -27,32 +53,32 @@
                         <br>
                     <% } else { %>
                         <h6>My Diet Preference:</h6>
-                        <form id="<%= diet %>-form" action="/Diet/<%= diet %>" method="post">
-                            <a class="queryTag" onclick="document.getElementById('<%= diet %>-form').submit()"><%= diet %></a>
+                        <form id="<%= diet %>-form" action="/advanceSearch/Diet/<%= diet %>" method="post">
+                            <a class="queryTag" onclick="document.getElementById('<%= diet %>-form').submit()"><span class="explore-link"><%= diet %></span></a>
                             <input type="hidden" name="<%= diet %>Name" value="<%= diet %>">
                         </form>
                     <% } %>
                 </div>
             </div>
 
-            <div class="col-9">
+            <div class="col-sm-9">
                 <div class="profile-right">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <h3 class="pro-recipe-title">My Recipes</h3>
                             <% if (recipeArr.length === 0) { %>
-                                <p>You haven't added any recipes yet!</p>
-                                <p>Share your recipes <a href="http://localhost:4000/add-recipe">here</a></p>
+                                <p class="explore">You haven't added any recipes yet!</p>
+                                <p class="explore">Share your recipes <a href="http://localhost:4000/add-recipe"><span class="explore-link">here</span></a></p>
                             <% } else { %>
                                 <% for (let i = 0; i < recipeArr.length; i++) { %>
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-sm-4 my-recipe">
                                             <img src="<%= recipeArr[i]['recipe_image'] %>" alt="<%= recipeArr[i]['recipe_name'] %>" class="added-recipe-photo">
                                         </div>
-                                        <div class="col-8 d-flex align-items-center">
+                                        <div class="col-sm-8">
                                             <form id="<%=recipeArr[i]['recipe_id']%>-form" action="/recipes/<%=recipeArr[i]['recipe_id']%>" method="post">
                                                 <a href="#"
-                                                    onclick="document.getElementById('<%=recipeArr[i].recipe_id%>-form').submit()"><%= recipeArr[i]['recipe_name'] %>
+                                                    onclick="document.getElementById('<%=recipeArr[i].recipe_id%>-form').submit()"><span class="explore-link"><%= recipeArr[i]['recipe_name'] %></span>
                                                     <input type="hidden" name="idName" value="<%=recipeArr[i]['recipe_id']%>"></a>
                                             </form>
                                         </div>
@@ -61,21 +87,21 @@
                                 <% } %>
                             <% } %>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <h3 class="pro-recipe-title">My Favourite Recipes</h3>
                             <% if (favArr.length === 0) { %>
-                                <p>You haven't had any favourite recipes yet!</p>
-                                <p>Explore <a href="http://localhost:4000">here</a></p>
+                                <p class="explore">You haven't had any favourite recipes yet!</p>
+                                <p class="explore">Explore <a href="http://localhost:4000/home"><span class="explore-link">here</span></a></p>
                             <% } else { %>
                                     <% for (let i = 0; i < favArr.length; i++) { %>
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-sm-4 my-recipe">
                                                 <img src="<%=favArr[i][0].recipe_image%>" alt="<%=favArr[i][0].recipe_name%>" class="added-recipe-photo">
                                             </div>
-                                            <div class="col-8 d-flex align-items-center">
+                                            <div class="col-sm-8">
                                                 <form id="<%=favArr[i][0].recipe_id%>-form" action="/recipes/<%=favArr[i][0].recipe_id%>" method="post">
                                                     <a href="#"
-                                                        onclick="document.getElementById('<%=favArr[i][0].recipe_id%>-form').submit()"><%= favArr[i][0].recipe_name %>
+                                                        onclick="document.getElementById('<%=favArr[i][0].recipe_id%>-form').submit()"><span class="explore-link"><%= favArr[i][0].recipe_name %></span>
                                                         <input type="hidden" name="idName" value="<%=favArr[i][0].recipe_id%>"></a>
                                                 </form>
                                             </div>

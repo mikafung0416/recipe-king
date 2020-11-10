@@ -13,7 +13,7 @@
                         <br>
                     <% } else { %>
                         <h6>My Favourite Cuisine:</h6>
-                        <form id="<%= favCui %>-form" action="/Cuisine/<%= favCui %>" method="post">
+                        <form id="<%= favCui %>-form" action="/advanceSearch/Cuisine/<%= favCui %>" method="post">
                             <a class="queryTag" onclick="document.getElementById('<%= favCui %>-form').submit()"><%= favCui %></a>
                             <input type="hidden" name="<%= favCui %>Name" value="<%= favCui %>">
                         </form>
@@ -23,7 +23,7 @@
                         <br>
                     <% } else { %>
                         <h6>My Diet Preference:</h6>
-                        <form id="<%= diet %>-form" action="/Diet/<%= diet %>" method="post">
+                        <form id="<%= diet %>-form" action="/advanceSearch/Diet/<%= diet %>" method="post">
                             <a class="queryTag" onclick="document.getElementById('<%= diet %>-form').submit()"><%= diet %></a>
                             <input type="hidden" name="<%= diet %>Name" value="<%= diet %>">
                         </form>
@@ -61,7 +61,7 @@
                             <h3 class="pro-recipe-title">My Favourite Recipes</h3>
                             <% if (favArr.length === 0) { %>
                                 <p>You haven't had any favourite recipes yet!</p>
-                                <p>Explore <a href="http://localhost:4000">here</a></p>
+                                <p>Explore <a href="http://localhost:4000/home">here</a></p>
                             <% } else { %>
                                     <% for (let i = 0; i < favArr.length; i++) { %>
                                         <div class="row">

@@ -83,6 +83,8 @@ router.post("/:dietName", isLoggedIn, async (req, res, next) => {
       showingOtherBroadType: "",
       showingOtherSpecificType: "",
       afterFilter: false,
+      advanceFilterName: "",
+      advanceFilterValue: "",
     });
   } catch (err) {
     next(err);
@@ -155,6 +157,8 @@ router.post("/:dietName/number", isLoggedIn, async (req, res, next) => {
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
         afterFilter: false,
+        advanceFilterName: "",
+        advanceFilterValue: "",
       });
     } else {
       console.log("request num is less than the total data in db");
@@ -198,6 +202,8 @@ router.post("/:dietName/number", isLoggedIn, async (req, res, next) => {
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
         afterFilter: false,
+        advanceFilterName: "",
+        advanceFilterValue: "",
       });
     }
   } catch (err) {

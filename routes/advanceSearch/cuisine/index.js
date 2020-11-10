@@ -80,7 +80,9 @@ router.post("/:cuisineName", isLoggedIn, async (req, res, next) => {
       totalRecipes: "",
       showingOtherBroadType: "",
       showingOtherSpecificType: "",
-      afterFilter: false
+      afterFilter: false,
+      advanceFilterName: "",
+      advanceFilterValue: "",
     });
   } catch (err) {
     next(err);
@@ -152,7 +154,9 @@ router.post("/:cuisineName/number", isLoggedIn, async (req, res, next) => {
         totalRecipes: "",
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
-        afterFilter: false
+        afterFilter: false,
+        advanceFilterName: "",
+        advanceFilterValue: "",
       });
     } else {
       console.log("request num is less than the total data in db");
@@ -195,7 +199,9 @@ router.post("/:cuisineName/number", isLoggedIn, async (req, res, next) => {
         totalRecipes: "",
         showingOtherBroadType: "",
         showingOtherSpecificType: "",
-        afterFilter: false
+        afterFilter: false,
+        advanceFilterName: "",
+        advanceFilterValue: "",
       });
     }
   } catch (err) {

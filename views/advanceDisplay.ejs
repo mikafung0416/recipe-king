@@ -73,11 +73,13 @@
                         <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/calories" method="post">
                             <p>Calories</p>
                             <input class="range" type="range" name="caloriesVal" id="caloriesVal" min="0" max="1000"
-                                onchange="this.form.submit()">
+                                onchange="this.form.submit()" value="<%=advanceFilterValue %>">
                             <output class="bubble"></output>
                             <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
                             <input type="hidden" name="showingOtherSpecificType"
                                 value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
                         </form>
                     </div>
                     <div class="range-wrap">
@@ -126,6 +128,9 @@
                     <h1><%= broadType%> - <%= specificType%> (<%= numberOfRecipes%>)</h1>
                     <% if(showingOtherBroadType !== "" && showingOtherSpecificType !== ""){ %>
                     <h3><%= showingOtherBroadType %> - <%= showingOtherSpecificType %></h3>
+                    <% } %>
+                    <% if(advanceFilterName !== "" && advanceFilterValue !== ""){ %>
+                    <h3><%= advanceFilterName %> - <%= advanceFilterValue %></h3>
                     <% } %>
                 </div>
                 <% if(!afterFilter){ %>

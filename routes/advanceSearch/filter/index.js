@@ -114,9 +114,9 @@ router.post(
       showingOtherBroadType = type2;
       showingOtherSpecificType = type2Querys;
     }
-    console.log(broadType, specificType, sbroadType, sspecificType);
-    console.log(type1, type1Querys, stype1);
-    console.log(type2, type2Querys, stype2);
+    // console.log(broadType, specificType, sbroadType, sspecificType);
+    // console.log(type1, type1Querys, stype1);
+    // console.log(type2, type2Querys, stype2);
 
     //eg. Broad: Diet - Vegan ; otherBroad: Cuisine - American
     //1. find the dietID = vegan in diets table
@@ -135,18 +135,18 @@ router.post(
         .from(`${sbroadType}s`)
         .where("name", "=", specificType);
     }
-    console.log(`broadData is below`);
-    console.log(broadData);
+    // console.log(`broadData is below`);
+    // console.log(broadData);
     let broadId = broadData[0][`${sbroadType}_id`];
-    console.log(`broadId - ${sbroadType}Id is below`);
-    console.log(broadId);
+    // console.log(`broadId - ${sbroadType}Id is below`);
+    // console.log(broadId);
 
     let recipeBroadData = await db
       .select("recipe_id")
       .from(`recipe_${sbroadType}`)
       .where(`${sbroadType}_id`, "=", broadId);
-    console.log(`recipeBroadData - recipe${sbroadType}Data is below`);
-    console.log(recipeBroadData);
+    // console.log(`recipeBroadData - recipe${sbroadType}Data is below`);
+    // console.log(recipeBroadData);
 
     for (let recipe of recipeBroadData) {
       let eachRecipeId = recipe.recipe_id;
@@ -169,9 +169,9 @@ router.post(
         dataCuisines = data[0]["cuisines"];
         dataTypes = data[0]["dishTypes"];
         dataDiets = data[0]["diets"];
-        console.log(dataCuisines);
-        console.log(dataTypes);
-        console.log(dataDiets);
+        // console.log(dataCuisines);
+        // console.log(dataTypes);
+        // console.log(dataDiets);
         if (showingOtherBroadType === "Cuisine") {
           if (dataCuisines.length !== 0) {
             if (dataCuisines.includes(showingOtherSpecificType)) {
@@ -225,6 +225,8 @@ router.post(
       showingOtherBroadType: showingOtherBroadType,
       showingOtherSpecificType: showingOtherSpecificType,
       afterFilter: true,
+      advanceFilterName: "",
+      advanceFilterValue: "",
     });
   }
 );
@@ -233,20 +235,45 @@ router.post(
   "/:showingBroadType/:showingSpecificType/calories",
   isLoggedIn,
   async (req, res) => {
-    const {
+    let {
       caloriesVal,
       showingOtherBroadType,
       showingOtherSpecificType,
     } = req.body;
-    const showingBroadType = req.params.showingBroadType; //must have
-    const showingSpecificType = req.params.showingSpecificType; //must have
-    const dataIwant = {
-      showingBroadType,
-      showingSpecificType,
-      showingOtherBroadType,
-      showingOtherSpecificType,
-      caloriesVal,
-    };
+    let showingBroadType = req.params.showingBroadType; //must have
+    let showingSpecificType = req.params.showingSpecificType; //must have
+    let type1 = req.body.type1;
+    let type2 = req.body.type2;
+    console.log(`type1 = ${type1}`);
+    console.log(`type2 = ${type2}`);
+
+    let dataCuisines;
+    let dataDiets;
+    let dataTypes;
+    let broadList;
+    let type1List;
+    let type2List;
+
+    broadList =
+      showingBroadType.toLowerCase() === "cuisine"
+        ? cuisineList
+        : showingBroadType.toLowerCase() === "diet"
+        ? dietList
+        : typeList;
+    type1List =
+      type1.toLowerCase() === "cuisine"
+        ? cuisineList
+        : type1.toLowerCase() === "diet"
+        ? dietList
+        : typeList;
+    type2List =
+      type2.toLowerCase() === "cuisine"
+        ? cuisineList
+        : type2.toLowerCase() === "diet"
+        ? dietList
+        : typeList;
+
+    let dbRecipes = [];
 
     let sShowingBroadType =
       showingBroadType.charAt(0).toLowerCase() + showingBroadType.slice(1); //get small letter of "cuisine"
@@ -270,18 +297,161 @@ router.post(
       sShowingOtherSpecificType
     );
 
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
-      process.env.API_KEY5
-    }&${sShowingBroadType}=${sShowingSpecificType}&${sShowingOtherBroadType}={sShowingOtherSpecificType}&minCalories=${parseInt(
-      caloriesVal
-    )}&number=2`;
-    console.log(url);
-    // let response = await fetch(url);
-    // let result = await response.json();
-    // let recipes = result.results;
-    // totalRecipes = result.totalResults;
+    let broadData = await db
+      .select("*")
+      .from(`${sShowingBroadType}s`)
+      .where("name", "=", showingSpecificType);
+    console.log(`broadData is below`);
+    console.log(broadData);
 
-    res.send(dataIwant);
+    let broadId = broadData[0][`${sShowingBroadType}_id`];
+    console.log(`broadId is below`);
+    console.log(broadId);
+
+    let recipeBroadData = await db
+      .select("recipe_id")
+      .from(`recipe_${sShowingBroadType}`)
+      .where(`${sShowingBroadType}_id`, "=", broadId);
+    console.log(`recipeBroadData is below`);
+    console.log(recipeBroadData);
+
+    if (showingOtherBroadType === "") {
+      for (let recipe of recipeBroadData) {
+        let eachRecipeId = recipe.recipe_id;
+        let data = await db
+          .select(
+            "recipe_id",
+            "recipe_name",
+            "recipe_instruction",
+            "recipe_image",
+            "ingredients",
+            "equipment",
+            "nutrient",
+            "cuisines",
+            "dishTypes",
+            "diets"
+          )
+          .from("recipes")
+          .where("recipe_id", "=", eachRecipeId);
+        if (data[0] !== undefined) {
+          // console.log(data[0]);
+          for (let i = 0; i < data[0].nutrient.length; i++) {
+            if (data[0].nutrient[i].title === "Calories") {
+              if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
+                console.log(data[0].nutrient[i].amount);
+                dbRecipes.push({
+                  id: data[0].recipe_id,
+                  title: data[0].recipe_name,
+                  image: data[0].recipe_image,
+                });
+              }
+            }
+          }
+        }
+      }
+    } else {
+      for (let recipe of recipeBroadData) {
+        let eachRecipeId = recipe.recipe_id;
+        let data = await db
+          .select(
+            "recipe_id",
+            "recipe_name",
+            "recipe_instruction",
+            "recipe_image",
+            "ingredients",
+            "equipment",
+            "nutrient",
+            "cuisines",
+            "dishTypes",
+            "diets"
+          )
+          .from("recipes")
+          .where("recipe_id", "=", eachRecipeId);
+        if (data[0] !== undefined) {
+          dataCuisines = data[0]["cuisines"];
+          dataTypes = data[0]["dishTypes"];
+          dataDiets = data[0]["diets"];
+          // console.log(dataCuisines);
+          // console.log(dataTypes);
+          // console.log(dataDiets);
+          if (showingOtherBroadType === "Cuisine") {
+            if (dataCuisines.length !== 0) {
+              if (dataCuisines.includes(showingOtherSpecificType)) {
+                //dbRecipes add this recipeID
+                for (let i = 0; i < data[0].nutrient.length; i++) {
+                  if (data[0].nutrient[i].title === "Calories") {
+                    if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
+                      console.log(data[0].nutrient[i].amount);
+                      dbRecipes.push({
+                        id: data[0].recipe_id,
+                        title: data[0].recipe_name,
+                        image: data[0].recipe_image,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          } else if (showingOtherBroadType === "Type") {
+            if (dataTypes.length !== 0) {
+              if (dataTypes.includes(showingOtherSpecificType.toLowerCase())) {
+                //dbRecipes add this recipeID
+                for (let i = 0; i < data[0].nutrient.length; i++) {
+                  if (data[0].nutrient[i].title === "Calories") {
+                    if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
+                      console.log(data[0].nutrient[i].amount);
+                      dbRecipes.push({
+                        id: data[0].recipe_id,
+                        title: data[0].recipe_name,
+                        image: data[0].recipe_image,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          } else if (showingOtherBroadType === "Diet") {
+            if (dataDiets.length !== 0) {
+              if (dataDiets.includes(showingOtherSpecificType.toLowerCase())) {
+                //dbRecipes add this recipeID
+                for (let i = 0; i < data[0].nutrient.length; i++) {
+                  if (data[0].nutrient[i].title === "Calories") {
+                    if (data[0].nutrient[i].amount >= parseInt(caloriesVal)) {
+                      console.log(data[0].nutrient[i].amount);
+                      dbRecipes.push({
+                        id: data[0].recipe_id,
+                        title: data[0].recipe_name,
+                        image: data[0].recipe_image,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    console.log(dbRecipes);
+
+    res.render("adVanceDisplay", {
+      recipes: dbRecipes, //Result from API
+      broadType: showingBroadType,
+      specificType: showingSpecificType,
+      numberOfRecipes: dbRecipes.length,
+      queryList: broadList,
+      otherBroadType1: type1,
+      otherBroadType1List: type1List,
+      otherBroadType2: type2,
+      otherBroadType2List: type2List,
+      totalRecipes: "",
+      showingOtherBroadType: showingOtherBroadType,
+      showingOtherSpecificType: showingOtherSpecificType,
+      afterFilter: true,
+      advanceFilterName: "Calories",
+      advanceFilterValue: caloriesVal,
+    });
   }
 );
 router.post(

@@ -27,7 +27,7 @@
 
 <%- include('partials/improveHeaderAfter') -%>
 
-<div id="content rD">
+<div id="content rD" class="signedin-box">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <h2 class="recipe-header"><%= recipeName%></h2>
@@ -35,7 +35,7 @@
       <div class="row d-flex">
         <div class="col-sm-2">
           <div class="recipeDetails-d">
-            Dish Type: <%= cuisines%>
+            Cuisine: <%= cuisines%>
           </div>
           <div class="recipeDetails-d">
             Cooking Time: <%= recipeCookingTime%> mins
@@ -119,17 +119,17 @@
           <% } %>
         </div>
         <div class="col-sm-2 user">
-          <img class="userPic" src="/assets/image/facebook.svg">
+          <!-- <img class="userPic" src="/assets/image/facebook.svg"> -->
           <p class="username">
-            Made by Spoonacular API
+            Made by <%= madeByUsername%>
           </p>
           <div class="fav-btn-div">
-            <button><i class="fab fa-gratipay"></i>Add to Favourites</button>
+            <button id="favBtn"><i class="fab fa-gratipay"></i>Add to Favourites</button>
           </div>
           <div class="liked">
             <img src="/assets/image/like.png" class="likedPic">
             <p class="liked-p">
-              3 people liked this recipe
+              0 people have added this recipe to favourites
             </p>
           </div>
         </div>

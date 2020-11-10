@@ -27,7 +27,7 @@
 
 <%- include('partials/improveHeaderAfter') -%>
 
-<div id="content rD">
+<div id="content rD" class="signedin-box">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <h2 class="recipe-header"><%= recipeName%></h2>
@@ -35,7 +35,7 @@
       <div class="row d-flex">
         <div class="col-sm-2">
           <div class="recipeDetails-d">
-            Dish Type: <%= cuisines%>
+            Cuisine: <%= cuisines%>
           </div>
           <div class="recipeDetails-d">
             Cooking Time: <%= recipeCookingTime%> mins
@@ -97,7 +97,6 @@
           <div class="stamp-d chea">
             <div class="stamp-i cheap">
               <img src="/assets/image/cheap.png" class="stamp-img" />
-            <div class="col-sm-2 user">
             <p class="stamp-p">Cheap</p>
           </div>
           <% } %>
@@ -119,17 +118,17 @@
           <% } %>
         </div>
         <div class="col-sm-2 user">
-          <img class="userPic" src="/assets/image/facebook.svg">
+          <!-- <img class="userPic" src="/assets/image/facebook.svg"> -->
           <p class="username">
-            Made by Spoonacular API
+            Made by Spoonify API
           </p>
           <div class="fav-btn-div">
-            <button><i class="fab fa-gratipay"></i>Add to Favourites</button>
+            <button id="favBtn"><i class="fab fa-gratipay"></i>Add to Favourites</button>
           </div>
           <div class="liked">
             <img src="/assets/image/like.png" class="likedPic">
             <p class="liked-p">
-              3 people liked this recipe
+              0 people have added this recipe to favourites
             </p>
           </div>
         </div>
@@ -143,7 +142,7 @@
               <h2>Ingredients</h2>
             </div>
             <div class="ingredients">
-              <ol class="leftList">
+              <ul class="leftList">
                 <%ingredients.forEach(query => {%>
                 <li class="">
                   <div class='ingredientVals'>
@@ -156,7 +155,7 @@
                   </div>
                 </li>
                 <%})%>
-              </ol>
+              </ul>
             </div>
           </div>
           <div class="equipmentRow">
@@ -196,22 +195,17 @@
           </div>
           <div class="nutrition">
             <ul>
-               <!-- <%for(let i = 0; i < 9; i++) {%>
+              <%for(let i = 0; i < 9; i++) {%>
                 <li class="leftList">
                   <%=nutrition[i].title %>
                   <%=nutrition[i].amount %>
                   <%=nutrition[i].unit%>
                   <%=nutrition[i].percentOfDailyNeeds %>% of daily needs
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:  <%=nutrition[i].percentOfDailyNeeds %>%" aria-valuenow="<%=nutrition[i].percentOfDailyNeeds %>" aria-valuemin="0" aria-valuemax="100"> <%=nutrition[i].percentOfDailyNeeds %>%</div>
+                  </div>
                 </li>
-                <%}%> -->
-              <%nutrition.forEach(query => {%>
-                <li class="leftList">
-                  <%=query.title %>
-                  <%=query.amount %>
-                  <%=query.unit %>
-                  <%=query.percentOfDailyNeeds %>% of daily needs
-                </li>
-                <%})%>
+                <%}%>
               </ul>
           </div>
         </div>

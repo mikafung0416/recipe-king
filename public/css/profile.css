@@ -10,7 +10,8 @@ body {
 
 .profile-bg {
     width: 80vw;
-    margin: 12rem 0 5rem 12.5rem;
+    min-height: 45rem;
+    margin: 6rem 0 5rem 12.5rem;
     background-color: #fff;
     opacity: 75%;
     padding: 2rem 0 3rem;
@@ -40,8 +41,25 @@ body {
 }
 .explore-link {
     text-decoration: underline;
+    cursor: pointer;
 }
 .my-recipe {
     display: flex;
     justify-content: center;
+}
+
+/* for profileSuccess */
+#tip {
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    background-color: #f5f3f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9rem;
+}
+#tip>p {
+    font-size: 2rem;
+    margin-bottom: 0;
 }

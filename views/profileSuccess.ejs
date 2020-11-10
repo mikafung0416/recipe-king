@@ -76,7 +76,7 @@
                                             <img src="<%= recipeArr[i]['recipe_image'] %>" alt="<%= recipeArr[i]['recipe_name'] %>" class="added-recipe-photo">
                                         </div>
                                         <div class="col-sm-8">
-                                            <form id="<%=recipeArr[i]['recipe_id']%>-form" action="/recipes/<%=recipeArr[i]['recipe_id']%>" method="post">
+                                            <form id="<%=recipeArr[i]['recipe_id']%>-form" action="/advanceSearch/recipes/<%=recipeArr[i]['recipe_id']%>" method="post">
                                                 <a href="#"
                                                     onclick="document.getElementById('<%=recipeArr[i].recipe_id%>-form').submit()"><span class="explore-link"><%= recipeArr[i]['recipe_name'] %></span>
                                                     <input type="hidden" name="idName" value="<%=recipeArr[i]['recipe_id']%>"></a>
@@ -99,7 +99,7 @@
                                                 <img src="<%=favArr[i][0].recipe_image%>" alt="<%=favArr[i][0].recipe_name%>" class="added-recipe-photo">
                                             </div>
                                             <div class="col-sm-8">
-                                                <form id="<%=favArr[i][0].recipe_id%>-form" action="/recipes/<%=favArr[i][0].recipe_id%>" method="post">
+                                                <form id="<%=favArr[i][0].recipe_id%>-form" action="/advanceSearch/recipes/<%=favArr[i][0].recipe_id%>" method="post">
                                                     <a href="#"
                                                         onclick="document.getElementById('<%=favArr[i][0].recipe_id%>-form').submit()"><span class="explore-link"><%= favArr[i][0].recipe_name %></span>
                                                         <input type="hidden" name="idName" value="<%=favArr[i][0].recipe_id%>"></a>

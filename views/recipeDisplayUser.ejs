@@ -46,7 +46,7 @@
     <div class="row d-flex">
       <div class="col-sm-2">
         <div class="recipeDetails-d">
-          Dish Type: <%= cuisines%>
+          Cuisine: <%= cuisines%>
         </div>
         <div class="recipeDetails-d">
           Cooking Time: <%= recipeCookingTime%> mins
@@ -130,14 +130,14 @@
         <% } %>
       </div>
       <div class="col-sm-2 user">
-        <img class="userPic" src="/assets/image/facebook.svg">
+        <!-- <img class="userPic" src="/assets/image/facebook.svg"> -->
         <p class="username">
-          Made by Spoonacular API
+          Made by <%= madeByUsername%>
         </p>
         <div class="liked">
           <img src="/assets/image/like.png" class="likedPic">
           <p class="liked-p">
-            3 people liked this recipe
+            0 people have added this recipe to favourites
           </p>
         </div>
       </div>

@@ -90,6 +90,19 @@ app.get("/home", isLoggedIn, (req, res) => {
   });
 });
 
+// for testing profileSuccess
+// app.get('/test', (req, res) => {
+//   res.render('profileSuccess', {
+//     username: 'hi',
+//     email: 'hi',
+//     recipeArr: [1],
+//     favCui: 'hi',
+//     diet: 'hi',
+//     favArr: [[{recipe_image: 'hi'}]]
+//   });
+// })
+
+
 app.listen(4000, () => {
   console.log("listening to 4000");
 });

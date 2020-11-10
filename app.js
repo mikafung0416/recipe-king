@@ -17,7 +17,7 @@ const cuisineList = require("./queryList/cuisineList");
 const dietList = require("./queryList/dietList");
 const typeList = require("./queryList/typeList");
 
-//routes for the pages
+//routes
 const cuisineRoute = require("./routes/cuisine");
 const dietRoute = require("./routes/diet");
 const typeRoute = require("./routes/type");
@@ -28,6 +28,7 @@ const signInRoute = require("./routes/signIn");
 const signUpRoute = require("./routes/signUp");
 const signOutRoute = require("./routes/signOut");
 const errorRoute = require("./routes/errorPage");
+const commentsRoute = require("./routes/comments");
 const advanceSearchRoute = require("./routes/advanceSearch");
 const profileRoute = require("./routes/profile");
 
@@ -63,6 +64,7 @@ app.use("/sign-in", signInRoute);
 app.use("/sign-up", signUpRoute);
 app.use("/sign-out", signOutRoute);
 app.use("/error", errorRoute);
+app.use("/comments", commentsRoute);
 app.use("/advanceSearch", advanceSearchRoute);
 app.use("/profile", profileRoute);
 

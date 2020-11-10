@@ -48,29 +48,31 @@ exports.up = function (knex, Promise) {
     })
     .createTable("comment", (table) => {
       table.increments().primary();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
       // table.foreign('recipe_id').references('recipes.id');
       table.integer("user_id").notNullable();
+      table.string("username").notNullable();
       // table.foreign('user_id').references('users.id');
       table.string("comment", 8000).notNullable();
+      table.string("time");
     })
     .createTable("recipe_cuisine", (table) => {
       table.increments().primary();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
       // table.foreign('recipe_id').references('recipes.id');
       table.integer("cuisine_id").notNullable();
       // table.foreign('cuisine_id').references('cuisines.cuisine_id');
     })
     .createTable("recipe_diet", (table) => {
       table.increments().primary();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
       // table.foreign('recipe_id').references('recipes.id');
       table.integer("diet_id").notNullable();
       // table.foreign('diet_id').references('diets.diet_id');
     })
     .createTable("recipe_type", (table) => {
       table.increments().primary();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
       // table.foreign('recipe_id').references('recipes.id');
       table.integer("type_id").notNullable();
       // table.foreign('type_id').references('types.type_id');
@@ -78,7 +80,7 @@ exports.up = function (knex, Promise) {
     .createTable("recipe_user", (table) => {
       table.increments().primary();
       table.integer("user_id").notNullable();
-      table.integer("recipe_id").notNullable();
+      table.string("recipe_id").notNullable();
     });
 };
 

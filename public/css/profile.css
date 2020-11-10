@@ -1,0 +1,41 @@
+.window {
+    background-image: url('/assets/image/profile-bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+.profile-bg {
+    width: 80%;
+    margin: 3rem 0 3rem;
+    background-color: #fff;
+    opacity: 75%;
+    padding: 2rem 0 3rem;
+}
+.whole-profile {
+    margin-top: 2rem;
+}
+.pro-recipe-title {
+    text-align: center;
+}
+
+/* .profile-pic {
+    height: 100px;
+    width: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+} */
+.profile-left {
+    border: #000 2px solid;
+    /* border-radius: 10px; */
+    padding: 2rem;
+}
+.profile-right {
+    width: 100%;
+    background-color: #fff;
+}
+
+.added-recipe-photo {
+    width: 5rem;
+    height: 5rem;
+}

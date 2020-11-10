@@ -29,6 +29,7 @@ const signUpRoute = require("./routes/signUp");
 const signOutRoute = require("./routes/signOut");
 const errorRoute = require("./routes/errorPage");
 const advanceSearchRoute = require("./routes/advanceSearch");
+const profileRoute = require("./routes/profile");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -63,6 +64,7 @@ app.use("/sign-up", signUpRoute);
 app.use("/sign-out", signOutRoute);
 app.use("/error", errorRoute);
 app.use("/advanceSearch", advanceSearchRoute);
+app.use("/profile", profileRoute);
 
 app.get("/", (req, res) => {
   res.render("index", {

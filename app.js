@@ -69,7 +69,7 @@ app.use("/advanceSearch", advanceSearchRoute);
 app.use("/profile", profileRoute);
 
 app.get("/", (req, res) => {
-  res.render("index", {
+  res.render("improveIndex", {
     cuisineList: cuisineList,
     dietList: dietList,
     typeList: typeList,
@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", isLoggedIn, (req, res) => {
-  res.render("indexLogin", {
+  res.render("improveIndexLogin", {
     cuisineList: cuisineList,
     dietList: dietList,
     typeList: typeList,
@@ -89,8 +89,6 @@ app.get("/home", isLoggedIn, (req, res) => {
     type: "Type",
   });
 });
-
-//get api: https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&apiKey=4d571645da1d408a9d5b832c5bec6874&diet=vegetarian
 
 app.listen(4000, () => {
   console.log("listening to 4000");

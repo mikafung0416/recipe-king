@@ -76,7 +76,7 @@
 
               p1 = this.createEls('p', {}, 'Choose your photo and wait for the preview!');
               // p2 = this.createEls('p', {}, 'Or click here to select image');
-          input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
+          input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*', required: true});
 
           Array.prototype.forEach.call(this.info, function (zone) {
               zone.appendChild(p1);

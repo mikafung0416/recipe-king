@@ -95,7 +95,7 @@ router.post("/", async (req, res) => {
   //getting the id from the hidden input
   let id = req.body.idName;
   // let id = 'wcykio'; // wcykio || 644826
-  let regex = /^[a-z]+$/;
+  // let regex = /^[a-z]+$/;
   //getting the recipe from the database
   let recipeDetails = await db
     .select("*")
@@ -121,10 +121,9 @@ router.post("/", async (req, res) => {
   let veryPopular = recipeDetails[0].veryPopular;
   let sustainable = recipeDetails[0].sustainable;
 
-  if (id.match(regex)) {
+  if (id.toString().length === 8) {
     // user added recipe rendering
-    console.log(equipment);
-    console.log(ingredients);
+    console.log('this is an user added recipe');
     res.render("recipeDisplayUser", {
       recipeName,
       recipeImage,
@@ -141,14 +140,14 @@ router.post("/", async (req, res) => {
       cheap,
       veryPopular,
       sustainable,
-      instructions
+      instructions,
     });
     
   } else {
     //finding paths in db to render to page
     let nutrition = recipeDetails[0].nutrient;
-    console.log("instructions is below");
-    console.log(instructions);
+    // console.log("instructions is below");
+    // console.log(instructions);
 
     //pushing the ingredient details into the same objects
     let ingredientDetails = [...ingredients];
@@ -167,7 +166,7 @@ router.post("/", async (req, res) => {
         ingredientDetails[i].name.slice(1);
       ingredientDetails[i].name = cap;
     }
-    // console.log(instructions);
+    console.log('this is an api recipe');
 
     //render to page
     res.render("recipeDisplay", {
@@ -187,7 +186,7 @@ router.post("/", async (req, res) => {
       veryPopular,
       sustainable,
       instructions,
-      nutrition
+      nutrition,
     });
   }
 });

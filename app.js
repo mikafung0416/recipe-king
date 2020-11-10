@@ -29,7 +29,7 @@ const signUpRoute = require("./routes/signUp");
 const signOutRoute = require("./routes/signOut");
 const errorRoute = require("./routes/errorPage");
 const advanceSearchRoute = require("./routes/advanceSearch");
-const profileRoute = require("./routes/profile")
+const profileRoute = require("./routes/profile");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));

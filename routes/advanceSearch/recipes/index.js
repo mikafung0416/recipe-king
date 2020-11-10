@@ -29,6 +29,11 @@ router.post("/", isLoggedIn, async (req, res) => {
     .where("recipe_id", "=", id);
   console.log(recipeDetails);
 
+  // this is to check if user has signed in: undefined means not signed in
+  // to decide whether or not to render nutrition info, nav bar and favourite function
+  let userId = req.body;
+  console.log(userId);
+
   //finding paths in db to render to page
   let recipeName = recipeDetails[0].recipe_name;
   let recipeImage = recipeDetails[0].recipe_image;
@@ -88,6 +93,7 @@ router.post("/", isLoggedIn, async (req, res) => {
     sustainable,
     instructions,
     nutrition,
+    userId
   });
 });
 

@@ -65,19 +65,65 @@
                         <hr>
                     </div>
                 </div>
-                <div class="advanced filterDiv">
-                    <div class="filterDivContent">
-                        <p>Calories</p>
-                        <input type="range" name="caloriesVal" id="caloriesVal" min="0" max="1000">
-                        <p>Fats</p>
-                        <input type="range" name="fatsVal" id="fatsVal" min="0" max="1000">
-                        <p>Saturated Fat</p>
-                        <input type="range" name="saturatedFatVal" id="saturatedFatVal" min="0" max="1000">
-                        <p>Carbs</p>
-                        <input type="range" name="carbsVal" id="carbsVal" min="0" max="1000">
+            </form>
+
+            <div class="advanced filterDiv">
+                <div class="filterDivContent">
+                    <div class="range-wrap">
+                        <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/calories" method="post">
+                            <p>Calories</p>
+                            <input class="range" type="range" name="caloriesVal" id="caloriesVal" min="0" max="1000"
+                                onchange="this.form.submit()" value="0">
+                            <output class="bubble"></output>
+                            <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
+                            <input type="hidden" name="showingOtherSpecificType"
+                                value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
+                        </form>
+                    </div>
+                    <div class="range-wrap">
+                        <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/fats" method="post">
+                            <p>Fats</p>
+                            <input class="range" type="range" name="fatsVal" id="fatsVal" min="0" max="100"
+                                onchange="this.form.submit()" value="0">
+                            <output class="bubble"></output>
+                            <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
+                            <input type="hidden" name="showingOtherSpecificType"
+                                value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
+                        </form>
+                    </div>
+                    <div class="range-wrap">
+                        <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/saturatedfat"
+                            method="post">
+                            <p>Saturated Fat</p>
+                            <input class="range" type="range" name="saturatedFatVal" id="saturatedFatVal" min="0"
+                                max="100" onchange="this.form.submit()" value="0">
+                            <output class="bubble"></output>
+                            <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
+                            <input type="hidden" name="showingOtherSpecificType"
+                                value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
+                        </form>
+                    </div>
+                    <div class="range-wrap">
+                        <form action="/advanceSearch/filter/<%= broadType%>/<%= specificType%>/carbs" method="post">
+                            <p>Carbohydrates</p>
+                            <input class="range" type="range" name="carbsVal" id="carbsVal" min="0" max="100"
+                                onchange="this.form.submit()" value="0">
+                            <output class="bubble"></output>
+                            <input type="hidden" name="showingOtherBroadType" value="<%= showingOtherBroadType %>">
+                            <input type="hidden" name="showingOtherSpecificType"
+                                value="<%= showingOtherSpecificType %>">
+                            <input type="hidden" name="type1" value="<%= otherBroadType1 %>">
+                            <input type="hidden" name="type2" value="<%= otherBroadType2 %>">
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
 
         </div>
     </div>
@@ -89,30 +135,35 @@
                     <% if(showingOtherBroadType !== "" && showingOtherSpecificType !== ""){ %>
                     <h3><%= showingOtherBroadType %> - <%= showingOtherSpecificType %></h3>
                     <% } %>
+                    <% if(advanceFilterName !== "" && advanceFilterValue !== ""){ %>
+                    <h3><%= advanceFilterName %> - <%= advanceFilterValue %></h3>
+                    <% } %>
                 </div>
-
+                <% if(!afterFilter){ %>
                 <div class="slideContainer">
-                    <form id="<%=specificType%>-number-form" action="/<%=broadType%>/<%=specificType%>/number"
-                        method="post">
+                    <form id="<%=specificType%>-number-form"
+                        action="/advanceSearch/<%=broadType%>/<%=specificType%>/number" method="post">
                         <p>Number of Recipes</p>
                         <input onchange="document.getElementById('<%= specificType %>-number-form').submit()"
-                            type="range" name="numberOfRecipes" id="" min="1" max="100" value="<%=numberOfRecipes%>">
+                            type="range" name="numberOfRecipes" id="" min="1" max="50" value="<%=numberOfRecipes%>">
                         <input type="hidden" name="totalRecipes" value="<%= totalRecipes %>">
                     </form>
                 </div>
+                <% } %>
             </div>
             <div id="rightContentContent">
                 <% recipes.forEach(recipe => { %>
                 <div class="rightContentEach">
-                    <img src="<%= recipe.image %>" alt="">
-                    <div class="rightContentEachTitle">
-                        <!--Should direct to the each id route, and render stuff-->
-                        <form id="<%=recipe.id%>-form" action="/advanceSearch/recipes/<%=recipe.id%>" method="post">
+                    <form id="<%=recipe.id%>-form" action="/advanceSearch/recipes/<%=recipe.id%>" method="post">
+                        <img style="cursor: pointer;" src="<%= recipe.image %>" alt=""
+                            onclick="document.getElementById('<%=recipe.id%>-form').submit()">
+                        <div class="rightContentEachTitle">
+                            <!--Should direct to the each id route, and render stuff-->
                             <a href="#"
                                 onclick="document.getElementById('<%=recipe.id%>-form').submit()"><%= recipe.title %>
                                 <input type="hidden" name="idName" value="<%=recipe.id%>"></a>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <%}) %>
             </div>

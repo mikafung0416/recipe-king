@@ -24,18 +24,19 @@ router.get('/', isLoggedIn, (req, res) => {
 
 router.post('/', isLoggedIn, (req, res) => {
     // recipe ID in alphabets
-    let recipeId = '';
-    let ascii = [];
-    for (let i = 97; i < 123; i++) {
-        ascii.push(i);
-    };
-    for (let i = 0; i < 6; i++) {
-        recipeId += String.fromCharCode(ascii[Math.floor(Math.random()*26)]); // input to db
-    }
+    // let recipeId = '';
+    // let ascii = [];
+    // for (let i = 97; i < 123; i++) {
+    //     ascii.push(i);
+    // };
+    // for (let i = 0; i < 6; i++) {
+    //     recipeId += String.fromCharCode(ascii[Math.floor(Math.random()*26)]); // input to db
+    // }
     // recipe ID in int
-    // let recipeId = Math.floor((Math.random()*10000000));
+    let recipeId = Math.floor((Math.random()*100000000));
 
     let userId = req.session.passport.user; // input to db
+    console.log(req.session);
     let recipeName = req.body.dishName; // input to db
     // instructions
     let instruction = req.body.instruction; // input to db
@@ -98,8 +99,48 @@ router.post('/', isLoggedIn, (req, res) => {
         equipment: equipmentJson
     })
     .into('recipes')
-    .then(() => {
-        res.send('posting from add recipe page');
+    .then(async () => {
+        let userId = req.session.passport.user;
+    
+        // get username
+        let usernameArr = await db.select('username').from("users").where("id", "=", userId);
+        let username = usernameArr[0]['username'];
+        
+        // get email address
+        let emailArr = await db.select('email').from("users").where("id", "=", userId);
+        let email = emailArr[0]['email'];
+        
+        // get fav cuisine
+        let favCuiArr = await db.select('fav_cuisine').from("users").where("id", "=", userId);
+        let favCui = favCuiArr[0]['fav_cuisine'];
+        
+        // get diet
+        let dietArr = await db.select('user_diet').from("users").where("id", "=", userId);
+        let diet = dietArr[0]['user_diet'];
+    
+        // get user added recipe
+        let userRecipeArr = await db.select('recipe_id', 'recipe_name', 'recipe_image').from('recipes').where("user_id", "=", userId);
+        
+        // get user fav recipe
+        let favByUserArr = await db.select('recipe_id').from('recipe_user').where("user_id", "=", userId); // [{id: 123}, {id: 456}]
+        let favArr = [];
+        let favItem;
+        for (let i = 0; i < favByUserArr.length; i++) {
+            favItem = await db.select('recipe_id', 'recipe_name', 'recipe_image').from('recipes').where("recipe_id", "=", favByUserArr[i].recipe_id);
+            favArr.push(favItem);
+        }
+        // console.log(favArr);
+    
+    
+        res.render('profileSuccess',{
+            username: username,
+            email: email,
+            recipeArr: userRecipeArr,
+            favCui: favCui,
+            diet: diet,
+            favArr: favArr
+        });
+        res.render('profileSuccess');
     })
 });
 

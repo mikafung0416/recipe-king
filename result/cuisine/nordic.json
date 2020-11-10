@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "id": 633830,
+      "title": "Baked Swedish Pancake",
+      "image": "https://spoonacular.com/recipeImages/633830-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 648565,
+      "title": "Jen's Swedish Meatballs",
+      "image": "https://spoonacular.com/recipeImages/648565-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 1095945,
+      "title": "Tuna Sandwich Savory Cake (Swedish Smörgåstårta)",
+      "image": "https://spoonacular.com/recipeImages/1095945-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 660225,
+      "title": "Skillingsbollar - Norwegian Cinnamon and Sugar Rolls",
+      "image": "https://spoonacular.com/recipeImages/660225-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 658970,
+      "title": "Saffron Buns - Swedish Lussebullar",
+      "image": "https://spoonacular.com/recipeImages/658970-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 648980,
+      "title": "Knekkebrød: Norwegian Crisp Bread",
+      "image": "https://spoonacular.com/recipeImages/648980-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ],
+  "offset": 0,
+  "number": 50,
+  "totalResults": 6
+}

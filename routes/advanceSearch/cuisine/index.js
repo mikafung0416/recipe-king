@@ -93,7 +93,7 @@ router.post("/:cuisineName/number", isLoggedIn, async (req, res, next) => {
   try {
     const country = req.params.cuisineName;
     let numOfRecipes = parseInt(req.body.numberOfRecipes);
-    console.log(numOfRecipes);
+    // console.log(numOfRecipes);
     let dbRecipes = [];
 
     const countryCapitalized =
@@ -110,12 +110,12 @@ router.post("/:cuisineName/number", isLoggedIn, async (req, res, next) => {
       .select("recipe_id")
       .from("recipe_cuisine")
       .where("cuisine_id", "=", cuisineId);
-    console.log("Below is the recipeCuisineData");
-    console.log(recipeCuisineData.length);
-    console.log(typeof numOfRecipes);
+    // console.log("Below is the recipeCuisineData");
+    // console.log(recipeCuisineData.length);
+    // console.log(typeof numOfRecipes);
 
     if (numOfRecipes >= recipeCuisineData.length) {
-      console.log("request number is larger than total data in db");
+      // console.log("request number is larger than total data in db");
       for (let i = 0; i < recipeCuisineData.length; i++) {
         let eachRecipeId = recipeCuisineData[i].recipe_id;
         //there is no information in recipes table yet
@@ -159,7 +159,7 @@ router.post("/:cuisineName/number", isLoggedIn, async (req, res, next) => {
         advanceFilterValue: "",
       });
     } else {
-      console.log("request num is less than the total data in db");
+      // console.log("request num is less than the total data in db");
       for (let i = 0; i <= numOfRecipes; i++) {
         let eachRecipeId = recipeCuisineData[i].recipe_id;
         // console.log(eachRecipeId);

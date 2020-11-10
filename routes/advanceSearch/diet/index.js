@@ -39,8 +39,8 @@ router.post("/:dietName", isLoggedIn, async (req, res, next) => {
       .select("*")
       .from("recipe_diet")
       .where("diet_id", "=", dietId);
-    console.log(`recipeDietData is below`);
-    console.log(recipeDietData); //find if any information in recipe_cuisine table
+    // console.log(`recipeDietData is below`);
+    // console.log(recipeDietData); //find if any information in recipe_cuisine table
 
     for (let recipe of recipeDietData) {
       let eachRecipeId = recipe.recipe_id;
@@ -56,8 +56,8 @@ router.post("/:dietName", isLoggedIn, async (req, res, next) => {
         )
         .from("recipes")
         .where("recipe_id", "=", eachRecipeId);
-      console.log(`data is below`);
-      console.log(data);
+      // console.log(`data is below`);
+      // console.log(data);
       if (data.length !== 0) {
         dbRecipes.push({
           id: data[0].recipe_id,
@@ -66,8 +66,8 @@ router.post("/:dietName", isLoggedIn, async (req, res, next) => {
         });
       }
     }
-    console.log(`dbRecipes is below`);
-    console.log(dbRecipes);
+    // console.log(`dbRecipes is below`);
+    // console.log(dbRecipes);
 
     res.render("advanceDisplay", {
       recipes: dbRecipes, //Result from API
@@ -95,7 +95,7 @@ router.post("/:dietName/number", isLoggedIn, async (req, res, next) => {
   try {
     const country = req.params.dietName;
     let numOfRecipes = parseInt(req.body.numberOfRecipes);
-    console.log(numOfRecipes);
+    // console.log(numOfRecipes);
     let dbRecipes = [];
 
     const countryCapitalized =
@@ -112,12 +112,12 @@ router.post("/:dietName/number", isLoggedIn, async (req, res, next) => {
       .select("recipe_id")
       .from("recipe_diet")
       .where("diet_id", "=", dietId);
-    console.log("Below is the recipeDietData");
-    console.log(recipeDietData.length);
-    console.log(typeof numOfRecipes);
+    // console.log("Below is the recipeDietData");
+    // console.log(recipeDietData.length);
+    // console.log(typeof numOfRecipes);
 
     if (numOfRecipes >= recipeDietData.length) {
-      console.log("request number is larger than total data in db");
+      // console.log("request number is larger than total data in db");
       for (let i = 0; i < recipeDietData.length; i++) {
         let eachRecipeId = recipeDietData[i].recipe_id;
         //there is no information in recipes table yet
@@ -161,7 +161,7 @@ router.post("/:dietName/number", isLoggedIn, async (req, res, next) => {
         advanceFilterValue: "",
       });
     } else {
-      console.log("request num is less than the total data in db");
+      // console.log("request num is less than the total data in db");
       for (let i = 0; i <= numOfRecipes; i++) {
         let eachRecipeId = recipeDietData[i].recipe_id;
         // console.log(eachRecipeId);

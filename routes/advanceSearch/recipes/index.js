@@ -18,8 +18,80 @@ router.get("/", isLoggedIn, (req, res) => {
   res.send("Only logged in can come to /advanceSearch/type route");
 });
 
-// adding in user added recipe rendering, for easier merging hopefully
+// router.post("/", isLoggedIn, async (req, res) => {
+//   //getting the id from the hidden input
+//   let id = req.body.idName;
 
+//   //getting the recipe from the database
+//   let recipeDetails = await db
+//     .select("*")
+//     .from("recipes")
+//     .where("recipe_id", "=", id);
+//   console.log(recipeDetails);
+
+//   //finding paths in db to render to page
+//   let recipeName = recipeDetails[0].recipe_name;
+//   let recipeImage = recipeDetails[0].recipe_image;
+//   let recipeCookingTime = recipeDetails[0].recipe_cooking_time;
+//   let dishTypes = recipeDetails[0].dishTypes;
+//   let cuisines = recipeDetails[0].cuisines;
+//   let ingredients = recipeDetails[0].ingredients;
+//   let equipment = recipeDetails[0].equipment;
+//   let vegetarian = recipeDetails[0].vegetarian;
+//   let vegan = recipeDetails[0].vegan;
+//   let glutenFree = recipeDetails[0].glutenFree;
+//   let dairyFree = recipeDetails[0].dairyFree;
+//   let veryHealthy = recipeDetails[0].veryHealthy;
+//   let cheap = recipeDetails[0].cheap;
+//   let veryPopular = recipeDetails[0].veryPopular;
+//   let sustainable = recipeDetails[0].sustainable;
+//   let instructions = recipeDetails[0].recipe_instruction;
+//   let nutrition = recipeDetails[0].nutrient;
+//   console.log("instructions is below");
+//   console.log(instructions);
+
+//   //pushing the ingredient details into the same objects
+//   let ingredientDetails = [...ingredients];
+//   let ingredientMetricValue = [];
+//   let ingredientMetricUnit = [];
+//   for (let i = 0; i < ingredients.length; i++) {
+//     let ingredientV = ingredients[i].amount.metric.value;
+//     let ingredientU = ingredients[i].amount.metric.unit;
+//     ingredientMetricValue.push(ingredientV);
+//     ingredientMetricUnit.push(ingredientU);
+//     ingredientDetails[i].value = ingredientMetricValue[i];
+//     ingredientDetails[i].unit = ingredientMetricUnit[i];
+
+//     let cap =
+//       ingredientDetails[i].name.charAt(0).toUpperCase() +
+//       ingredientDetails[i].name.slice(1);
+//     ingredientDetails[i].name = cap;
+//   }
+//   // console.log(instructions);
+
+//   //render to page
+//   res.render("advanceRecipeDisplay", {
+//     recipeName,
+//     recipeImage,
+//     recipeCookingTime,
+//     dishTypes,
+//     cuisines,
+//     ingredients,
+//     equipment,
+//     vegetarian,
+//     vegan,
+//     glutenFree,
+//     dairyFree,
+//     veryHealthy,
+//     cheap,
+//     veryPopular,
+//     sustainable,
+//     instructions,
+//     nutrition,
+//   });
+// });
+
+// here
 router.post("/", isLoggedIn, async (req, res) => {
   //getting user data for comments
   let userId = req.session.passport.user;
@@ -38,7 +110,7 @@ router.post("/", isLoggedIn, async (req, res) => {
   //getting the id from the hidden input
   let id = req.body.idName;
   // let id = 'wcykio'; // wcykio || 644826
-  let regex = /^[a-z]+$/;
+  // let regex = /^[a-z]+$/;
   //getting the recipe from the database
   let recipeDetails = await db
     .select("*")
@@ -69,7 +141,7 @@ router.post("/", isLoggedIn, async (req, res) => {
   let veryPopular = recipeDetails[0].veryPopular;
   let sustainable = recipeDetails[0].sustainable;
 
-  if (id.match(regex)) {
+  if (id.toString().length === 8) {
     // user added recipe rendering- since we use letters for user added recipes we can check for them
     // console.log(equipment);
     // console.log(ingredients);
@@ -144,5 +216,7 @@ router.post("/", isLoggedIn, async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;

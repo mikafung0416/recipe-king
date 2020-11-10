@@ -13,13 +13,13 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   const type = req.body.typeName;
-  console.log(type);
+  // console.log(type);
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY5}&type=${type}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
   const numOfRecipes = result.number;
-  console.log(recipes);
+  // console.log(recipes);
 
   //It should be render all information in grid
   res.render("display", {
@@ -42,7 +42,7 @@ router.post("/:typeName", async (req, res, next) => {
       country.charAt(0).toUpperCase() + country.slice(1);
     // console.log(countryCapitalized);
     let totalRecipes;
-    console.log(country.toLowerCase());
+    // console.log(country.toLowerCase());
 
     let dbRecipes = [];
     //if database is not found , then render the api to user, and insert the information into db
@@ -57,8 +57,8 @@ router.post("/:typeName", async (req, res, next) => {
       .select("*")
       .from("recipe_type")
       .where("type_id", "=", typeId);
-    console.log(`recipeTypeData is below`);
-    console.log(recipeTypeData); //find if any information in recipe_cuisine table
+    // console.log(`recipeTypeData is below`);
+    // console.log(recipeTypeData); //find if any information in recipe_cuisine table
 
     for (let recipe of recipeTypeData) {
       let eachRecipeId = recipe.recipe_id;
@@ -74,8 +74,8 @@ router.post("/:typeName", async (req, res, next) => {
         )
         .from("recipes")
         .where("recipe_id", "=", eachRecipeId);
-      console.log(`data is below`);
-      console.log(data);
+      // console.log(`data is below`);
+      // console.log(data);
       if (data.length !== 0) {
         dbRecipes.push({
           id: data[0].recipe_id,
@@ -110,7 +110,7 @@ router.post("/:typeName/number", async (req, res, next) => {
   try {
     const country = req.params.typeName;
     let numOfRecipes = parseInt(req.body.numberOfRecipes);
-    console.log(numOfRecipes);
+    // console.log(numOfRecipes);
     let dbRecipes = [];
 
     const countryCapitalized =
@@ -127,12 +127,12 @@ router.post("/:typeName/number", async (req, res, next) => {
       .select("recipe_id")
       .from("recipe_type")
       .where("type_id", "=", typeId);
-    console.log("Below is the recipeTypeData");
-    console.log(recipeTypeData.length);
-    console.log(typeof numOfRecipes);
+    // console.log("Below is the recipeTypeData");
+    // console.log(recipeTypeData.length);
+    // console.log(typeof numOfRecipes);
 
     if (numOfRecipes >= recipeTypeData.length) {
-      console.log("request number is larger than total data in db");
+      // console.log("request number is larger than total data in db");
       for (let i = 0; i < recipeTypeData.length; i++) {
         let eachRecipeId = recipeTypeData[i].recipe_id;
         //there is no information in recipes table yet
@@ -174,7 +174,7 @@ router.post("/:typeName/number", async (req, res, next) => {
         afterFilter: false,
       });
     } else {
-      console.log("request num is less than the total data in db");
+      // console.log("request num is less than the total data in db");
       for (let i = 0; i <= numOfRecipes; i++) {
         let eachRecipeId = recipeTypeData[i].recipe_id;
         // console.log(eachRecipeId);

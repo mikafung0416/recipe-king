@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, (req, res) => {
 });
 
 
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
     // recipe ID in alphabets
     // let recipeId = '';
     // let ascii = [];
@@ -83,6 +83,30 @@ router.post('/', isLoggedIn, (req, res) => {
         }
     }
     let equipmentJson = JSON.stringify(equipmentArrtoJson); // input to db
+
+    // insert to recipe_cuisine table
+    let cuisineId = await db.select('cuisine_id').from('cuisines').where('name', '=', req.body.cuisine);
+    await db.insert({
+        recipe_id: recipeId,
+        cuisine_id: cuisineId[0].cuisine_id
+    }).into("recipe_cuisine");
+
+    // insert to recipe_type table
+    let typeId = await db.select('type_id').from('types').where('name', '=', req.body.type.toLowerCase());
+    await db.insert({
+        recipe_id: recipeId,
+        type_id: typeId[0].type_id
+    }).into("recipe_type");    
+
+    // insert to recipe_diet table
+    if (req.body.diet !== 'null') {
+        let dietId = await db.select('diet_id').from('diets').where('name', '=', req.body.diet);
+        await db.insert({
+            recipe_id: recipeId,
+            diet_id: dietId[0].diet_id
+        }).into("recipe_diet");    
+    }
+
 
     db.insert({
         recipe_id: recipeId,

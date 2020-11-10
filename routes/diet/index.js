@@ -13,13 +13,13 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   const diet = req.body.dietName;
-  console.log(diet);
+  // console.log(diet);
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY5}&diet=${diet}&number=2`;
   const response = await fetch(url);
   const result = await response.json();
   const recipes = result.results;
   const numOfRecipes = result.number;
-  console.log(recipes);
+  // console.log(recipes);
 
   //It should be render all information in grid
   res.render("display", {
@@ -56,8 +56,8 @@ router.post("/:dietName", async (req, res, next) => {
       .select("*")
       .from("recipe_diet")
       .where("diet_id", "=", dietId);
-    console.log(`recipeDietData is below`);
-    console.log(recipeDietData); //find if any information in recipe_cuisine table
+    // console.log(`recipeDietData is below`);
+    // console.log(recipeDietData); //find if any information in recipe_cuisine table
 
     for (let recipe of recipeDietData) {
       let eachRecipeId = recipe.recipe_id;
@@ -73,8 +73,8 @@ router.post("/:dietName", async (req, res, next) => {
         )
         .from("recipes")
         .where("recipe_id", "=", eachRecipeId);
-      console.log(`data is below`);
-      console.log(data);
+      // console.log(`data is below`);
+      // console.log(data);
       if (data.length !== 0) {
         dbRecipes.push({
           id: data[0].recipe_id,
@@ -83,8 +83,8 @@ router.post("/:dietName", async (req, res, next) => {
         });
       }
     }
-    console.log(`dbRecipes is below`);
-    console.log(dbRecipes);
+    // console.log(`dbRecipes is below`);
+    // console.log(dbRecipes);
 
     res.render("display", {
       recipes: dbRecipes, //Result from API
@@ -111,7 +111,7 @@ router.post("/:dietName/number", async (req, res, next) => {
   try {
     const country = req.params.dietName;
     let numOfRecipes = parseInt(req.body.numberOfRecipes);
-    console.log(numOfRecipes);
+    // console.log(numOfRecipes);
     let dbRecipes = [];
 
     const countryCapitalized =
@@ -128,10 +128,10 @@ router.post("/:dietName/number", async (req, res, next) => {
       .select("recipe_id")
       .from("recipe_diet")
       .where("diet_id", "=", dietId);
-    console.log("Below is the recipeDietData");
-    console.log(recipeDietData);
-    console.log(recipeDietData.length);
-    console.log(typeof numOfRecipes);
+    // console.log("Below is the recipeDietData");
+    // console.log(recipeDietData);
+    // console.log(recipeDietData.length);
+    // console.log(typeof numOfRecipes);
 
     if (numOfRecipes >= recipeDietData.length) {
       for (let i = 0; i < recipeDietData.length; i++) {
@@ -175,10 +175,10 @@ router.post("/:dietName/number", async (req, res, next) => {
         afterFilter: false
       });
     } else {
-      console.log("request num is less than the total data in db");
+      // console.log("request num is less than the total data in db");
       for (let i = 0; i <= numOfRecipes; i++) {
         let eachRecipeId = recipeDietData[i].recipe_id;
-        console.log(eachRecipeId);
+        // console.log(eachRecipeId);
         //there is no information in recipes table yet
         let data = await db
           .select(
@@ -192,8 +192,8 @@ router.post("/:dietName/number", async (req, res, next) => {
           )
           .from("recipes")
           .where("recipe_id", "=", eachRecipeId);
-        console.log(`data is below`);
-        console.log(data);
+        // console.log(`data is below`);
+        // console.log(data);
         if (data.length !== 0) {
           dbRecipes.push({
             id: data[0].recipe_id,

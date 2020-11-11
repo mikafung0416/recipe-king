@@ -196,14 +196,22 @@
           <div class="nutrition">
             <ul>
               <%for(let i = 0; i < 9; i++) {%>
-                <li class="leftList">
+                <li class="leftList nutritionLi">
+                  <div class="nutritionVals">
+                  <div class="nutritionTitle">
                   <%=nutrition[i].title %>
+                </div>
+                <div>
                   <%=nutrition[i].amount %>
                   <%=nutrition[i].unit%>
+                </div>
+              <div>
                   <%=nutrition[i].percentOfDailyNeeds %>% of daily needs
+                </div>
+              </div>
                   <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" style="width:  <%=nutrition[i].percentOfDailyNeeds %>%" aria-valuenow="<%=nutrition[i].percentOfDailyNeeds %>" aria-valuemin="0" aria-valuemax="100"> <%=nutrition[i].percentOfDailyNeeds %>%</div>
-                  </div>
+                </div>
                 </li>
                 <%}%>
               </ul>

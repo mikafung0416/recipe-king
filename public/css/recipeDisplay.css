@@ -150,7 +150,19 @@
   .equipmentRow{
     display: inline;
   }
-
+  .nutritionTitle{
+    font-size: 20px;
+  }
+  .nutritionLi{
+    list-style-type: none;
+  }
+  .nutritionVals{
+    display: flex;
+    justify-content: space-between;
+    /* right: 50% */
+    width:40%;
+    padding-bottom: 20px;
+  }
   .commentsBox{
     margin: 10px;
     /* border:  1px solid black; */

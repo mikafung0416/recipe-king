@@ -165,7 +165,7 @@ router.post("/:otherBroadType1/:otherBroadType2", async (req, res) => {
       dataDiets = data[0]["diets"];
       // console.log(dataCuisines);
       // console.log(dataTypes);
-      // console.log(dataDiets);
+      console.log(dataDiets);
       if (showingOtherBroadType === "Cuisine") {
         if (dataCuisines.length !== 0) {
           if (dataCuisines.includes(showingOtherSpecificType)) {

@@ -128,3 +128,8 @@ ul {
         padding-top: 11px;
     }
 }
+#row-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

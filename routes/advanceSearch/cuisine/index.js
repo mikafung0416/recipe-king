@@ -15,7 +15,7 @@ function isLoggedIn(req, res, next) {
 }
 
 router.get("/", isLoggedIn, (req, res) => {
-  res.send("Only logged in can come to /advanceSearch/cusine route");
+  res.send("Only logged in can come to /advanceSearch/cuisine route");
 });
 
 router.post("/:cuisineName", isLoggedIn, async (req, res, next) => {

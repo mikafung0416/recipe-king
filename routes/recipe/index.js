@@ -125,7 +125,7 @@ router.post("/", async (req, res) => {
 router.post("/favourited", async (req, res) => {
   // console.log(req.body);
   let userid = req.body.user_id
-  let recipeid = req.body.recipeID
+  let recipeid = parseInt(req.body.recipeID);
 
   let checking = await db 
     .select('recipe_id')
@@ -136,7 +136,6 @@ router.post("/favourited", async (req, res) => {
     let checkResult = checking.filter((item) => {
       return item.recipe_id === recipeid
     })
-  
   if(checkResult.length === 0){
     await db.insert({
       user_id: userid,

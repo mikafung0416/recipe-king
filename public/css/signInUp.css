@@ -101,3 +101,26 @@ input[type=submit] {
 #sign-up-form-btn {
     margin: 2rem 0 2rem;
 }
+/* error for sign-in failure */
+.error-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 19rem 0 19rem 0;
+}
+
+.error-title {
+    font-size: 6rem;
+}
+.error-link {
+    font-size: 4rem;
+}
+
+#error-div-up {
+    margin: 11rem 0 13rem 0;
+}
+
+#error-up-second-line {
+    margin-top: 0;
+}

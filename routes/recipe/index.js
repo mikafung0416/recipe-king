@@ -94,7 +94,7 @@ router.post("/", async (req, res) => {
       let cap =
         ingredientDetails[i].name.charAt(0).toUpperCase() +
         ingredientDetails[i].name.slice(1);
-      ingredientDetails[i].name = cap;
+        ingredientDetails[i].name = cap;
     }
     // console.log('this is an api recipe');
 

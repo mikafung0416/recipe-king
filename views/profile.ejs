@@ -65,7 +65,7 @@
                             <h3 class="pro-recipe-title">My Recipes</h3>
                             <% if (recipeArr.length === 0) { %>
                                 <p class="explore">You haven't added any recipes yet!</p>
-                                <p class="explore">Share your recipes <a href="http://localhost:4000/add-recipe"><span class="explore-link">here</span></a></p>
+                                <p class="explore">Share your recipes <a href="/add-recipe"><span class="explore-link">here</span></a></p>
                             <% } else { %>
                                 <% for (let i = 0; i < recipeArr.length; i++) { %>
                                     <div class="row">
@@ -88,7 +88,7 @@
                             <h3 class="pro-recipe-title">My Favourite Recipes</h3>
                             <% if (favArr.length === 0) { %>
                                 <p class="explore">You haven't had any favourite recipes yet!</p>
-                                <p class="explore">Explore <a href="http://localhost:4000/home"><span class="explore-link">here</span></a></p>
+                                <p class="explore">Explore <a href="/home"><span class="explore-link">here</span></a></p>
                             <% } else { %>
                                     <% for (let i = 0; i < favArr.length; i++) { %>
                                         <div class="row">
